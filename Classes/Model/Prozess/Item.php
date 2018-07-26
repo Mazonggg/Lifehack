@@ -1,0 +1,99 @@
+<?php
+
+namespace Model\Prozess;
+
+use Model\DatenbankEintrag;
+use Model\Konstanten\TabellenName;
+use Model\Wertepaar;
+
+class Item extends DatenbankEintrag {
+
+    /**
+     * @var Wertepaar
+     */
+    private $itemArt;
+    /**
+     * @var string
+     */
+    private $name;
+    /**
+     * @var int
+     */
+    private $gewicht;
+
+    /**
+     * @var string
+     */
+    private $konfiguration;
+
+    /**
+     * Item constructor.
+     */
+    public function __construct() {
+        $this->itemArt = new Wertepaar('', '');
+    }
+
+    /**
+     * @return Wertepaar
+     */
+    public function getItemArt() {
+        return $this->itemArt;
+    }
+
+    /**
+     * @param Wertepaar $itemArt
+     */
+    public function setItemArt($itemArt) {
+        $this->itemArt = $itemArt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName() {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name) {
+        $this->name = $name;
+    }
+
+    /**
+     * @return int
+     */
+    public function getGewicht() {
+        return $this->gewicht;
+    }
+
+    /**
+     * @param int $gewicht
+     */
+    public function setGewicht($gewicht) {
+        $this->gewicht = $gewicht;
+    }
+
+    /**
+     * @return string
+     */
+    public function getKonfiguration() {
+        return $this->konfiguration;
+    }
+
+    /**
+     * @param string $konfiguration
+     */
+    public function setKonfiguration($konfiguration) {
+        $this->konfiguration = $konfiguration;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTabelle() {
+        return TabellenName::ITEM;
+    }
+}
+

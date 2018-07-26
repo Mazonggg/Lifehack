@@ -1,0 +1,247 @@
+
+<<<<<<< HEAD
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+body, body * {
+    margin: 0;
+    padding: 0;
+    font-family: "Avenir Next", sans-serif;
+    font-size: 100%;
+    outline: none;
+    border: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+a, p, input, select, textarea, label, h1, h2, h3, h4, h5, h6 {
+    padding: 10px 20px;
+}
+
+a, p, input, select, textarea, button, label, h1, h2, h3, h4, h5, h6 {
+    background-color: transparent;
+}
+
+a, p, label, h1, h2, h3, h4, h5, h6 {
+    cursor: default;
+}
+
+button {
+    cursor: pointer;
+    padding: 10px;
+}
+
+.link {
+    margin: 20px;
+}
+
+a, a:visited, a:focus, a:hover {
+    text-decoration: none;
+}
+
+a, a:visited, a:focus {
+    color: #000000;
+}
+
+a:hover {
+    cursor: pointer;
+    color: #888888;
+}
+
+li {
+    margin-bottom: 20px;
+}
+
+select {
+    background-image: linear-gradient(45deg, transparent 50%, #888888 50%),
+    linear-gradient(135deg, #888888 50%, transparent 50%);
+    background-position: calc(100% - 20px) 50%,
+    calc(100% - 15px) 50%;
+=======
+select {
+    background-image: linear-gradient(45deg, transparent 50%, #888888 50%),
+    linear-gradient(135deg, #888888 50%, transparent 50%);
+    background-position: calc(100% - 20px) calc(50%),
+    calc(100% - 15px) calc(50%),
+    100% 0;
+>>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
+    background-size: 6px 6px,
+    6px 6px,
+    100% 100%;
+    background-repeat: no-repeat;
+}
+
+<<<<<<< HEAD
+.fixiert {
+    overflow: hidden;
+}
+
+.hidden {
+    overflow: hidden;
+}
+
+.align_right {
+    display: flex;
+    justify-content: space-between;
+}
+
+.display_none {
+    display: none;
+}
+
+.wechsel_button {
+    width: 39px;
+    height: 39px;
+    background-size: 39px 39px;
+    display: inline !important;
+}
+
+.wechsel_button::after {
+    transform: scale(1.5) rotate(0deg);
+    transition: transform 1s;
+}
+
+.wechsel_button.loeschen::after, .wechsel_button.hinzu::after {
+    transform: scale(1);
+}
+
+.wechsel_button.loeschen::after {
+    content: url("/Lifehack/img/svg/loeschen.svg");
+}
+
+.wechsel_button.hinzu::after {
+    content: url("/Lifehack/img/svg/hinzufuegen.svg");
+}
+
+.wechsel_button.oeffnen::after {
+    content: url("/Lifehack/img/svg/ausblenden.svg");
+}
+
+.wechsel_button.bearbeiten::after {
+    content: url("/Lifehack/img/svg/bearbeiten.svg");
+}
+
+.wechsel_button.schliessen::after {
+    content: url("/Lifehack/img/svg/schliessen.svg");
+}
+
+.wechsel_button.ausgeblendet {
+    transform: rotate(180deg);
+    border-bottom: 0 solid #888;
+    border-top: 1px solid #888;
+    box-shadow: -1px -1px 3px rgba(255, 255, 255, 0);
+}
+
+.wechsel_button.ausgeblendet:hover {
+    box-shadow: -1px -1px 3px rgba(135, 135, 135, 1);
+}
+
+.wechsel_button:active::after {
+    content: none;
+}
+
+=======
+>>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
+.hoverbox {
+    border: none;
+    border-bottom: 1px solid #888;
+    border-radius: 0;
+<<<<<<< HEAD
+    box-shadow: 1px 1px 3px rgba(255, 255, 255, 0);
+    transition: box-shadow 0.5s, border-radius 1s;
+=======
+    box-shadow: 1px 1px 4px rgba(255, 255, 255, 0);
+    transition: box-shadow 0.5s, border-radius 0.5s;
+>>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
+}
+
+.hoverbox:hover {
+    border-radius: 5px;
+<<<<<<< HEAD
+    box-shadow: 1px 1px 3px rgba(135, 135, 135, 1);
+=======
+    box-shadow: 1px 1px 4px rgba(135, 135, 135, 0.5);
+>>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
+    transition: box-shadow 0.5s, border-radius 1s;
+}
+
+.hoverbox:focus {
+    border-radius: 5px;
+<<<<<<< HEAD
+    box-shadow: 1px 1px 5px rgba(135, 135, 135, 1);
+    transition: box-shadow 0.5s, border-radius 1s;
+}
+
+.submit, .textbutton {
+    border-radius: 5px;
+}
+
+.form_item.submit {
+    background-color: #888888;
+    color: #ffffff;
+}
+
+.submit:hover, .textbutton:hover {
+    cursor: pointer;
+}
+
+.submit:active, .textbutton:active, .wechsel_button:active {
+    color: transparent;
+    box-shadow: -1px -1px 3px rgba(135, 135, 135, 1);
+}
+
+.textbutton, .ausblenderbutton {
+    background-color: transparent;
+    border-radius: 5px;
+}
+
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.overlay_container {
+    display: grid;
+    grid-gap: 20px;
+    width: 500px;
+    max-height: 95vh;
+    overflow: scroll;
+    transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+    background-color: rgba(255, 255, 255, 0.97);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.overlay_img_button {
+    padding: 20px;
+}
+
+.overlay_img {
+    width: 100%;
+}
+
+
+
+
+
+=======
+    box-shadow: 1px 1px 4px rgba(135, 135, 135, 1);
+    transition: box-shadow 0.5s, border-radius 1s;
+}
+
+.fixiert {
+    overflow: hidden;
+}
+
+.hidden {
+    overflow: hidden;
+}
+
+>>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2

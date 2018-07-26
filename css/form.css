@@ -1,0 +1,143 @@
+
+#form_body_wrapper {
+    min-height: 400px;
+    max-height: 70vh;
+    overflow: scroll;
+}
+
+#form_warnung {
+    position: absolute;
+    top: 20px;
+    color: #aa2222;
+}
+
+#form_warnung.ausgeblendet {
+    display: none;
+}
+
+.form_body > *, #form_neu_body, #form_submit_container {
+    padding: 20px;
+}
+
+.form_body_content, #form_submit_container {
+    max-height: 2000px;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 250px 250px;
+    overflow: hidden;
+    transition: max-height 1s, padding-top 1s, padding-bottom 1s;
+}
+
+.form_body_content.ausgeblendet {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    transition: max-height 1s, padding-top 1s, padding-bottom 1s;
+}
+
+.form_label {
+    color: #aaaaaa;
+    grid-column: 1;
+}
+
+.form_select, .form_container .submit, .form_bild {
+    grid-column: 2;
+}
+
+.form_item {
+    display: inline-grid;
+    resize: none;
+    background-color: transparent;
+}
+
+.form_bild {
+    width: 100%;
+    height: 250px;
+}
+
+.form_bild > img {
+    width: 100%;
+    margin: auto 0;
+}
+
+input[type="text"].form_item, textarea.form_item, #form_submit {
+    grid-column: 1 / span 2;
+}
+
+.form_button {
+    width: 100%;
+    margin-top: 20px;
+    grid-column: 1 / span 2;
+}
+
+textarea.form_input {
+    height: 100px;
+}
+
+.form_input.hidden {
+    display: none;
+}
+
+.form_body.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.form_titel {
+    padding: 30px;
+}
+
+.warnung, .warnung + .form_item:not(.form_input) {
+    border: 1px solid #aa2222;
+    border-radius: 5px;
+    transition: border 0.5s, border-radius 0.5s;
+}
+
+.form_body.geloescht * {
+    color: #aa2222;
+    fill: #aa2222;
+}
+
+.hinweis {
+    display: inline-block;
+    overflow: hidden;
+    font-weight: 700;
+    opacity: 0.5;
+}
+
+.hinweis:hover {
+    opacity: 1;
+}
+
+.form_body .hinweis {
+    max-width: 0;
+    padding-left: 0;
+    padding-right: 0;
+    color: #aa2222;
+    transition: max-width 1s, padding-left 1s, padding-right 1s;
+}
+
+.form_body.geloescht .hinweis {
+    max-width: 200px;
+    padding-left: 10px;
+    padding-right: 10px;
+    transition: max-width 1s, padding-left 1s, padding-right 1s;
+}
+
+#bildwahl_overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+#bildwahl_wrapper {
+    width: 400px;
+    padding: 20px;
+}
+
+#bildwahl_wrapper > * {
+    padding: 20px;
+}
+

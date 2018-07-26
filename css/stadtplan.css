@@ -1,0 +1,114 @@
+
+<<<<<<< HEAD
+#stadtplan_container {
+    display: inline-block;
+    margin-left: 300px;
+    transition: margin-left 1s;
+}
+
+#stadtplan {
+    display: grid;
+    grid-gap: 0;
+    background-image: url("/Lifehack/img/svg/stadtplan_raster.svg");
+    background-size: 25px;
+    background-repeat: repeat;
+}
+
+#stadtplan_container.ausgeblendet {
+    margin-left: 0;
+    margin-right: 0;
+    transition: margin-left 1s, margin-right 1s;
+}
+
+#stadtplan_overlay {
+    background-color: rgba(255, 255, 255, 0);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+#stadtplan_overlay.halbtransparent {
+    display: inherit;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.kachel {
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.kachel.leere_kachel.ausgeblendet {
+    display: none;
+}
+
+.kartenelement {
+    background-color: rgba(255, 255, 255, 0.75);
+    background-size: contain;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 1s;
+}
+
+.kartenelement:hover {
+    background-color: rgba(255, 255, 255, 1);
+    transition: background-color 1s;
+}
+
+.kartenelement::after {
+    content: '';
+    display: block;
+    width: 100%;;
+    height: 100%;
+}
+
+#stadtplan_container.aktiv .kartenelement::after {
+    background-color: rgba(255, 135, 135, 0.5);
+    transition: background-color 1s, border-radius 1s;
+    box-shadow: 0 0 5px #ff0000;
+}
+
+#stadtplan_container.aktiv .kartenelement.aktiv::after {
+    background-color: rgba(135, 255, 135, 0.5);
+    transition: background-color 1s, border-radius 1s;
+    box-shadow: 0 0 5px #00ff00;
+}
+
+
+
+
+
+=======
+.stadtplan {
+    display: grid;
+    grid-gap: 1px;
+    grid-template-columns: repeat(48, 40px);
+    grid-template-rows: repeat(24, 40px);
+    margin-left: 100px;
+    transition: margin-left 0.5s;
+}
+
+.stadtplan.ausgeblendet {
+    margin-left: 0;
+    transition: margin-left 0.5s;
+}
+
+
+.kachel {
+    background-color: #eeeeee;
+    width: 100%;
+    height: 100%;
+}
+
+body:not(.fixiert) .kachel:hover {
+    background-color: #bbbbbb;
+}
+
+.kartenelement {
+    background-size: 100% !important;
+}
+
+>>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
