@@ -1,51 +1,69 @@
 # Recreate the database
-DROP DATABASE IF EXISTS lifehack;
-CREATE DATABASE lifehack;
-USE lifehack;
+DROP TABLE IF EXISTS
+teilaufgabe,
+aufgabe,
+item,
+vertreter,
+niederlassung,
+wohnhaus,
+gebaeude,
+umwelt,
+abmessung,
+kartenelement,
+institut,
+vertreter_aussehen,
+interieur_aussehen,
+kartenelement_aussehen,
+teilaufgabe_art,
+item_art,
+institut_art,
+kartenelement_art;
+
+USE dgsql18;
 
 # Alle verschiedenen Arten von Kartenelementen.
 CREATE TABLE kartenelement_art (
   kartenelement_art_id   INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  kartenelement_art_name VARCHAR(25)                    NOT NULL
+  kartenelement_art_name VARCHAR(64)                    NOT NULL
 );
 
 # Referenzeintraege fuer Enums im Softwaremodell.
 CREATE TABLE institut_art (
   institut_art_id   INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  institut_art_name VARCHAR(25)                    NOT NULL
+  institut_art_name VARCHAR(64)                    NOT NULL
 );
 
 CREATE TABLE item_art (
   item_art_id   INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  item_art_name VARCHAR(25)                    NOT NULL
+  item_art_name VARCHAR(64)                    NOT NULL
 );
 
 CREATE TABLE teilaufgabe_art (
   teilaufgabe_art_id   INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  teilaufgabe_art_name VARCHAR(25)                    NOT NULL
+  teilaufgabe_art_name VARCHAR(64)                    NOT NULL
 );
 
 # Referenzeintraege fuer verwendete Grafiken in Spiel/Configurator.
 CREATE TABLE kartenelement_aussehen (
   kartenelement_aussehen_id  INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  kartenelement_aussehen_url VARCHAR(255)                   NOT NULL
+  kartenelement_aussehen_url VARCHAR(645)                   NOT NULL
 );
 
 CREATE TABLE interieur_aussehen (
   interieur_aussehen_id  INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  interieur_aussehen_url VARCHAR(255)                   NOT NULL
+  interieur_aussehen_url VARCHAR(645)                   NOT NULL
 );
 
 CREATE TABLE vertreter_aussehen (
   vertreter_aussehen_id  INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  vertreter_aussehen_url VARCHAR(255)                   NOT NULL
+  vertreter_aussehen_url VARCHAR(645)                   NOT NULL
 );
 
 # Auf Institute bezogene Objekte
 CREATE TABLE institut (
   institut_id      INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  institut_name    VARCHAR(25)                    NOT NULL,
-  beschreibung     VARCHAR(255)                   NOT NULL,
+  institut_name    VARCHAR(64)                    NOT NULL,
+  beschreibung     VARCHAR(645)                   NOT NULL,
   institut_art_ref INT                            NOT NULL,
   FOREIGN KEY (institut_art_ref) REFERENCES institut_art (institut_art_id)
 );
@@ -60,14 +78,14 @@ CREATE TABLE kartenelement (
 );
 
 CREATE TABLE abmessung (
-  welt_abmessung              VARCHAR(25) NOT NULL,
+  welt_abmessung              VARCHAR(64) NOT NULL,
   abmessung_kartenelement_ref INT         NOT NULL,
   FOREIGN KEY (abmessung_kartenelement_ref) REFERENCES kartenelement (kartenelement_id)
     ON DELETE CASCADE
 );
 
 CREATE TABLE umwelt (
-  bezeichnung              VARCHAR(25) NOT NULL,
+  bezeichnung              VARCHAR(64) NOT NULL,
   begehbar                 TINYINT     NOT NULL,
   umwelt_kartenelement_ref INT         NOT NULL,
   FOREIGN KEY (umwelt_kartenelement_ref) REFERENCES kartenelement (kartenelement_id)
@@ -100,13 +118,13 @@ CREATE TABLE niederlassung (
 
 CREATE TABLE vertreter (
   vertreter_id                INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  vorname                     VARCHAR(25)                    NOT NULL,
-  nachname                    VARCHAR(25)                    NOT NULL,
+  vorname                     VARCHAR(64)                    NOT NULL,
+  nachname                    VARCHAR(64)                    NOT NULL,
   geschlecht                  TINYINT                        NOT NULL,
   vertreter_kartenelement_ref INT                            NOT NULL,
   FOREIGN KEY (vertreter_kartenelement_ref) REFERENCES kartenelement (kartenelement_id)
     ON DELETE CASCADE,
-  gebaeude_position           VARCHAR(25),
+  gebaeude_position           VARCHAR(64),
   vertreter_aussehen_ref      INT                            NOT NULL,
   FOREIGN KEY (vertreter_aussehen_ref) REFERENCES vertreter_aussehen (vertreter_aussehen_id)
 );
@@ -114,9 +132,9 @@ CREATE TABLE vertreter (
 # Direkt aufgabenbezogene Objekte
 CREATE TABLE item (
   item_id       INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  item_name     VARCHAR(25)                    NOT NULL,
+  item_name     VARCHAR(64)                    NOT NULL,
   gewicht       INT                            NOT NULL,
-  konfiguration VARCHAR(255)                   NOT NULL,
+  konfiguration VARCHAR(645)                   NOT NULL,
   item_art_ref  INT                            NOT NULL,
   FOREIGN KEY (item_art_ref) REFERENCES item_art (item_art_id)
 );
@@ -124,16 +142,16 @@ CREATE TABLE item (
 CREATE TABLE aufgabe (
   aufgabe_id        INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   bezeichnung       VARCHAR(127)                   NOT NULL,
-  gesetzesgrundlage VARCHAR(255)                   NOT NULL
+  gesetzesgrundlage VARCHAR(645)                   NOT NULL
 );
 
 CREATE TABLE teilaufgabe (
   teilaufgabe_id          INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  menue_text              VARCHAR(255)                   NOT NULL,
-  ansprache_text          VARCHAR(255)                   NOT NULL,
-  antwort_text            VARCHAR(255)                   NOT NULL,
-  erfuellungs_text        VARCHAR(255)                   NOT NULL,
-  scheitern_text          VARCHAR(255)                   NOT NULL,
+  menue_text              VARCHAR(645)                   NOT NULL,
+  ansprache_text          VARCHAR(645)                   NOT NULL,
+  antwort_text            VARCHAR(645)                   NOT NULL,
+  erfuellungs_text        VARCHAR(645)                   NOT NULL,
+  scheitern_text          VARCHAR(645)                   NOT NULL,
   teilaufgabe_aufgabe_ref INT                            NOT NULL,
   FOREIGN KEY (teilaufgabe_aufgabe_ref) REFERENCES aufgabe (aufgabe_id)
     ON DELETE CASCADE,
@@ -154,7 +172,6 @@ INSERT INTO kartenelement_art (kartenelement_art_name) VALUES ('wohnhaus');
 INSERT INTO kartenelement_art (kartenelement_art_name) VALUES ('niederlassung');
 
 # Fixe Daten fuer Enums und identifizierbare Objekte anlegen
-INSERT INTO institut_art (institut_art_name) VALUES ('wohnhaus');
 INSERT INTO institut_art (institut_art_name) VALUES ('bank');
 INSERT INTO institut_art (institut_art_name) VALUES ('stadtteilbuero');
 INSERT INTO institut_art (institut_art_name) VALUES ('schule');
@@ -272,13 +289,6 @@ VALUES
 INSERT INTO institut
 (institut_name, beschreibung, institut_art_ref)
 VALUES
-  ('Wohnhaus', 'Wohnraum jeglicher Art',
-   (SELECT institut_art_id
-    FROM institut_art
-    WHERE institut_art_name = 'wohnhaus'));
-INSERT INTO institut
-(institut_name, beschreibung, institut_art_ref)
-VALUES
   ('Dorfbank', 'Es ist die &auml;lteste Bank im Dorf und hat damit das Vertrauen aller Einwohner.',
    (SELECT institut_art_id
     FROM institut_art
@@ -286,17 +296,31 @@ VALUES
 INSERT INTO institut
 (institut_name, beschreibung, institut_art_ref)
 VALUES
-  ('Rathaus', 'Der Ort f&uuml;r alle Amtsg&auml;nge in diesem Dorf.',
+  ('Stadteilbuero', 'Der Ort f&uuml;r alle Amtsg&auml;nge in diesem Dorf.',
    (SELECT institut_art_id
     FROM institut_art
     WHERE institut_art_name = 'stadtteilbuero'));
 INSERT INTO institut
 (institut_name, beschreibung, institut_art_ref)
 VALUES
-  ('CentyMarkt', 'Frisch und Frostig.',
+  ('Die Arbeiter Versicherung', 'In jedem Fall der sichere R&uuml;ckhalt!',
+   (SELECT institut_art_id
+    FROM institut_art
+    WHERE institut_art_name = 'versicherung'));
+INSERT INTO institut
+(institut_name, beschreibung, institut_art_ref)
+VALUES
+  ('Kiosk an der Ecke', 'Frisch und Frostig.',
    (SELECT institut_art_id
     FROM institut_art
     WHERE institut_art_name = 'einzelhaendler'));
+INSERT INTO institut
+(institut_name, beschreibung, institut_art_ref)
+VALUES
+  ('Gemeinschaftsschule am Dorfplatz', 'Hier sind schon Deine Gro&szlig;eltern zur Schule gegangen.',
+   (SELECT institut_art_id
+    FROM institut_art
+    WHERE institut_art_name = 'schule'));
 
 #################################################
 ############     Niederlassungen     ############
@@ -329,7 +353,7 @@ VALUES
   (LAST_INSERT_ID(),
    (SELECT institut_id
     FROM institut
-    WHERE institut_name = 'CentyMarkt'));
+    WHERE institut_name = 'Gemeinschaftsschule am Dorfplatz'));
 
 INSERT INTO kartenelement
 (kartenelement_art_ref, kartenelement_aussehen_ref)
@@ -358,7 +382,7 @@ VALUES
   (LAST_INSERT_ID(),
    (SELECT institut_id
     FROM institut
-    WHERE institut_name = 'Rathaus'));
+    WHERE institut_name = 'Stadteilbuero'));
 
 
 INSERT INTO kartenelement
@@ -571,8 +595,7 @@ INSERT INTO aufgabe
 VALUES
   ('Richte Dein erstes Bankkonto ein',
    '&sect; 0815\n
-Bargeldloser Geldverkehr:
-Der gr&ouml;szte Teil des Geldverkehrs verl&auml;uft heutzutage &uuml;ber Bankgesch&auml;fte. Hierf&uuml;r ben&ouml;tigst Du ein Girokonto bei einer Bank usw.');
+Bargeldloser Geldverkehr:\nDer gr&ouml;szte Teil des Geldverkehrs verl&auml;uft heutzutage &uuml;ber Bankgesch&auml;fte. Hierf&uuml;r ben&ouml;tigst Du ein Girokonto bei einer Bank usw.');
 
 INSERT INTO teilaufgabe
 (menue_text,
@@ -586,16 +609,11 @@ INSERT INTO teilaufgabe
  teilaufgabe_art_ref,
  belohnung_item_ref)
 VALUES
-  ('Der Bankangestellte ben&ouml;tigt deinen Personalausweis,
-  um dir dein Bankkonto erstellen zu k&ouml;nnen',
-   'Guten Tag! Ich moechte ein Konto er&ouml;ffnen.',
-   'Guten Tag!\n
-  Sehr gerne, daf&uuml;r brauche ich Ihren Personalausweis, um Ihre Daten aufzunehmen.',
-   'Sehr gut, als n&auml;chstes m&uuml;ssen Sie
-   ein Formular mit Ihren individuellen Anspr&uuml;chen ausf&uuml;llen.',
-   'Tut mir leid,
-   leider kann ich ohne Ihren g&uuml;ltigen Personalausweis
-   kein Konto f&uuml;r Sie er&ouml;ffnen.',
+  ('Der Bankangestellte ben&ouml;tigt deinen Personalausweis, um dir dein Bankkonto erstellen zu k&ouml;nnen',
+   'Guten Tag!\nIch moechte ein Konto er&ouml;ffnen.',
+   'Guten Tag!\nSehr gerne, daf&uuml;r brauche ich Ihren Personalausweis, um Ihre Daten aufzunehmen.',
+   'Sehr gut, als n&auml;chstes m&uuml;ssen Sie ein Formular mit Ihren individuellen Anspr&uuml;chen ausf&uuml;llen.',
+   'Tut mir leid, leider kann ich ohne Ihren g&uuml;ltigen Personalausweis kein Konto f&uuml;r Sie er&ouml;ffnen.',
    (SELECT aufgabe_id
     FROM aufgabe
     WHERE bezeichnung = 'Richte Dein erstes Bankkonto ein'),
@@ -624,14 +642,11 @@ INSERT INTO teilaufgabe
  teilaufgabe_art_ref,
  belohnung_item_ref)
 VALUES
-  ('Geb das ausgef&uuml;llte Formular ab, damit das Konto
-  deinen Anspr&uuml;chen entspricht',
+  ('Geb das ausgef&uuml;llte Formular ab, damit das Konto deinen Anspr&uuml;chen entspricht',
    '-',
    'Haben Sie das Formular ausgef&uuml;llt?',
    'Bittesehr. Zu Ihrer Freude erhalten Sie im Rahmen einer Werbungsaktion 100,00&euro; Startguthaben.',
-   'Tut mir leid,
-   leider kann ich ohne Sie m&uuml;ssen mir das ausgef&uuml;llte Formular geben,
-   damit ich fortfahren kann.',
+   'Tut mir leid,\nleider kann ich ohne Sie m&uuml;ssen mir das ausgef&uuml;llte Formular geben, damit ich fortfahren kann.',
    (SELECT aufgabe_id
     FROM aufgabe
     WHERE bezeichnung = 'Richte Dein erstes Bankkonto ein'),

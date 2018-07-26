@@ -16,7 +16,7 @@ body, body * {
 }
 
 a, p, input, select, textarea, label, h1, h2, h3, h4, h5, h6 {
-    padding: 10px 20px;
+    padding: 10px 10px;
 }
 
 a, p, input, select, textarea, button, label, h1, h2, h3, h4, h5, h6 {
