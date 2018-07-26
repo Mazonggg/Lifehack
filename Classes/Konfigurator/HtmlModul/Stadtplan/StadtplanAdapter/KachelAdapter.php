@@ -39,10 +39,10 @@ abstract class KachelAdapter implements IKachelAdapter {
     private function getUmgerechneteAbmessungen() {
         $stadtplanAbmessung = StadtplanModul::Instance()->getStadtplanGroesze();
         return SimpleAbmessungFabrik::erzeugeAbmessung(
-            ($this->abmessung->xMin() - $stadtplanAbmessung->xMin()) . AustauschKonstanten::POSITIONS_TRENNER .
-            ($this->abmessung->yMin() - $stadtplanAbmessung->yMin()) . AustauschKonstanten::POSITIONS_TRENNER .
-            $this->abmessung->getBreite() . AustauschKonstanten::POSITIONS_TRENNER .
-            $this->abmessung->getHoehe() . AustauschKonstanten::POSITIONS_TRENNER,
+            ($this->abmessung->xMin() - $stadtplanAbmessung->xMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .
+            ($this->abmessung->yMin() - $stadtplanAbmessung->yMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .
+            $this->abmessung->getBreite() . AustauschKonstanten::ABMESSUNG_TRENNER .
+            $this->abmessung->getHoehe() . AustauschKonstanten::ABMESSUNG_TRENNER,
             $this->abmessung->getIdentifier(), '');
     }
 

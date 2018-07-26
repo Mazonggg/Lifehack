@@ -18,7 +18,7 @@ final class SimpleAbmessungFabrik {
          * @var Abmessung[]
          */
         $abmessungen = [];
-        foreach (explode(AustauschKonstanten::POSITIONS_EINTRAG_TRENNER, $abmessungsDaten) as $abmessung) {
+        foreach (explode(AustauschKonstanten::ABMESSUNG_EINTRAG_TRENNER, $abmessungsDaten) as $abmessung) {
             array_push(
                 $abmessungen,
                 self::erzeugeAbmessung($abmessung, $identifier, $kartenelementId));
@@ -33,7 +33,7 @@ final class SimpleAbmessungFabrik {
      * @return Abmessung
      */
     public static function erzeugeAbmessung($abmessungDaten, $identifier = "", $kartenelementId = "") {
-        $daten = explode(AustauschKonstanten::POSITIONS_TRENNER, $abmessungDaten);
+        $daten = explode(AustauschKonstanten::ABMESSUNG_TRENNER, $abmessungDaten);
         $abmessung = new Abmessung();
         $abmessung->setAbmessungen($daten[0], $daten[1], $daten[2], $daten[3]);
         $abmessung->setIdentifier($identifier);

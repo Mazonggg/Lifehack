@@ -8,11 +8,11 @@ use Konfigurator\HtmlModul\HtmlModul;
 use Konfigurator\HtmlModul\IHtmlModul;
 use Konfigurator\HtmlModul\Menue\MenueEintragAdapter\SimpleMenueEintragFabrik;
 use Konfigurator\HtmlModul\Menue\MenueModul;
-use Konfigurator\HtmlModul\ModulAbrufer;
 use Konfigurator\HtmlModul\Popup\PopupModul;
 use Konfigurator\HtmlModul\Stadtplan\StadtplanAdapter\SimpleKachelFabrik;
 use Konfigurator\HtmlModul\Stadtplan\StadtplanModul;
 use Model\Konstanten\TabellenName;
+use Model\ModelHandler;
 
 class Konfigurator extends HtmlModul {
     /**
@@ -38,7 +38,7 @@ class Konfigurator extends HtmlModul {
                 FormModul::Instance(),
                 StadtplanModul::Instance(
                     SimpleKachelFabrik::erzeugeKacheln(
-                        ModulAbrufer::Instance()->getKartenelementDaten()
+                        ModelHandler::Instance()->getKartenelementDaten()
                     ))
             ];
             self::$_instance->headerGenerator = HeaderAbrufer::Instance();

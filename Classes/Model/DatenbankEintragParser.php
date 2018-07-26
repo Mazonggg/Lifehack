@@ -9,14 +9,14 @@ use Model\Fabrik\IDatenbankEintragFabrik;
 use Model\Fabrik\Stadtplan\KartenelementFabrik;
 use Pattern\SingletonPattern;
 
-class DatenbankEintragDirector extends SingletonPattern {
+class DatenbankEintragParser extends SingletonPattern {
     /**
-     * @var DatenbankEintragDirector|null
+     * @var DatenbankEintragParser|null
      */
     protected static $_instance = null;
 
     /**
-     * @return DatenbankEintragDirector
+     * @return DatenbankEintragParser
      */
     public static function Instance() {
         if (self::$_instance == null) {

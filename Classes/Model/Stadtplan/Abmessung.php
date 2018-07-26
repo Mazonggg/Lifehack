@@ -136,9 +136,9 @@ class Abmessung extends DatenbankEintrag {
      */
     public function __toString() {
         return
-            $this->x . AustauschKonstanten::POSITIONS_TRENNER .
-            $this->y . AustauschKonstanten::POSITIONS_TRENNER .
-            $this->breite . AustauschKonstanten::POSITIONS_TRENNER .
+            $this->x . AustauschKonstanten::ABMESSUNG_TRENNER .
+            $this->y . AustauschKonstanten::ABMESSUNG_TRENNER .
+            $this->breite . AustauschKonstanten::ABMESSUNG_TRENNER .
             $this->hoehe;
     }
 }

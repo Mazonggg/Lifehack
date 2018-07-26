@@ -25,10 +25,10 @@ class AbmessungenForm extends Form {
     public function __construct($abmessungen) {
         if (empty($abmessungen)) {
             $abmessungen = [SimpleAbmessungFabrik::erzeugeAbmessung(
-                0 . AustauschKonstanten::POSITIONS_TRENNER .
-                0 . AustauschKonstanten::POSITIONS_TRENNER .
-                0 . AustauschKonstanten::POSITIONS_TRENNER .
-                0 . AustauschKonstanten::POSITIONS_TRENNER
+                0 . AustauschKonstanten::ABMESSUNG_TRENNER .
+                0 . AustauschKonstanten::ABMESSUNG_TRENNER .
+                0 . AustauschKonstanten::ABMESSUNG_TRENNER .
+                0 . AustauschKonstanten::ABMESSUNG_TRENNER
             )];
         }
         parent::__construct($abmessungen[0]);

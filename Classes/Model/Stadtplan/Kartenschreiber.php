@@ -69,10 +69,10 @@ class Kartenschreiber extends SingletonPattern {
             }
         }
         return SimpleAbmessungFabrik::erzeugeAbmessung(
-            ($xmin - $randBreite) . AustauschKonstanten::POSITIONS_TRENNER .
-            ($ymin - $randBreite) . AustauschKonstanten::POSITIONS_TRENNER .
-            ($xmax + (2 * $randBreite) - $xmin) . AustauschKonstanten::POSITIONS_TRENNER .
-            ($ymax + (2 * $randBreite) - $ymin) . AustauschKonstanten::POSITIONS_TRENNER
+            ($xmin - $randBreite) . AustauschKonstanten::ABMESSUNG_TRENNER .
+            ($ymin - $randBreite) . AustauschKonstanten::ABMESSUNG_TRENNER .
+            ($xmax + (2 * $randBreite) - $xmin) . AustauschKonstanten::ABMESSUNG_TRENNER .
+            ($ymax + (2 * $randBreite) - $ymin) . AustauschKonstanten::ABMESSUNG_TRENNER
         );
     }
 }

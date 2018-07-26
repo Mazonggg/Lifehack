@@ -5,8 +5,8 @@ namespace Austauschformat;
 final class AustauschKonstanten {
 
     const KONFIGURATION = 'konfiguration';
-    const POSITIONS_TRENNER = '/';
-    const POSITIONS_EINTRAG_TRENNER = ',';
+    const ABMESSUNG_TRENNER = '/';
+    const ABMESSUNG_EINTRAG_TRENNER = ',';
     const KARTE = 'karte';
     const INFORMATION = 'information';
 

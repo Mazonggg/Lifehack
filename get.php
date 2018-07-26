@@ -5,11 +5,11 @@ include('autoloader.php');
 use Datenbank\DatenbankAbrufHandler;
 use Konfigurator\HtmlModul\Form\FormModul;
 use Konfigurator\HtmlModul\Form\FormAdapter\SimpleFormFabrik;
-use Konfigurator\HtmlModul\ModulAbrufer;
 use Konfigurator\HtmlModul\Popup\PopupAbrufer;
 use Konfigurator\HtmlModul\Popup\PopupEintragAdapter\SimplePopupEintragFabrik;
 use Konfigurator\HtmlModul\Stadtplan\StadtplanAdapter\SimpleKachelFabrik;
 use Konfigurator\HtmlModul\Stadtplan\StadtplanModul;
+use Model\ModelHandler;
 use Model\Prozess\Aufgabe;
 use Model\Konstanten\AjaxKeywords;
 use Model\Konstanten\Keyword;
@@ -34,7 +34,7 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
     } elseif ($modus === AjaxKeywords::STADTPLAN) {
         $html = StadtplanModul::Instance(
             SimpleKachelFabrik::erzeugeKacheln(
-                ModulAbrufer::Instance()->getKartenelementDaten()
+                ModelHandler::Instance()->getKartenelementDaten()
             ))->getModulHtml();
     } else {
         $eintraege = [];
@@ -109,13 +109,13 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
 function elementOeffnen($tabelle) {
     switch ($tabelle) {
         case TabellenName::ITEM:
-            $daten = ModulAbrufer::Instance()->getItemDaten();
+            $daten = ModelHandler::Instance()->getItemDaten();
             break;
         case TabellenName::INSTITUT:
-            $daten = ModulAbrufer::Instance()->getInstitutDaten();
+            $daten = ModelHandler::Instance()->getInstitutDaten();
             break;
         default:
-            $daten = ModulAbrufer::Instance()->getAufgabeDaten();
+            $daten = ModelHandler::Instance()->getAufgabeDaten();
             break;
     }
     $listenEintraege = SimplePopupEintragFabrik::erzeugePopupEintraege($daten);
