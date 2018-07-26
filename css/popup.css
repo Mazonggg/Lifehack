@@ -16,7 +16,7 @@
     display: none;
 }
 
-#popup_titel_container, #popup_body > * {
+#popup_titel_container, .popup_block, .neu_button_container {
     padding: 20px;
 }
 

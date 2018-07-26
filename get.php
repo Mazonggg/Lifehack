@@ -3,12 +3,12 @@
 include('autoloader.php');
 
 use Datenbank\DatenbankAbrufHandler;
-use Konfigurator\HtmlModul\Form\FormModul;
-use Konfigurator\HtmlModul\Form\FormAdapter\SimpleFormFabrik;
-use Konfigurator\HtmlModul\Popup\PopupAbrufer;
-use Konfigurator\HtmlModul\Popup\PopupEintragAdapter\SimplePopupEintragFabrik;
-use Konfigurator\HtmlModul\Stadtplan\StadtplanAdapter\SimpleKachelFabrik;
-use Konfigurator\HtmlModul\Stadtplan\StadtplanModul;
+use Konfigurator\KonfiguratorModul\Form\FormModul;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\SimpleFormFabrik;
+use Konfigurator\KonfiguratorModul\Popup\PopupAbrufer;
+use Konfigurator\KonfiguratorModul\Popup\PopupEintragAdapter\SimplePopupEintragFabrik;
+use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\SimpleKachelFabrik;
+use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanModul;
 use Model\ModelHandler;
 use Model\Prozess\Aufgabe;
 use Model\Konstanten\AjaxKeywords;

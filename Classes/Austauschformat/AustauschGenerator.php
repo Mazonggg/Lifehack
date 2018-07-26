@@ -3,7 +3,7 @@
 namespace Austauschformat;
 
 use Datenbank\DatenbankAbrufHandler;
-use Konfigurator\HtmlModul\Stadtplan\StadtplanModul;
+use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanModul;
 use Model\Konstanten\TabellenName;
 use Model\Stadtplan\Kartenschreiber;
 use Pattern\SingletonPattern;

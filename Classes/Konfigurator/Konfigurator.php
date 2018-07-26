@@ -2,15 +2,15 @@
 
 namespace Konfigurator;
 
-use Konfigurator\HtmlModul\Form\FormModul;
-use Konfigurator\HtmlModul\HeaderAbrufer;
-use Konfigurator\HtmlModul\HtmlModul;
-use Konfigurator\HtmlModul\IHtmlModul;
-use Konfigurator\HtmlModul\Menue\MenueEintragAdapter\SimpleMenueEintragFabrik;
-use Konfigurator\HtmlModul\Menue\MenueModul;
-use Konfigurator\HtmlModul\Popup\PopupModul;
-use Konfigurator\HtmlModul\Stadtplan\StadtplanAdapter\SimpleKachelFabrik;
-use Konfigurator\HtmlModul\Stadtplan\StadtplanModul;
+use Konfigurator\KonfiguratorModul\Form\FormModul;
+use Konfigurator\KonfiguratorModul\HeaderAbrufer;
+use Konfigurator\KonfiguratorModul\HtmlModul;
+use Konfigurator\KonfiguratorModul\IHtmlModul;
+use Konfigurator\KonfiguratorModul\Menue\MenueEintragAdapter\SimpleMenueEintragFabrik;
+use Konfigurator\KonfiguratorModul\Menue\MenueModul;
+use Konfigurator\KonfiguratorModul\Popup\PopupModul;
+use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\SimpleKachelFabrik;
+use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanModul;
 use Model\Konstanten\TabellenName;
 use Model\ModelHandler;
 
