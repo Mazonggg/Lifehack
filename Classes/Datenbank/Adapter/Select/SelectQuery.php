@@ -21,10 +21,9 @@ class SelectQuery extends Query {
     }
 
     /**
-     * @param int|bool $letzteId
      * @return string
      */
-    public function getQuery($letzteId = false) {
+    public function getQuery() {
         return $this->verketteQueryElemente(
             array_merge(
                 $this->getSelectQueryParts(),
@@ -62,11 +61,7 @@ class SelectQuery extends Query {
      * @return string
      */
     protected function verketteQueryElemente($queryElemente) {
-<<<<<<< HEAD:Classes/Datenbank/Adapter/Select/SelectQuery.php
         return implode("", $queryElemente) . ";";
-=======
-        return implode(" ", $queryElemente) . " ; ";
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2:Classes/Datenbank/Adapter/Select/SelectQueryAdapter.php
     }
 }
 

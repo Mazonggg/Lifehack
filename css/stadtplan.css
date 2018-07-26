@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 #stadtplan_container {
     display: inline-block;
     margin-left: 300px;
@@ -81,34 +80,3 @@
 
 
 
-=======
-.stadtplan {
-    display: grid;
-    grid-gap: 1px;
-    grid-template-columns: repeat(48, 40px);
-    grid-template-rows: repeat(24, 40px);
-    margin-left: 100px;
-    transition: margin-left 0.5s;
-}
-
-.stadtplan.ausgeblendet {
-    margin-left: 0;
-    transition: margin-left 0.5s;
-}
-
-
-.kachel {
-    background-color: #eeeeee;
-    width: 100%;
-    height: 100%;
-}
-
-body:not(.fixiert) .kachel:hover {
-    background-color: #bbbbbb;
-}
-
-.kartenelement {
-    background-size: 100% !important;
-}
-
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2

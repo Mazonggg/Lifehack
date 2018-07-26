@@ -7,10 +7,9 @@ use Model\Konstanten\Keyword;
 class LeftJoinQuery extends SelectQuery {
 
     /**
-     * @param int|bool $letzteId
      * @return string
      */
-    public function getQuery($letzteId = false) {
+    public function getQuery() {
         return $this->verketteQueryElemente($this->getJoinQueryParts());
     }
 

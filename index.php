@@ -6,7 +6,6 @@ use Model\Konstanten\AjaxKeywords;
 
 include('autoloader.php');
 
-<<<<<<< HEAD
 echo Index::getContent();
 
 class Index {
@@ -31,10 +30,4 @@ class Index {
         return "<p class='link'><a href='" . self::PARAMETER_QUERY . "$modus'>" . $modus . "</a></p>";
     }
 }
-=======
-$htmlGenerator = HtmlGenerator::Instance();
-$htmlGenerator->setModus((isset($_GET[HtmlGenerator::MODUS]) ? $_GET[HtmlGenerator::MODUS] : null));
-echo $htmlGenerator->getContent();
-
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
 

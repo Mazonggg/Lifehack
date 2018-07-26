@@ -148,12 +148,12 @@ class StadtplanController extends HtmlObjekt {
         for (let i = 0; i < selectElement.options.length; i++) {
             if (!selectElement.options[i].hasAttribute('hidden')) {
                 let img = document.createElement('img');
-                let imgUrl = 'img/' + selectElement.options[i].innerHTML;
+                let imgUrl = 'img/' + lcfirst(selectElement.options[i].innerHTML.replace(' ', '_'));
                 img.src = imgUrl;
                 img.id = 'overlay_img_' + selectElement.options[i].value;
                 img.className = 'overlay_img';
                 let imgBeschreibung = document.createElement('p');
-                imgBeschreibung.innerHTML = ucfirst(selectElement.options[i].innerHTML.split('.')[0].replace('_', ' '));
+                imgBeschreibung.innerHTML = selectElement.options[i].innerHTML.split('.')[0];
                 let imgButton = document.createElement('button');
                 imgButton.id = 'overlay_img_button_' + selectElement.options[i].value;
                 imgButton.className = 'overlay_img_button hoverbox';
@@ -219,12 +219,12 @@ class StadtplanController extends HtmlObjekt {
                 let row = parseInt((document.body.scrollTop + event.clientY) / 25) + 1;
                 column_neu = stadtplan.berechneElementGrid(column, stadtplan.grid_breite, column_alt[column_alt.length - 1]);
                 row_neu = stadtplan.berechneElementGrid(row, stadtplan.grid_hoehe, row_alt[row_alt.length - 1]);
-                //if (!stadtplan.gridBereitsBesetzt(column_neu, row_neu)) {
-                console.log('column_neu', column_neu);
-                console.log('row_neu', row_neu);
-                zielKachel.style.gridColumn = column_neu;
-                zielKachel.style.gridRow = row_neu;
-                //}
+                if (!stadtplan.gridBereitsBesetzt(column_neu, row_neu)) {
+                    console.log('column_neu', column_neu);
+                    console.log('row_neu', row_neu);
+                    zielKachel.style.gridColumn = column_neu;
+                    zielKachel.style.gridRow = row_neu;
+                }
             }
         };
         let bestaetigung = function (event) {
@@ -248,22 +248,7 @@ class StadtplanController extends HtmlObjekt {
     }
 
     gridBereitsBesetzt(column_neu, row_neu) {
-        let xMin = column_neu.split(' ')[0];
-        let xMax = column_neu.split(' ')[2];
-        let yMin = row_neu.split(' ')[0];
-        let yMax = row_neu.split(' ')[2];
-        for (let i = 0; i < stadtplan.kartenelemente.length; i++) {
-            let kXmin = stadtplan.kartenelemente[i].style.gridColumn.split(' ')[0];
-            let kXmax = stadtplan.kartenelemente[i].style.gridColumn.split(' ')[2];
-            let kYmin = stadtplan.kartenelemente[i].style.gridRow.split(' ')[0];
-            let kYmax = stadtplan.kartenelemente[i].style.gridRow.split(' ')[2];
-            if (!(xMin > kXmax ||
-                xMax < kXmin ||
-                yMin > kYmax ||
-                yMax < kYmin)) {
-                return true;
-            }
-        }
+        // TODO Logik, die abfragt, ob das Grid-Element bereits besetzt ist.
         return false;
     }
 

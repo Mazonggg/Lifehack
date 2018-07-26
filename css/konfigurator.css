@@ -1,5 +1,4 @@
 
-<<<<<<< HEAD
 body {
     width: 100vw;
     height: 100vh;
@@ -59,21 +58,12 @@ select {
     linear-gradient(135deg, #888888 50%, transparent 50%);
     background-position: calc(100% - 20px) 50%,
     calc(100% - 15px) 50%;
-=======
-select {
-    background-image: linear-gradient(45deg, transparent 50%, #888888 50%),
-    linear-gradient(135deg, #888888 50%, transparent 50%);
-    background-position: calc(100% - 20px) calc(50%),
-    calc(100% - 15px) calc(50%),
-    100% 0;
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
     background-size: 6px 6px,
     6px 6px,
     100% 100%;
     background-repeat: no-repeat;
 }
 
-<<<<<<< HEAD
 .fixiert {
     overflow: hidden;
 }
@@ -142,34 +132,22 @@ select {
     content: none;
 }
 
-=======
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
 .hoverbox {
     border: none;
     border-bottom: 1px solid #888;
     border-radius: 0;
-<<<<<<< HEAD
     box-shadow: 1px 1px 3px rgba(255, 255, 255, 0);
     transition: box-shadow 0.5s, border-radius 1s;
-=======
-    box-shadow: 1px 1px 4px rgba(255, 255, 255, 0);
-    transition: box-shadow 0.5s, border-radius 0.5s;
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
 }
 
 .hoverbox:hover {
     border-radius: 5px;
-<<<<<<< HEAD
     box-shadow: 1px 1px 3px rgba(135, 135, 135, 1);
-=======
-    box-shadow: 1px 1px 4px rgba(135, 135, 135, 0.5);
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
     transition: box-shadow 0.5s, border-radius 1s;
 }
 
 .hoverbox:focus {
     border-radius: 5px;
-<<<<<<< HEAD
     box-shadow: 1px 1px 5px rgba(135, 135, 135, 1);
     transition: box-shadow 0.5s, border-radius 1s;
 }
@@ -231,17 +209,3 @@ select {
 
 
 
-=======
-    box-shadow: 1px 1px 4px rgba(135, 135, 135, 1);
-    transition: box-shadow 0.5s, border-radius 1s;
-}
-
-.fixiert {
-    overflow: hidden;
-}
-
-.hidden {
-    overflow: hidden;
-}
-
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2

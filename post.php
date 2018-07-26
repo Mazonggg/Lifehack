@@ -2,7 +2,6 @@
 
 include('autoloader.php');
 
-<<<<<<< HEAD
 use Datenbank\Adapter\Delete\SimpleDeleteQueryFabrik;
 use Datenbank\Adapter\Insert\SimpleInsertQueryFabrik;
 use Datenbank\Adapter\IQueryAdapter;
@@ -82,27 +81,5 @@ function erzeugeQueryAdapter($daten, $fremdSchluesselTabellenName = "", $fremdsc
         return $adapter;
     }
     return null;
-=======
-use Datenbank\Adapter\Speicher\InsertQueryAdapter;
-use Datenbank\Adapter\Speicher\SimpleSpeicherQueryFabrik;
-use Datenbank\DatenbankSpeicherHandler;
-use Model\Enum\AjaxKeywords;
-
-if (isset($_GET[AjaxKeywords::MODUS]) && $_GET[AjaxKeywords::MODUS] == AjaxKeywords::FORM) {
-    fuehreQueriesAus(json_decode($_POST[AjaxKeywords::DATEN], true));
-}
-
-function fuehreQueriesAus($daten) {
-    $speicherQueryFabrik = SimpleSpeicherQueryFabrik::Instance();
-    /**
-     * @var InsertQueryAdapter[]
-     */
-    $queryAdapter = $speicherQueryFabrik->erzeugeQueryAdapters($daten);
-    echo "<h1>fuehreQueriesAus</h1>";
-    var_export($queryAdapter);
-    foreach ($queryAdapter as $adapter) {
-        DatenbankSpeicherHandler::Instance()->fuehreQueryAus($adapter);
-    }
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
 }
 

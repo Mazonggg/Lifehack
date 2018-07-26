@@ -7,15 +7,11 @@ use mysqli;
 use mysqli_result;
 use Pattern\SingletonPattern;
 
-<<<<<<< HEAD
 class DatenbankHandler extends SingletonPattern {
     /**
      * @var DatenbankHandler|null
      */
     protected static $_instance = null;
-=======
-abstract class DatenbankHandler extends SingletonPattern {
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
 
     /**
      * @return DatenbankHandler
@@ -23,7 +19,7 @@ abstract class DatenbankHandler extends SingletonPattern {
     public static function Instance() {
         if (self::$_instance == null) {
             self::$_instance = new self();
-            self::$_instance->db = self::$_instance->getConnection();
+            self::$_instance->db = new mysqli('127.0.0.1', 'dgsql18', '!2e=WyMpl3', 'dgsql18');
         }
         return self::$_instance;
     }
@@ -32,10 +28,6 @@ abstract class DatenbankHandler extends SingletonPattern {
      * @var mysqli
      */
     protected $db = null;
-
-    protected function getConnection() {
-        return new mysqli('127.0.0.1', 'dgsql18', '!2e=WyMpl3', 'dgsql18');
-    }
 
     /**
      * @param mysqli_result $result
@@ -60,7 +52,6 @@ abstract class DatenbankHandler extends SingletonPattern {
         } else {
             return $result;
         }
-<<<<<<< HEAD
     }
 
     /**
@@ -83,8 +74,6 @@ abstract class DatenbankHandler extends SingletonPattern {
      */
     public function getFehler() {
         return $this->db->error;
-=======
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
     }
 }
 

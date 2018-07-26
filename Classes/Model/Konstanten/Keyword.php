@@ -19,7 +19,6 @@ class Keyword {
     const SET = ' SET ';
     const EQUALS = ' = ';
     const LEFT_JOIN = ' LEFT JOIN ';
-<<<<<<< HEAD:Classes/Model/Konstanten/Keyword.php
     #keywordsfuerFeldermitkeys
     const REF = '_ref';
     const ID = '_id';
@@ -28,17 +27,6 @@ class Keyword {
     const GROUP_CONCAT = ' GROUP_CONCAT';
     const GROUP_BY = ' GROUP BY ';
     const AS_ = ' AS ';
-=======
-    # keywords fuer Felder mit keys
-    const REF = "_ref";
-    const ID = "_id";
-    const URL = "_url";
-    const NAME = "_name";
-    const GROUP_CONCAT = "GROUP_CONCAT";
-    const GROUP_BY = "GROUP BY";
-    const AS_ = "AS";
-    const TABELLE = "tabelle";
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2:Classes/Model/Enum/Keyword.php
 
     /**
      * @returnstring[]

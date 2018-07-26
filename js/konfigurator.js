@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const AjaxHandler = {
     get: function (daten, callBack, callbackInfo) {
         let ajaxRequest = 'get.php?';
@@ -77,6 +76,10 @@ let ucfirst = function (zeichenkette) {
     return zeichenkette.substring(0, 1).toUpperCase() + zeichenkette.substring(1, zeichenkette.length);
 };
 
+let lcfirst = function (zeichenkette) {
+    return zeichenkette.substring(0, 1).toLowerCase() + zeichenkette.substring(1, zeichenkette.length);
+};
+
 let letztenTeilDerId = function (id) {
     let teile = id.split("_");
     return teile[teile.length - 1];
@@ -126,13 +129,3 @@ window.addEventListener('load', function () {
     konfigurator.initFunktion();
 });
 
-=======
-window.addEventListener('load', function () {
-    setTimeout(function () {
-        document.getElementById("logo_container").className += " ausgeblendet";
-        setTimeout(function () {
-            document.getElementById("menue_container").className += " hidden";
-        }, 2000);
-    }, 2000);
-});
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2

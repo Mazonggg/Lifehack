@@ -7,11 +7,7 @@ body {
 body, body * {
     margin: 0;
     padding: 0;
-<<<<<<< HEAD
     font-family: "Avenir Next", sans-serif;
-=======
-    font-family: standard, sans-serif;
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
     font-size: 100%;
     outline: none;
     border: none;
@@ -20,16 +16,12 @@ body, body * {
 }
 
 a, p, input, select, textarea, button, label, h1, h2, h3, h4, h5, h6 {
-<<<<<<< HEAD
     background-color: transparent;
     padding: 10px;
 }
 
 a, p, button, label, h1, h2, h3, h4, h5, h6 {
     cursor: default;
-=======
-    padding: 10px;
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
 }
 
 .link {
@@ -52,12 +44,9 @@ a:hover {
 button {
     cursor: pointer;
 }
-<<<<<<< HEAD
 
 li {
     margin-bottom: 20px;
 }
 
 
-=======
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2

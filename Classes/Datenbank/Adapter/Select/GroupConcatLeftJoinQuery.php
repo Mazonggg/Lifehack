@@ -2,23 +2,14 @@
 
 namespace Datenbank\Adapter\Select;
 
-<<<<<<< HEAD:Classes/Datenbank/Adapter/Select/GroupConcatLeftJoinQuery.php
 use Model\Konstanten\Keyword;
 
 class GroupConcatLeftJoinQuery extends LeftJoinQuery {
 
     /**
-=======
-use Model\Enum\Keyword;
-
-class GroupConcatLeftJoinQueryAdapter extends LeftJoinQueryAdapter {
-
-    /**
-     * @param int|bool $letzteId
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2:Classes/Datenbank/Adapter/Select/GroupConcatLeftJoinQueryAdapter.php
      * @return string
      */
-    public function getQuery($letzteId = false) {
+    public function getQuery() {
         return $this->verketteQueryElemente($this->getGroupConcatParts());
     }
 

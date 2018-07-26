@@ -12,6 +12,7 @@ use Model\Konstanten\Serialisierer;
 use Model\Konstanten\TabellenSpalten;
 use Model\Konstanten\TabellenName;
 use Model\Wertepaar;
+use mysqli;
 
 final class DatenbankAbrufHandler extends DatenbankHandler {
     /**
@@ -25,7 +26,7 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
     public static function Instance() {
         if (self::$_instance == null) {
             self::$_instance = new self();
-            self::$_instance->db = self::$_instance->getConnection();
+            self::$_instance->db = new mysqli('127.0.0.1', 'dgsql18', '!2e=WyMpl3', 'dgsql18');
         }
         return self::$_instance;
     }
@@ -53,11 +54,7 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
      * @param string $kartenelementId
      * @return array
      */
-<<<<<<< HEAD
     private function findKartenelementDaten($kartenelementId = null) {
-=======
-    public function findKartenelementDaten() {
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
         $adapter = SimpleSelectQueryFactory::erzeugeQueryAdapter(
             SimpleTabelleFabrik::erzeugeTabelle(TabellenName::KARTENELEMENT, [
                 TabellenName::KARTENELEMENT . "." . TabellenName::KARTENELEMENT_ART . Keyword::REF,
@@ -117,11 +114,7 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
      * @param string $institutId
      * @return array
      */
-<<<<<<< HEAD
     private function findInstitutDaten($institutId = null) {
-=======
-    public function findInstitutDaten() {
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
         $adapter = SimpleSelectQueryFactory::erzeugeQueryAdapter(
             SimpleTabelleFabrik::erzeugeTabelle(TabellenName::INSTITUT,
                 [
@@ -151,11 +144,7 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
      * @param string $aufgabeId
      * @return array
      */
-<<<<<<< HEAD
     private function findAufgabeDaten($aufgabeId = null) {
-=======
-    public function findAufgabeDaten() {
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
         $adapter = SimpleSelectQueryFactory::erzeugeQueryAdapter(
             SimpleTabelleFabrik::erzeugeTabelle(TabellenName::AUFGABE,
                 [
@@ -224,21 +213,14 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
      * @param int|null $itemId
      * @return array
      */
-<<<<<<< HEAD
     private function findItemDaten($itemId = null) {
-=======
-    public function findItemDaten($itemId = null) {
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
         $adapter = SimpleSelectQueryFactory::erzeugeQueryAdapter(
             SimpleTabelleFabrik::erzeugeTabelle(TabellenName::ITEM,
                 [
                     TabellenName::ITEM . "." . TabellenName::ITEM . Keyword::NAME,
                     TabellenName::ITEM . "." . TabellenSpalten::ITEM_GEWICHT,
                     TabellenName::ITEM . "." . TabellenSpalten::ITEM_KONFIGURATION,
-<<<<<<< HEAD
                     TabellenName::ITEM . "." . TabellenName::ITEM_ART . Keyword::REF,
-=======
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
                     TabellenName::ITEM_ART . "." . TabellenName::ITEM_ART . Keyword::NAME
                 ], [
                     SimpleRelationFabrik::erzeugeRelation(TabellenName::ITEM_ART,
@@ -261,16 +243,11 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
     /**
      * @param string $tabellenName
      * @param string $spaltenName
-<<<<<<< HEAD
      * @return Wertepaar[]|bool
-=======
-     * @return array|bool
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
      */
     public function findSpalteZuId($tabellenName, $spaltenName) {
         $adapter = SimpleSelectQueryFactory::erzeugeQueryAdapter(
             SimpleTabelleFabrik::erzeugeTabelle($tabellenName, [$spaltenName]));
-<<<<<<< HEAD
         return $this->arrayZuWertepaaren($this->getResult($adapter));
     }
 
@@ -291,9 +268,6 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
         } else {
             return $daten;
         }
-=======
-        return $this->getResult($adapter);
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
     }
 }
 

@@ -1,25 +1,7 @@
 # Recreate the database
-USE dgsql18;
-
-DROP TABLE IF EXISTS
-teilaufgabe,
-aufgabe,
-item,
-vertreter,
-niederlassung,
-wohnhaus,
-gebaeude,
-umwelt,
-abmessung,
-kartenelement,
-institut,
-vertreter_aussehen,
-interieur_aussehen,
-kartenelement_aussehen,
-teilaufgabe_art,
-item_art,
-institut_art,
-kartenelement_art;
+DROP DATABASE IF EXISTS lifehack;
+CREATE DATABASE lifehack;
+USE lifehack;
 
 # Alle verschiedenen Arten von Kartenelementen.
 CREATE TABLE kartenelement_art (
@@ -131,19 +113,11 @@ CREATE TABLE vertreter (
 
 # Direkt aufgabenbezogene Objekte
 CREATE TABLE item (
-<<<<<<< HEAD
   item_id       INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
   item_name     VARCHAR(25)                    NOT NULL,
   gewicht       INT                            NOT NULL,
   konfiguration VARCHAR(255)                   NOT NULL,
   item_art_ref  INT                            NOT NULL,
-=======
-  item_id      INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  item_name         VARCHAR(25)                    NOT NULL,
-  gewicht      INT                            NOT NULL,
-  konfiguration       VARCHAR(255)                   NOT NULL,
-  item_art_ref INT                            NOT NULL,
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
   FOREIGN KEY (item_art_ref) REFERENCES item_art (item_art_id)
 );
 
@@ -206,13 +180,8 @@ INSERT INTO kartenelement_aussehen (kartenelement_aussehen_url) VALUES ('wohnhau
 
 INSERT INTO interieur_aussehen (interieur_aussehen_url) VALUES ('wohnhaus_innen.png');
 
-<<<<<<< HEAD
 INSERT INTO teilaufgabe_art (teilaufgabe_art_name) VALUES ('item_wird_abgegeben');
 INSERT INTO teilaufgabe_art (teilaufgabe_art_name) VALUES ('item_wird_behalten');
-=======
-INSERT INTO teilaufgabe_art (teilaufgabe_art_name) VALUES ('Item wird abgegeben');
-INSERT INTO teilaufgabe_art (teilaufgabe_art_name) VALUES ('Item wird behalten');
->>>>>>> 917146c0a81e0c5823069c51430b96dc0fb1eed2
 
 # Erste Stammdaten anlegen
 
