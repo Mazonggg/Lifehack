@@ -2,12 +2,12 @@
 
 namespace Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\Model;
 
-use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\KachelAdapter;
+use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\Kachel;
 use Model\Konstanten\AjaxKeywords;
 use Model\Konstanten\TabellenName;
 use Model\Wertepaar;
 
-class LeereKachel extends KachelAdapter {
+class LeereKachel extends Kachel {
 
     /**
      * @return string

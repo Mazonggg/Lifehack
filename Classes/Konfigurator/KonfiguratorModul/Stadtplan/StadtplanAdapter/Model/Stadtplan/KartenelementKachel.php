@@ -2,13 +2,13 @@
 
 namespace Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\Model\Stadtplan;
 
-use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\KachelAdapter;
+use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\Kachel;
 use Model\Konstanten\AjaxKeywords;
 use Model\Stadtplan\Abmessung;
 use Model\Stadtplan\IKartenelement;
 use Model\Wertepaar;
 
-class KartenelementKachel extends KachelAdapter {
+class KartenelementKachel extends Kachel {
 
     /**
      * @var IKartenelement

@@ -8,7 +8,7 @@ use Model\Stadtplan\Abmessung;
 use Model\Stadtplan\SimpleAbmessungFabrik;
 use Model\Wertepaar;
 
-abstract class KachelAdapter implements IKachelAdapter {
+abstract class Kachel implements IKachelAdapter {
 
     /**
      * @var Abmessung
