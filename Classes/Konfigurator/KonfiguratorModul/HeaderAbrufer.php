@@ -3,7 +3,7 @@
 namespace Konfigurator\KonfiguratorModul;
 
 use Konfigurator\Konfigurator;
-use Pattern\SingletonPattern;
+use Singleton\SingletonPattern;
 
 class HeaderAbrufer extends SingletonPattern {
     /**

@@ -2,7 +2,7 @@
 
 namespace Austauschformat;
 
-use Pattern\SingletonPattern;
+use Singleton\SingletonPattern;
 
 /**
  * Erzeugt eindeutig unterscheidbare Zeichenketten.

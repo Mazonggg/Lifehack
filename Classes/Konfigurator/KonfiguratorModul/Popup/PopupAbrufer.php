@@ -4,7 +4,7 @@ namespace Konfigurator\KonfiguratorModul\Popup;
 
 use Konfigurator\KonfiguratorModul\Popup\PopupEintragAdapter\IPopupEintragAdapter;
 use Model\Konstanten\AjaxKeywords;
-use Pattern\SingletonPattern;
+use Singleton\SingletonPattern;
 
 class PopupAbrufer extends SingletonPattern {
     /**

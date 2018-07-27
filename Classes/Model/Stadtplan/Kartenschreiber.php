@@ -4,7 +4,7 @@ namespace Model\Stadtplan;
 
 use Austauschformat\AustauschKonstanten;
 use Model\Konstanten\TabellenName;
-use Pattern\SingletonPattern;
+use Singleton\SingletonPattern;
 
 class Kartenschreiber extends SingletonPattern {
 

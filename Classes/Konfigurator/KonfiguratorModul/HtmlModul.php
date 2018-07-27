@@ -2,7 +2,7 @@
 
 namespace Konfigurator\KonfiguratorModul;
 
-use Pattern\SingletonPattern;
+use Singleton\SingletonPattern;
 
 abstract class HtmlModul extends SingletonPattern implements IHtmlModul {
 

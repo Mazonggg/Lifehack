@@ -12,7 +12,7 @@ use Model\Fabrik\Stadtplan\GebaeudeFabrik;
 use Model\Fabrik\Stadtplan\UmweltFabrik;
 use Model\Fabrik\Stadtplan\WohnhausFabrik;
 use Model\Stadtplan\IKartenelement;
-use Pattern\SingletonPattern;
+use Singleton\SingletonPattern;
 
 class ModelHandler extends SingletonPattern {
     /**

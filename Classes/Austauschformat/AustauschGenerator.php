@@ -6,7 +6,7 @@ use Datenbank\DatenbankAbrufHandler;
 use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanModul;
 use Model\Konstanten\TabellenName;
 use Model\Stadtplan\Kartenschreiber;
-use Pattern\SingletonPattern;
+use Singleton\SingletonPattern;
 
 class AustauschGenerator extends SingletonPattern {
     /**

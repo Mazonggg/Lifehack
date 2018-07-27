@@ -5,7 +5,7 @@ namespace Datenbank;
 use Datenbank\Adapter\IQueryAdapter;
 use mysqli;
 use mysqli_result;
-use Pattern\SingletonPattern;
+use Singleton\SingletonPattern;
 
 class DatenbankHandler extends SingletonPattern {
     /**

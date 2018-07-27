@@ -3,7 +3,7 @@
 namespace Model\Fabrik;
 
 use Model\IDatenbankEintrag;
-use Pattern\SingletonPattern;
+use Singleton\SingletonPattern;
 
 abstract class DatenbankEintragFabrik extends SingletonPattern implements IDatenbankEintragFabrik {
 
