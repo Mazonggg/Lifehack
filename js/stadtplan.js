@@ -219,19 +219,19 @@ class StadtplanController extends HtmlObjekt {
                 let row = parseInt((document.body.scrollTop + event.clientY) / 25) + 1;
                 column_neu = stadtplan.berechneElementGrid(column, stadtplan.grid_breite, column_alt[column_alt.length - 1]);
                 row_neu = stadtplan.berechneElementGrid(row, stadtplan.grid_hoehe, row_alt[row_alt.length - 1]);
-                if (!stadtplan.gridBereitsBesetzt(column_neu, row_neu)) {
-                    console.log('column_neu', column_neu);
-                    console.log('row_neu', row_neu);
-                    zielKachel.style.gridColumn = column_neu;
-                    zielKachel.style.gridRow = row_neu;
-                }
+                zielKachel.style.gridColumn = column_neu;
+                zielKachel.style.gridRow = row_neu;
             }
         };
         let bestaetigung = function (event) {
-            event.preventDefault();
-            stadtplan.deaktiviereStadtplanModus();
-            stadtplan.weiseNeuePletzierungZu(zielKachel);
-            zielKachel.removeEventListener('click', bestaetigung);
+            if (!stadtplan.gridBereitsBesetzt(column_neu, row_neu)) {
+                event.preventDefault();
+                stadtplan.deaktiviereStadtplanModus();
+                stadtplan.weiseNeuePletzierungZu(zielKachel);
+                zielKachel.removeEventListener('click', bestaetigung);
+            } else {
+                alert("Die gewählten Kacheln dürfen nicht besetzt sein!");
+            }
         };
         zielKachel.addEventListener('click', bestaetigung);
     }
@@ -248,7 +248,28 @@ class StadtplanController extends HtmlObjekt {
     }
 
     gridBereitsBesetzt(column_neu, row_neu) {
-        // TODO Logik, die abfragt, ob das Grid-Element bereits besetzt ist.
+        let colSplit = column_neu.split(' ');
+        let rowSplit = row_neu.split(' ');
+        let x = Number(colSplit[0]);
+        let width = Number(colSplit[colSplit.length - 1]);
+        let y = Number(rowSplit[0]);
+        let height = Number(rowSplit[rowSplit.length - 1]);
+        for (let i = 0; i < stadtplan.kartenelemente.length; i++) {
+            if (stadtplan.kartenelemente[i].className.indexOf(AKTIV) < 0 && stadtplan.kartenelemente[i].className.indexOf(AUSGEBLENDET) < 0) {
+                colSplit = stadtplan.kartenelemente[i].style.gridColumn.split(' ');
+                rowSplit = stadtplan.kartenelemente[i].style.gridRow.split(' ');
+                let kx = Number(colSplit[0]);
+                let kwidth = Number(colSplit[colSplit.length - 1]);
+                let ky = Number(rowSplit[0]);
+                let kheight = Number(rowSplit[rowSplit.length - 1]);
+                if ((x + width) > kx &&
+                    x < (kx + kwidth) &&
+                    (y + height) > ky &&
+                    y < (ky + kheight)) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 

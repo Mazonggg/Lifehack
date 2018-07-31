@@ -165,7 +165,6 @@ CREATE TABLE teilaufgabe (
   FOREIGN KEY (belohnung_item_ref) REFERENCES item (item_id)
 );
 
-
 # Fixe Daten fuer Arten von Kartenelementen
 INSERT INTO kartenelement_art (kartenelement_art_name) VALUES ('umwelt');
 INSERT INTO kartenelement_art (kartenelement_art_name) VALUES ('gebaeude');
@@ -561,6 +560,26 @@ VALUES
 INSERT INTO item
 (item_name, gewicht, konfiguration, item_art_ref)
 VALUES
+  ('Geburtsurkunde',
+   '1',
+   'ITEMEIGENSCHAFTEN',
+   (SELECT item_art_id
+    FROM item_art
+    WHERE item_art_name = 'Dokument'));
+
+INSERT INTO item
+(item_name, gewicht, konfiguration, item_art_ref)
+VALUES
+  ('Schreiben f&uuml;r Personalausweis',
+   '1',
+   'ITEMEIGENSCHAFTEN',
+   (SELECT item_art_id
+    FROM item_art
+    WHERE item_art_name = 'Formular'));
+
+INSERT INTO item
+(item_name, gewicht, konfiguration, item_art_ref)
+VALUES
   ('Personalausweis',
    '1',
    'ITEMEIGENSCHAFTEN',
@@ -590,6 +609,127 @@ VALUES
 #################################################
 ############         Aufgabe         ############
 #################################################
+
+
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+
+INSERT INTO aufgabe
+(bezeichnung, gesetzesgrundlage)
+VALUES
+  ('Besorge Dir einen Personalausweis',
+   '&sect; 1337\n\nAusweispflicht:\nJeder Buerger, der das sechzehnte Lebensjahr vollendet hat, ist dazu verpflichtet eines Personalausweis bei sich zu tragen usw.');
+
+INSERT INTO teilaufgabe
+(menue_text,
+ ansprache_text,
+ antwort_text,
+ erfuellungs_text,
+ scheitern_text,
+ teilaufgabe_aufgabe_ref,
+ bedingung_item_ref,
+ institut_art_ref,
+ teilaufgabe_art_ref,
+ belohnung_item_ref)
+VALUES
+  ('Zeige deine Geburtsurkunde vor, um deinen Personalausweis zu beantragen',
+   'Guten Tag!\nIch m&ouml;chte einen Personalausweis beantragen.',
+   'Guten Tag!\nSehr gerne, daf&uuml;r brauche ich Ihre Geburtsurkunde.',
+   'Viel Dank,\nich werde Ihren Auftrag bearbeiten. Sie bekommen Nachricht, sobald Sie Ihren Personalausweis abholen k&ouml;nnen',
+   'Tut mir leid,\nleider kann ich ohne Ihre Geburtsurkunde keinen Personalausweis f&uuml;r Sie erstellen.',
+   (SELECT aufgabe_id
+    FROM aufgabe
+    WHERE bezeichnung = 'Besorge Dir einen Personalausweis'),
+   (SELECT item_id
+    FROM item
+    WHERE item.item_name = 'Geburtsurkunde'),
+   (SELECT institut_art_id
+    FROM institut_art
+    WHERE institut_art_name = 'stadtteilbuero'),
+   (SELECT teilaufgabe_art_id
+    FROM teilaufgabe_art
+    WHERE teilaufgabe_art_name = 'item_wird_behalten'),
+   (SELECT item.item_id
+    FROM item
+    WHERE item.item_name = 'Schreiben f&uuml;r Personalausweis'));
+
+INSERT INTO teilaufgabe
+(menue_text,
+ ansprache_text,
+ antwort_text,
+ erfuellungs_text,
+ scheitern_text,
+ teilaufgabe_aufgabe_ref,
+ bedingung_item_ref,
+ institut_art_ref,
+ teilaufgabe_art_ref,
+ belohnung_item_ref)
+VALUES
+  ('Hole deinen Personalausweis ab.',
+   'Guten Tag!\nIch m&ouml;chte meinen Personalausweis abholen.',
+   'Guten Tag!\nSehr gerne, haben Sie das Best&auml;tigungsschreiben dabei?',
+   'Viel Dank, hier ist Ihr Personalausweis!',
+   'Tut mir leid,\nleider kann ich Ihnen den Personalausweis ohne das entsprechende Schreiben nicht aush&auml;ndigen.',
+   (SELECT aufgabe_id
+    FROM aufgabe
+    WHERE bezeichnung = 'Besorge Dir einen Personalausweis'),
+   (SELECT item_id
+    FROM item
+    WHERE item.item_name = 'Schreiben f&uuml;r Personalausweis'),
+   (SELECT institut_art_id
+    FROM institut_art
+    WHERE institut_art_name = 'stadtteilbuero'),
+   (SELECT teilaufgabe_art_id
+    FROM teilaufgabe_art
+    WHERE teilaufgabe_art_name = 'item_wird_abgegeben'),
+   (SELECT item_id
+    FROM item
+    WHERE item.item_name = 'Personalausweis'));
+
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
+#####################################################
 
 INSERT INTO aufgabe
 (bezeichnung, gesetzesgrundlage)
@@ -623,7 +763,7 @@ VALUES
     WHERE item.item_name = 'Personalausweis'),
    (SELECT institut_art_id
     FROM institut_art
-    WHERE institut_art_name = 'Bank'),
+    WHERE institut_art_name = 'bank'),
    (SELECT teilaufgabe_art_id
     FROM teilaufgabe_art
     WHERE teilaufgabe_art_name = 'item_wird_behalten'),
@@ -656,7 +796,7 @@ VALUES
     WHERE item.item_name = 'Kontoantrag'),
    (SELECT institut_art_id
     FROM institut_art
-    WHERE institut_art_name = 'Bank'),
+    WHERE institut_art_name = 'bank'),
    (SELECT teilaufgabe_art_id
     FROM teilaufgabe_art
     WHERE teilaufgabe_art_name = 'item_wird_abgegeben'),

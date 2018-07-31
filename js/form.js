@@ -161,8 +161,6 @@ class FormController {
             event.preventDefault();
             let teilschrittId = letztenTeilDerId(endgueltigLoeschenButton.id);
             let formBody = document.getElementById(FORM_BODY + "_" + teilschrittId);
-            console.log(formBody);
-            console.log(teilschrittId);
             if (formBody.className.indexOf(FORM_BODY_TEILABSCHNITT) < 0) {
                 let modusIdObjekt = splitElementIdZuObjekt(document.getElementsByName(MODUS)[0].id);
                 AjaxHandler.post({
