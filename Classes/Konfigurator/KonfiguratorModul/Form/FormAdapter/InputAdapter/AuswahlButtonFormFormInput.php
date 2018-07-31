@@ -2,7 +2,7 @@
 
 namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter;
 
-class AuswahlButtonInput extends ButtonInput {
+class AuswahlButtonFormFormInput extends ButtonFormInput {
 
     /**
      * @var string
@@ -13,11 +13,11 @@ class AuswahlButtonInput extends ButtonInput {
      * @return string
      */
     public function getInputHtml() {
-        $hiddenInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::HIDDEN,
+        $hiddenInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::HIDDEN,
             parent::getName(),
-            [SimpleInputFabrik::INHALT => $this->wert,
-                SimpleInputFabrik::ID => parent::getId() . '_auswahl_input']
+            [SimpleFormInputFabrik::INHALT => $this->wert,
+                SimpleFormInputFabrik::ID => parent::getId() . '_auswahl_input']
         );
         return parent::getInputHtml() . $hiddenInput->getInputHtml();
     }

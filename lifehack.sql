@@ -165,6 +165,7 @@ CREATE TABLE teilaufgabe (
   FOREIGN KEY (belohnung_item_ref) REFERENCES item (item_id)
 );
 
+
 # Fixe Daten fuer Arten von Kartenelementen
 INSERT INTO kartenelement_art (kartenelement_art_name) VALUES ('umwelt');
 INSERT INTO kartenelement_art (kartenelement_art_name) VALUES ('gebaeude');
@@ -296,7 +297,7 @@ VALUES
 INSERT INTO institut
 (institut_name, beschreibung, institut_art_ref)
 VALUES
-  ('Stadteilbuero', 'Der Ort f&uuml;r alle Amtsg&auml;nge in diesem Dorf.',
+  ('Stadtteilb&uuml;ro', 'Der Ort f&uuml;r alle Amtsg&auml;nge in diesem Dorf.',
    (SELECT institut_art_id
     FROM institut_art
     WHERE institut_art_name = 'stadtteilbuero'));
@@ -382,7 +383,7 @@ VALUES
   (LAST_INSERT_ID(),
    (SELECT institut_id
     FROM institut
-    WHERE institut_name = 'Stadteilbuero'));
+    WHERE institut_name = 'Stadtteilb&uuml;ro'));
 
 
 INSERT INTO kartenelement
@@ -609,7 +610,7 @@ INSERT INTO teilaufgabe
  teilaufgabe_art_ref,
  belohnung_item_ref)
 VALUES
-  ('Der Bankangestellte ben&ouml;tigt deinen Personalausweis, um dir dein Bankkonto erstellen zu k&ouml;nnen',
+  ('Das Bankpersonal ben&ouml;tigt deinen Personalausweis, um dir dein Bankkonto erstellen zu k&ouml;nnen',
    'Guten Tag!\nIch moechte ein Konto er&ouml;ffnen.',
    'Guten Tag!\nSehr gerne, daf&uuml;r brauche ich Ihren Personalausweis, um Ihre Daten aufzunehmen.',
    'Sehr gut, als n&auml;chstes m&uuml;ssen Sie ein Formular mit Ihren individuellen Anspr&uuml;chen ausf&uuml;llen.',

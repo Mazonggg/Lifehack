@@ -2,8 +2,8 @@
 
 namespace Konfigurator\KonfiguratorModul\Form\FormAdapter;
 
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IInputAdapter;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
 use Model\Konstanten\AjaxKeywords;
 use Model\IDatenbankEintrag;
 
@@ -99,19 +99,19 @@ abstract class Form implements IFormAdapter {
     }
 
     /**
-     * @return IInputAdapter
+     * @return IFormInputAdapter
      */
     private function getModusInput() {
         return
-            SimpleInputFabrik::erzeugeFormInput(
-                SimpleInputFabrik::HIDDEN,
+            SimpleFormInputFabrik::erzeugeFormInput(
+                SimpleFormInputFabrik::HIDDEN,
                 'modus',
                 [
-                    SimpleInputFabrik::INHALT =>
+                    SimpleFormInputFabrik::INHALT =>
                         $this->getTabelle() . '_' .
                         $this->modus . '-' .
                         $this->datenbankEintrag->getId(),
-                    SimpleInputFabrik::ID =>
+                    SimpleFormInputFabrik::ID =>
                         $this->getTabelle() . '_' .
                         AjaxKeywords::MODUS . '-' .
                         $this->datenbankEintrag->getId()

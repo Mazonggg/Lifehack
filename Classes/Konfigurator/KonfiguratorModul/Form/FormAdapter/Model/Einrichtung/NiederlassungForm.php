@@ -4,8 +4,8 @@ namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Einrichtung;
 
 use Datenbank\DatenbankAbrufHandler;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IInputAdapter;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 use Model\Einrichtung\Niederlassung;
@@ -26,20 +26,20 @@ class NiederlassungForm extends Form {
     }
 
     /**
-     * @return IInputAdapter[]
+     * @return IFormInputAdapter[]
      */
     public function getFormInputs() {
         $interieurAussehens = DatenbankAbrufHandler::Instance()->findSpalteZuId(
             TabellenName::INSTITUT,
             TabellenName::INSTITUT . "." . TabellenName::INSTITUT . Keyword::NAME
         );
-        $interieurAussehensInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::SELECT,
+        $interieurAussehensInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::SELECT,
             TabellenName::NIEDERLASSUNG . '_' . TabellenName::INSTITUT . Keyword::REF,
-            [SimpleInputFabrik::INHALT => '',
-                SimpleInputFabrik::OPTIONEN => $interieurAussehens,
-                SimpleInputFabrik::SELECTED => $this->niederlassung->getInstitut()->getSchluessel(),
-                SimpleInputFabrik::LABEL => 'Geh&ouml;rt zu Einrichtung']
+            [SimpleFormInputFabrik::INHALT => '',
+                SimpleFormInputFabrik::OPTIONEN => $interieurAussehens,
+                SimpleFormInputFabrik::SELECTED => $this->niederlassung->getInstitut()->getSchluessel(),
+                SimpleFormInputFabrik::LABEL => 'Geh&ouml;rt zu Einrichtung']
         );
         return [$interieurAussehensInput];
     }

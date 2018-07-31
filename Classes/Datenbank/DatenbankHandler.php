@@ -46,7 +46,7 @@ class DatenbankHandler extends SingletonPattern {
      * @return array|bool
      */
     protected function getResult($adapter) {
-        $result = $this->db->query($adapter->getQuery());
+        $result = $this->db->query(htmlentities($adapter->getQuery()));
         if ($result instanceof mysqli_result) {
             return $this->mysqliResultToArray($result);
         } else {

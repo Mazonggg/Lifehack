@@ -4,8 +4,8 @@ namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Prozess;
 
 use Datenbank\DatenbankAbrufHandler;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IInputAdapter;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
 use Model\Konstanten\TabellenSpalten;
 use Model\Prozess\Item;
 use Model\Konstanten\Keyword;
@@ -29,38 +29,38 @@ class ItemForm extends Form {
 
 
     /**
-     * @return IInputAdapter[]
+     * @return IFormInputAdapter[]
      */
     public function getFormInputs() {
-        $nameInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::TEXT,
+        $nameInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::TEXT,
             TabellenName::ITEM . Keyword::NAME,
-            [SimpleInputFabrik::INHALT => $this->item->getName()]
+            [SimpleFormInputFabrik::INHALT => $this->item->getName()]
         );
-        $gewichtInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::NUMBER,
+        $gewichtInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::NUMBER,
             TabellenSpalten::ITEM_GEWICHT,
-            [SimpleInputFabrik::INHALT => $this->item->getGewicht(),
-                SimpleInputFabrik::MIN => '1',
-                SimpleInputFabrik::MAX => '20',
-                SimpleInputFabrik::LABEL => 'Gewicht des Items']
+            [SimpleFormInputFabrik::INHALT => $this->item->getGewicht(),
+                SimpleFormInputFabrik::MIN => '1',
+                SimpleFormInputFabrik::MAX => '20',
+                SimpleFormInputFabrik::LABEL => 'Gewicht des Items']
         );
-        $konfigInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::TEXTAREA,
+        $konfigInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::TEXTAREA,
             TabellenSpalten::ITEM_KONFIGURATION,
-            [SimpleInputFabrik::INHALT => $this->item->getKonfiguration()]
+            [SimpleFormInputFabrik::INHALT => $this->item->getKonfiguration()]
         );
         $itemArten = DatenbankAbrufHandler::Instance()->findSpalteZuId(
             TabellenName::ITEM_ART,
             TabellenName::ITEM_ART . "." . TabellenName::ITEM_ART . Keyword::NAME
         );
-        $itemArtInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::SELECT,
+        $itemArtInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::SELECT,
             TabellenName::ITEM_ART . Keyword::REF,
-            [SimpleInputFabrik::INHALT => '',
-                SimpleInputFabrik::OPTIONEN => $itemArten,
-                SimpleInputFabrik::SELECTED => $this->item->getItemArt()->getSchluessel(),
-                SimpleInputFabrik::LABEL => 'Art des Items']
+            [SimpleFormInputFabrik::INHALT => '',
+                SimpleFormInputFabrik::OPTIONEN => $itemArten,
+                SimpleFormInputFabrik::SELECTED => $this->item->getItemArt()->getSchluessel(),
+                SimpleFormInputFabrik::LABEL => 'Art des Items']
         );
         return [$nameInput, $gewichtInput, $konfigInput, $itemArtInput];
     }

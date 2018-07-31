@@ -3,8 +3,8 @@
 namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan;
 
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IInputAdapter;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
 use Model\Konstanten\TabellenName;
 use Model\Konstanten\TabellenSpalten;
 use Model\Stadtplan\Wohnhaus;
@@ -25,16 +25,16 @@ class WohnhausForm extends Form {
     }
 
     /**
-     * @return IInputAdapter[]
+     * @return IFormInputAdapter[]
      */
     public function getFormInputs() {
-        $wohneinheitenInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::NUMBER,
+        $wohneinheitenInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::NUMBER,
             TabellenSpalten::WOHNHAUS_WOHNEINHEITEN,
-            [SimpleInputFabrik::INHALT => $this->wohnhaus->getWohneinheiten(),
-                SimpleInputFabrik::MIN => '1',
-                SimpleInputFabrik::MAX => '20',
-                SimpleInputFabrik::LABEL => 'Anzahl der Wohneinheiten']
+            [SimpleFormInputFabrik::INHALT => $this->wohnhaus->getWohneinheiten(),
+                SimpleFormInputFabrik::MIN => '1',
+                SimpleFormInputFabrik::MAX => '20',
+                SimpleFormInputFabrik::LABEL => 'Anzahl der Wohneinheiten']
         );
         return [$wohneinheitenInput];
     }

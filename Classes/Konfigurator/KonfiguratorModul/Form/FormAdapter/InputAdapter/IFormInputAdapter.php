@@ -4,7 +4,7 @@ namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter;
 
 use Konfigurator\KonfiguratorModul\IHtmlClass;
 
-interface IInputAdapter extends IHtmlClass {
+interface IFormInputAdapter extends IHtmlClass {
 
     /**
      * @return string

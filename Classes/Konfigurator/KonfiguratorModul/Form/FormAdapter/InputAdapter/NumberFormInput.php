@@ -4,7 +4,7 @@ namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter;
 
 use Model\Wertepaar;
 
-class NumberInput extends TextInput {
+class NumberFormInput extends TextInput {
 
     /**
      * @var int
@@ -33,7 +33,7 @@ class NumberInput extends TextInput {
      * @return string
      */
     public function getType() {
-        return SimpleInputFabrik::NUMBER;
+        return SimpleFormInputFabrik::NUMBER;
     }
 
     /**

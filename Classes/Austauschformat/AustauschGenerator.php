@@ -44,7 +44,8 @@ class AustauschGenerator extends SingletonPattern {
      * @return string
      */
     public function getJsonKomplett() {
-        return json_encode($this->getDatenKomplett());
+        $datenKomplett = $this->getDatenKomplett();
+        return htmlspecialchars_decode(json_encode($datenKomplett));
     }
 
     /**

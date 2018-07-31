@@ -4,8 +4,8 @@ namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan;
 
 use Austauschformat\AustauschKonstanten;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IInputAdapter;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
 use Model\Konstanten\TabellenName;
 use Model\Konstanten\TabellenSpalten;
 use Model\Stadtplan\Abmessung;
@@ -36,15 +36,15 @@ class AbmessungenForm extends Form {
     }
 
     /**
-     * @return IInputAdapter[]
+     * @return IFormInputAdapter[]
      */
     public function getFormInputs() {
-        $positionAuswahlInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::AUSWAHL_BUTTON,
+        $positionAuswahlInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::AUSWAHL_BUTTON,
             TabellenSpalten::ABMESSUNG_WELT_ABMESSUNG,
-            [SimpleInputFabrik::INHALT => 'Position ausw&auml;hlen',
-                SimpleInputFabrik::ID => TabellenSpalten::ABMESSUNG_WELT_ABMESSUNG,
-                SimpleInputFabrik::WERT => $this->abmessungen[0]]
+            [SimpleFormInputFabrik::INHALT => 'Position ausw&auml;hlen',
+                SimpleFormInputFabrik::ID => TabellenSpalten::ABMESSUNG_WELT_ABMESSUNG,
+                SimpleFormInputFabrik::WERT => $this->abmessungen[0]]
         );
         return [$positionAuswahlInput];
     }

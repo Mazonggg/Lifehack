@@ -2,7 +2,7 @@
 
 namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter;
 
-class TextInput extends Input {
+class TextInput extends FormInput {
 
     /**
      * @return string
@@ -15,7 +15,7 @@ class TextInput extends Input {
      * @return string
      */
     public function getType() {
-        return SimpleInputFabrik::TEXT;
+        return SimpleFormInputFabrik::TEXT;
     }
 }
 

@@ -4,7 +4,7 @@ namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter;
 
 use Model\Wertepaar;
 
-abstract class Input implements IInputAdapter {
+abstract class FormInput implements IFormInputAdapter {
     /**
      * @var string
      */

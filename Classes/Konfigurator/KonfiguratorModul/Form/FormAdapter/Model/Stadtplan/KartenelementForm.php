@@ -4,8 +4,8 @@ namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan;
 
 use Datenbank\DatenbankAbrufHandler;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IInputAdapter;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 use Model\Stadtplan\IKartenelement;
@@ -27,26 +27,26 @@ class KartenelementForm extends Form {
     }
 
     /**
-     * @return IInputAdapter[]
+     * @return IFormInputAdapter[]
      */
     public function getFormInputs() {
-        $kartenelementArtInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::HIDDEN,
+        $kartenelementArtInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::HIDDEN,
             TabellenName::KARTENELEMENT_ART . Keyword::REF,
-            [SimpleInputFabrik::INHALT => $this->kartenelement->getKartenelementArt()->getSchluessel(),
-                SimpleInputFabrik::ID => '']
+            [SimpleFormInputFabrik::INHALT => $this->kartenelement->getKartenelementArt()->getSchluessel(),
+                SimpleFormInputFabrik::ID => '']
         );
         $kartenelementAussehens = DatenbankAbrufHandler::Instance()->findSpalteZuId(
             TabellenName::KARTENELEMENT_AUSSEHEN,
             TabellenName::KARTENELEMENT_AUSSEHEN . "." . TabellenName::KARTENELEMENT_AUSSEHEN . Keyword::URL
         );
-        $kartenelementAussehenInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::AUSWAHLBILD,
+        $kartenelementAussehenInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::AUSWAHLBILD,
             TabellenName::KARTENELEMENT_AUSSEHEN . Keyword::REF,
-            [SimpleInputFabrik::INHALT => '',
-                SimpleInputFabrik::OPTIONEN => $kartenelementAussehens,
-                SimpleInputFabrik::SELECTED => $this->kartenelement->getKartenelementAussehen()->getSchluessel(),
-                SimpleInputFabrik::LABEL => 'Aussehen des Elements']
+            [SimpleFormInputFabrik::INHALT => '',
+                SimpleFormInputFabrik::OPTIONEN => $kartenelementAussehens,
+                SimpleFormInputFabrik::SELECTED => $this->kartenelement->getKartenelementAussehen()->getSchluessel(),
+                SimpleFormInputFabrik::LABEL => 'Aussehen des Elements']
         );
         return [
             $kartenelementArtInput,

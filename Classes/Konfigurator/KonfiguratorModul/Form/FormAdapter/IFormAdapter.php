@@ -2,7 +2,7 @@
 
 namespace Konfigurator\KonfiguratorModul\Form\FormAdapter;
 
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IInputAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
 use Konfigurator\KonfiguratorModul\IHtmlClass;
 use Konfigurator\KonfiguratorModul\IHtmlId;
 use Konfigurator\KonfiguratorModul\IHtmlTag;
@@ -21,7 +21,7 @@ interface IFormAdapter extends IHtmlClass, IHtmlId, IHtmlTag {
     public function getTabelle();
 
     /**
-     * @return IInputAdapter[]
+     * @return IFormInputAdapter[]
      */
     public function getFormInputs();
 

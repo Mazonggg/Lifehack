@@ -3,8 +3,8 @@
 namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan;
 
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IInputAdapter;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
 use Model\Konstanten\TabellenName;
 use Model\Konstanten\TabellenSpalten;
 use Model\Stadtplan\Umwelt;
@@ -25,21 +25,21 @@ class UmweltForm extends Form {
     }
 
     /**
-     * @return IInputAdapter[]
+     * @return IFormInputAdapter[]
      */
     public function getFormInputs() {
-        $begehbarInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::BOOLEAN,
+        $begehbarInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::BOOLEAN,
             TabellenSpalten::UMWELT_BEGEHBAR,
-            [SimpleInputFabrik::INHALT => '',
-                SimpleInputFabrik::SELECTED => $this->umwelt->isBegehbar(),
-                SimpleInputFabrik::LABEL => 'Ist das Element begehbar?']
+            [SimpleFormInputFabrik::INHALT => '',
+                SimpleFormInputFabrik::SELECTED => $this->umwelt->isBegehbar(),
+                SimpleFormInputFabrik::LABEL => 'Ist das Element begehbar?']
         );
-        $bezeichnungInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::TEXT,
+        $bezeichnungInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::TEXT,
             TabellenSpalten::UMWELT_BEZEICHUNG,
-            [SimpleInputFabrik::INHALT => $this->umwelt->getBezeichnung(),
-                SimpleInputFabrik::LABEL => 'Bezeichnung des Elements']
+            [SimpleFormInputFabrik::INHALT => $this->umwelt->getBezeichnung(),
+                SimpleFormInputFabrik::LABEL => 'Bezeichnung des Elements']
         );
         return [$begehbarInput, $bezeichnungInput];
     }

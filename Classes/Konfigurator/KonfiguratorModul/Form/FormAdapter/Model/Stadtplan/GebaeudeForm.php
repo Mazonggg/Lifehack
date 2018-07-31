@@ -4,8 +4,8 @@ namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan;
 
 use Datenbank\DatenbankAbrufHandler;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IInputAdapter;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 use Model\Stadtplan\Gebaeude;
@@ -27,20 +27,20 @@ class GebaeudeForm extends Form {
     }
 
     /**
-     * @return IInputAdapter[]
+     * @return IFormInputAdapter[]
      */
     public function getFormInputs() {
         $interieurAussehens = DatenbankAbrufHandler::Instance()->findSpalteZuId(
             TabellenName::INTERIEUR_AUSSEHEN,
             TabellenName::INTERIEUR_AUSSEHEN . "." . TabellenName::INTERIEUR_AUSSEHEN . Keyword::URL
         );
-        $interieurAussehensInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::AUSWAHLBILD,
+        $interieurAussehensInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::AUSWAHLBILD,
             TabellenName::INTERIEUR_AUSSEHEN . Keyword::REF,
-            [SimpleInputFabrik::INHALT => '',
-                SimpleInputFabrik::OPTIONEN => $interieurAussehens,
-                SimpleInputFabrik::SELECTED => $this->gebaeude->getInterieurAussehen()->getSchluessel(),
-                SimpleInputFabrik::LABEL => 'Aussehen des Innenraums']
+            [SimpleFormInputFabrik::INHALT => '',
+                SimpleFormInputFabrik::OPTIONEN => $interieurAussehens,
+                SimpleFormInputFabrik::SELECTED => $this->gebaeude->getInterieurAussehen()->getSchluessel(),
+                SimpleFormInputFabrik::LABEL => 'Aussehen des Innenraums']
         );
         return [$interieurAussehensInput];
     }

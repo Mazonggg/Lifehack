@@ -4,8 +4,8 @@ namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Prozess;
 
 use Datenbank\DatenbankAbrufHandler;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IInputAdapter;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
 use Model\Konstanten\TabellenSpalten;
 use Model\Prozess\Teilaufgabe;
 use Model\Konstanten\Keyword;
@@ -27,77 +27,77 @@ class TeilaufgabeForm extends Form {
     }
 
     /**
-     * @return IInputAdapter[]
+     * @return IFormInputAdapter[]
      */
     public function getFormInputs() {
-        $menueTextInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::TEXTAREA,
+        $menueTextInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::TEXTAREA,
             TabellenSpalten::TEILAUFGABE_MENUE_TEXT,
-            [SimpleInputFabrik::INHALT => $this->teilaufgabe->getDialog()->getMenueText()]
+            [SimpleFormInputFabrik::INHALT => $this->teilaufgabe->getDialog()->getMenueText()]
         );
-        $anspracheTextInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::TEXTAREA,
+        $anspracheTextInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::TEXTAREA,
             TabellenSpalten::TEILAUFGABE_ANSPRACHE_TEXT,
-            [SimpleInputFabrik::INHALT => $this->teilaufgabe->getDialog()->getAnspracheText()]
+            [SimpleFormInputFabrik::INHALT => $this->teilaufgabe->getDialog()->getAnspracheText()]
         );
-        $antwortTextInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::TEXTAREA,
+        $antwortTextInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::TEXTAREA,
             TabellenSpalten::TEILAUFGABE_ANTWORT_TEXT,
-            [SimpleInputFabrik::INHALT => $this->teilaufgabe->getDialog()->getAntwortText()]
+            [SimpleFormInputFabrik::INHALT => $this->teilaufgabe->getDialog()->getAntwortText()]
         );
-        $erfuellungTextInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::TEXTAREA,
+        $erfuellungTextInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::TEXTAREA,
             TabellenSpalten::TEILAUFGABE_ERFUELLUNGS_TEXT,
-            [SimpleInputFabrik::INHALT => $this->teilaufgabe->getDialog()->getErfuellungsText()]
+            [SimpleFormInputFabrik::INHALT => $this->teilaufgabe->getDialog()->getErfuellungsText()]
         );
-        $scheiternTextInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::TEXTAREA,
+        $scheiternTextInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::TEXTAREA,
             TabellenSpalten::TEILAUFGABE_SCHEITERN_TEXT,
-            [SimpleInputFabrik::INHALT => $this->teilaufgabe->getDialog()->getScheiternText()]
+            [SimpleFormInputFabrik::INHALT => $this->teilaufgabe->getDialog()->getScheiternText()]
         );
         $items = DatenbankAbrufHandler::Instance()->findSpalteZuId(
             TabellenName::ITEM,
             TabellenName::ITEM . "." . TabellenName::ITEM . Keyword::NAME
         );
-        $bedingungInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::SELECT,
+        $bedingungInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::SELECT,
             TabellenSpalten::TEILAUFGABE_BEDINGUNG_ITEM_REF,
-            [SimpleInputFabrik::INHALT => '',
-                SimpleInputFabrik::OPTIONEN => $items,
-                SimpleInputFabrik::SELECTED => $this->teilaufgabe->getBedingungId(),
-                SimpleInputFabrik::LABEL => 'Ben&ouml;tigtes Item']
+            [SimpleFormInputFabrik::INHALT => '',
+                SimpleFormInputFabrik::OPTIONEN => $items,
+                SimpleFormInputFabrik::SELECTED => $this->teilaufgabe->getBedingungId(),
+                SimpleFormInputFabrik::LABEL => 'Ben&ouml;tigtes Item']
         );
-        $belohnungInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::SELECT,
+        $belohnungInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::SELECT,
             TabellenSpalten::TEILAUFGABE_BELOHNUNG_ITEM_REF,
-            [SimpleInputFabrik::INHALT => '',
-                SimpleInputFabrik::OPTIONEN => $items,
-                SimpleInputFabrik::SELECTED => $this->teilaufgabe->getBelohnungId(),
-                SimpleInputFabrik::LABEL => 'Erhaltenes Item']
+            [SimpleFormInputFabrik::INHALT => '',
+                SimpleFormInputFabrik::OPTIONEN => $items,
+                SimpleFormInputFabrik::SELECTED => $this->teilaufgabe->getBelohnungId(),
+                SimpleFormInputFabrik::LABEL => 'Erhaltenes Item']
         );
         $teilaufgabeArten = DatenbankAbrufHandler::Instance()->findSpalteZuId(
             TabellenName::TEILAUFGABE_ART,
             TabellenName::TEILAUFGABE_ART . "." . TabellenName::TEILAUFGABE_ART . Keyword::NAME
         );
-        $teilaufgabeArtInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::SELECT,
+        $teilaufgabeArtInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::SELECT,
             TabellenName::TEILAUFGABE_ART . Keyword::REF,
-            [SimpleInputFabrik::INHALT => '',
-                SimpleInputFabrik::OPTIONEN => $teilaufgabeArten,
-                SimpleInputFabrik::SELECTED => $this->teilaufgabe->getTeilaufgabeArt()->getSchluessel(),
-                SimpleInputFabrik::LABEL => 'Art der Teilaufgabe']
+            [SimpleFormInputFabrik::INHALT => '',
+                SimpleFormInputFabrik::OPTIONEN => $teilaufgabeArten,
+                SimpleFormInputFabrik::SELECTED => $this->teilaufgabe->getTeilaufgabeArt()->getSchluessel(),
+                SimpleFormInputFabrik::LABEL => 'Art der Teilaufgabe']
         );
         $institutArten = DatenbankAbrufHandler::Instance()->findSpalteZuId(
             TabellenName::INSTITUT_ART,
             TabellenName::INSTITUT_ART . "." . TabellenName::INSTITUT_ART . Keyword::NAME
         );
-        $institutArtInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::SELECT,
+        $institutArtInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::SELECT,
             TabellenName::INSTITUT_ART . Keyword::REF,
-            [SimpleInputFabrik::INHALT => '',
-                SimpleInputFabrik::OPTIONEN => $institutArten,
-                SimpleInputFabrik::SELECTED => $this->teilaufgabe->getInstitutArt()->getSchluessel(),
-                SimpleInputFabrik::LABEL => 'Art des Instituts']
+            [SimpleFormInputFabrik::INHALT => '',
+                SimpleFormInputFabrik::OPTIONEN => $institutArten,
+                SimpleFormInputFabrik::SELECTED => $this->teilaufgabe->getInstitutArt()->getSchluessel(),
+                SimpleFormInputFabrik::LABEL => 'Art des Instituts']
         );
         return [
             $menueTextInput,

@@ -96,10 +96,12 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
             default:
                 die('Fehlerhafte Anfrage: ' . var_export($_GET));
         }
-        $formAdapters = SimpleFormFabrik::erzeugeFormAdapter($eintraege);
+        $formAdapters = SimpleFormFabrik::erzeugeForms($eintraege);
         $html = FormModul::Instance()->getModulHtml($modus, $formAdapters);
     }
     echo json_encode($html);
+} else {
+    echo "<h1>Kein Modus angegeben!<h1>";
 }
 
 /**

@@ -11,6 +11,7 @@ echo Index::getContent();
 class Index {
 
     public static function getContent() {
+
         if (isset($_GET[AjaxKeywords::MODUS]) && $_GET[AjaxKeywords::MODUS] == self::KONFIG) {
             $konfigurator = Konfigurator::Instance();
             return $konfigurator->getModulHtml();

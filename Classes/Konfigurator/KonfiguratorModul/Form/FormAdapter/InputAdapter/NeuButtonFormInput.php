@@ -2,7 +2,7 @@
 
 namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter;
 
-class NeuButtonInput extends ButtonInput {
+class NeuButtonFormInput extends ButtonFormInput {
 
     /**
      * @return string

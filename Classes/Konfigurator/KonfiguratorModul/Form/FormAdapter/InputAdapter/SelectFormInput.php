@@ -4,7 +4,7 @@ namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter;
 
 use Model\Wertepaar;
 
-class SelectInput extends TextInput {
+class SelectFormInput extends TextInput {
 
     /**
      * @var Wertepaar[]

@@ -4,8 +4,8 @@ namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Einrichtung;
 
 use Datenbank\DatenbankAbrufHandler;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IInputAdapter;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 use Model\Einrichtung\Institut;
@@ -27,30 +27,30 @@ class InstitutForm extends Form {
     }
 
     /**
-     * @return IInputAdapter[]
+     * @return IFormInputAdapter[]
      */
     public function getFormInputs() {
-        $nameInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::TEXT,
+        $nameInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::TEXT,
             TabellenName::INSTITUT . Keyword::NAME,
-            [SimpleInputFabrik::INHALT => $this->institut->getName()]
+            [SimpleFormInputFabrik::INHALT => $this->institut->getName()]
         );
-        $beschreibungInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::TEXTAREA,
+        $beschreibungInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::TEXTAREA,
             TabellenSpalten::INSTITUT_BESCHREIBUNG,
-            [SimpleInputFabrik::INHALT => $this->institut->getBeschreibung()]
+            [SimpleFormInputFabrik::INHALT => $this->institut->getBeschreibung()]
         );
         $institutArten = DatenbankAbrufHandler::Instance()->findSpalteZuId(
             TabellenName::INSTITUT_ART,
             TabellenName::INSTITUT_ART . "." . TabellenName::INSTITUT_ART . Keyword::NAME
         );
-        $instituArtInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::SELECT,
+        $instituArtInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::SELECT,
             TabellenName::INSTITUT_ART . Keyword::REF,
-            [SimpleInputFabrik::INHALT => '',
-                SimpleInputFabrik::OPTIONEN => $institutArten,
-                SimpleInputFabrik::SELECTED => $this->institut->getInstitutArt()->getSchluessel(),
-                SimpleInputFabrik::LABEL => 'Art des Instituts']
+            [SimpleFormInputFabrik::INHALT => '',
+                SimpleFormInputFabrik::OPTIONEN => $institutArten,
+                SimpleFormInputFabrik::SELECTED => $this->institut->getInstitutArt()->getSchluessel(),
+                SimpleFormInputFabrik::LABEL => 'Art des Instituts']
         );
         return [$nameInput, $beschreibungInput, $instituArtInput];
     }

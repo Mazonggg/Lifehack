@@ -2,7 +2,7 @@
 
 namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter;
 
-class AuswahlbildInput extends SelectInput {
+class AuswahlbildFormFormInput extends SelectFormInput {
 
     /**
      * @return string

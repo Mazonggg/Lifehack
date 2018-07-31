@@ -2,9 +2,7 @@
 
 namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter;
 
-use Model\Wertepaar;
-
-class HiddenInput extends TextInput {
+abstract class ButtonFormInput extends FormInput {
 
     /**
      * @var string
@@ -15,16 +13,7 @@ class HiddenInput extends TextInput {
      * @return string
      */
     public function getClass() {
-        return parent::getClass() . ' hidden';
-    }
-
-    /**
-     * @return Wertepaar[]
-     */
-    public function getAttribute() {
-        return array_merge(parent::getAttribute(), [
-            new Wertepaar('value', $this->getInhalt())
-        ]);
+        return 'form_item hoverbox form_button';
     }
 
     /**
@@ -39,6 +28,20 @@ class HiddenInput extends TextInput {
      */
     public function setId($id) {
         $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTag() {
+        return 'button';
+    }
+
+    /**
+     * @return string
+     */
+    public function getType() {
+        return '';
     }
 }
 

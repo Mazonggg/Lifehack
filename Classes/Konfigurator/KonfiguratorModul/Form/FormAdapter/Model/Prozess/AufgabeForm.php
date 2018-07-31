@@ -3,8 +3,8 @@
 namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Prozess;
 
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IInputAdapter;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
 use Model\Konstanten\TabellenSpalten;
 use Model\Prozess\Aufgabe;
 use Model\Konstanten\TabellenName;
@@ -26,26 +26,26 @@ class AufgabeForm extends Form {
     }
 
     /**
-     * @return IInputAdapter[]
+     * @return IFormInputAdapter[]
      */
     public function getFormInputs() {
 
-        $bezeichnungInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::TEXT,
+        $bezeichnungInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::TEXT,
             TabellenSpalten::AUFGABE_BEZEICHNUNG,
-            [SimpleInputFabrik::INHALT => $this->aufgabe->getBezeichnung()]
+            [SimpleFormInputFabrik::INHALT => $this->aufgabe->getBezeichnung()]
         );
-        $gesetzInput = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::TEXTAREA,
+        $gesetzInput = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::TEXTAREA,
             TabellenSpalten::AUFGABE_GESETZESGRUNDLAGE,
-            [SimpleInputFabrik::INHALT => $this->aufgabe->getGesetzesgrundlage()]
+            [SimpleFormInputFabrik::INHALT => $this->aufgabe->getGesetzesgrundlage()]
         );
-        $teilaufgabeNeuButton = SimpleInputFabrik::erzeugeFormInput(
-            SimpleInputFabrik::NEUBUTTON,
+        $teilaufgabeNeuButton = SimpleFormInputFabrik::erzeugeFormInput(
+            SimpleFormInputFabrik::NEUBUTTON,
             TabellenName::TEILAUFGABE,
-            [SimpleInputFabrik::INHALT => $this->aufgabe->getGesetzesgrundlage(),
-                SimpleInputFabrik::ID => 'form_neu_button',
-                SimpleInputFabrik::INHALT => 'Teilaufgabe hinzuf&uuml;gen']
+            [SimpleFormInputFabrik::INHALT => $this->aufgabe->getGesetzesgrundlage(),
+                SimpleFormInputFabrik::ID => 'form_neu_button',
+                SimpleFormInputFabrik::INHALT => 'Teilaufgabe hinzuf&uuml;gen']
         );
         return [
             $bezeichnungInput,

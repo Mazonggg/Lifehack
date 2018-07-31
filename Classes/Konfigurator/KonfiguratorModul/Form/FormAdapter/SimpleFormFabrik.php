@@ -33,7 +33,7 @@ class SimpleFormFabrik {
      * @param IDatenbankEintrag[] $datenbankEintraege
      * @return IFormAdapter[]
      */
-    public static function erzeugeFormAdapter($datenbankEintraege) {
+    public static function erzeugeForms($datenbankEintraege) {
         /**
          * @var IFormAdapter[]
          */
@@ -48,7 +48,7 @@ class SimpleFormFabrik {
             } elseif ($datenbankEintrag instanceof Institut) {
                 array_push($formAdapters, new InstitutForm($datenbankEintrag));
             } elseif ($datenbankEintrag instanceof Kartenelement) {
-                $formAdapters = array_merge($formAdapters, SimpleFormFabrik::erzeugeKartenelementAdapters($datenbankEintrag));
+                $formAdapters = array_merge($formAdapters, SimpleFormFabrik::erzeugeKartenelementForms($datenbankEintrag));
             }
         }
         return $formAdapters;
@@ -58,7 +58,7 @@ class SimpleFormFabrik {
      * @param IKartenelement $kartenelement
      * @return IFormAdapter[]
      */
-    private static function erzeugeKartenelementAdapters($kartenelement) {
+    private static function erzeugeKartenelementForms($kartenelement) {
         $formAdapters = [
             new KartenelementForm(self::pruefeKartenelementArt($kartenelement)),
             new AbmessungenForm($kartenelement->getAbmessungen())
