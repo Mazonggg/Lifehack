@@ -6,12 +6,13 @@ use Datenbank\DatenbankAbrufHandler;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\MitPrimaerschluesselForm;
 use Model\Konstanten\TabellenSpalten;
 use Model\Prozess\Teilaufgabe;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 
-class TeilaufgabeForm extends Form {
+class TeilaufgabeForm extends MitPrimaerschluesselForm {
     /**
      * @var Teilaufgabe
      */

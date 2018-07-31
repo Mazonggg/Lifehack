@@ -6,11 +6,13 @@ use Datenbank\DatenbankAbrufHandler;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\MitPrimaerschluesselForm;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\OhnePrimaerschluesselForm;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 use Model\Einrichtung\Niederlassung;
 
-class NiederlassungForm extends Form {
+class NiederlassungForm extends OhnePrimaerschluesselForm {
     /**
      * @var Niederlassung
      */

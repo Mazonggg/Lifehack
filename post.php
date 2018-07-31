@@ -14,6 +14,7 @@ if (isset($_POST)) {
     /**
      * @var IQueryAdapter[]
      */
+    #die(json_encode($_POST[AjaxKeywords::DATEN]));
     $queryAdapters = [];
     $hauptForm = json_decode($_POST[AjaxKeywords::DATEN], true);
     $teilForms = [];
@@ -36,10 +37,12 @@ if (isset($_POST)) {
         $id = $hauptForm[AjaxKeywords::ID];
         foreach ($teilForms as $teilForm) {
             if (isset($teilForm[AjaxKeywords::MODUS]) && $teilForm[AjaxKeywords::MODUS] == AjaxKeywords::AKTUALISIEREN) {
-                $teilForm[AjaxKeywords::FREMDSCHLUESSEL] =
+                $teilForm[AjaxKeywords::FREMDSCHLUESSEL] = [
                     $teilForm[AjaxKeywords::TABELLE] . '.' .
                     $teilForm[AjaxKeywords::TABELLE] . '_' .
-                    $hauptForm[AjaxKeywords::TABELLE] . Keyword::REF;
+                    $hauptForm[AjaxKeywords::TABELLE] . Keyword::REF,
+                    $id
+                ];
             }
             array_push($queryAdapters, erzeugeQueryAdapter($teilForm, $tabelle, $id));
         }
@@ -50,6 +53,7 @@ if (isset($_POST)) {
         array_push($queryAdapters, erzeugeQueryAdapter($hauptForm));
     }
     foreach ($queryAdapters as $queryAdapter) {
+        echo "<h1>query:</h1><p>" . $queryAdapter->getQuery() . "</p>";
         if (!DatenbankHandler::Instance()->fuehreQueryAus($queryAdapter)) {
             $fehlerMeldung = DatenbankHandler::Instance()->getFehler();
             die('Die Anfrage konnte nicht ausgeführt werden!: ' . $fehlerMeldung);

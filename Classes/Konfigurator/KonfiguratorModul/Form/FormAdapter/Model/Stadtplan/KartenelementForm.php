@@ -6,11 +6,12 @@ use Datenbank\DatenbankAbrufHandler;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\MitPrimaerschluesselForm;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 use Model\Stadtplan\IKartenelement;
 
-class KartenelementForm extends Form {
+class KartenelementForm extends MitPrimaerschluesselForm {
 
     /**
      * @var IKartenelement

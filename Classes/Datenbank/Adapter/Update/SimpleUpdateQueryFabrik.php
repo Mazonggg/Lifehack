@@ -15,14 +15,15 @@ class SimpleUpdateQueryFabrik {
      */
     public static function erzeugeQueryAdapters($formDaten) {
         $tabelle = $formDaten[AjaxKeywords::TABELLE];
-        if (isset($formDaten[AjaxKeywords::FREMDSCHLUESSEL])) {
-            $fremdschluessel = $formDaten[AjaxKeywords::FREMDSCHLUESSEL];
-            unset($formDaten[AjaxKeywords::FREMDSCHLUESSEL]);
+        if (isset($formDaten[AjaxKeywords::ID]) && $formDaten[AjaxKeywords::ID] == '0') {
+            $fremdschluessel = $formDaten[AjaxKeywords::FREMDSCHLUESSEL][0];
+            $id = $formDaten[AjaxKeywords::FREMDSCHLUESSEL][1];
         } else {
             $fremdschluessel = $tabelle . "." . $tabelle . Keyword::ID;
+            $id = $formDaten[AjaxKeywords::ID];
         }
+        unset($formDaten[AjaxKeywords::FREMDSCHLUESSEL]);
         unset($formDaten[AjaxKeywords::TABELLE]);
-        $id = $formDaten[AjaxKeywords::ID];
         unset($formDaten[AjaxKeywords::ID]);
         return new UpdateQuery(
             $tabelle,

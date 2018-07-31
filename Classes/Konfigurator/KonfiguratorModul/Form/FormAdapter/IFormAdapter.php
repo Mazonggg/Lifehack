@@ -34,5 +34,10 @@ interface IFormAdapter extends IHtmlClass, IHtmlId, IHtmlTag {
      * @return bool
      */
     public function hatTitelElement();
+
+    /**
+     * @return string
+     */
+    public function getDatenbankEintragId();
 }
 

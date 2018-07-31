@@ -6,12 +6,13 @@ use Austauschformat\AustauschKonstanten;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\OhnePrimaerschluesselForm;
 use Model\Konstanten\TabellenName;
 use Model\Konstanten\TabellenSpalten;
 use Model\Stadtplan\Abmessung;
 use Model\Stadtplan\SimpleAbmessungFabrik;
 
-class AbmessungenForm extends Form {
+class AbmessungenForm extends OhnePrimaerschluesselForm {
 
     /**
      * @var Abmessung[]

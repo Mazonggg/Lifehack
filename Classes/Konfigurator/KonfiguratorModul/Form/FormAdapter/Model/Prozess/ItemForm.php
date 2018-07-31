@@ -3,15 +3,15 @@
 namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Prozess;
 
 use Datenbank\DatenbankAbrufHandler;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\MitPrimaerschluesselForm;
 use Model\Konstanten\TabellenSpalten;
 use Model\Prozess\Item;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 
-class ItemForm extends Form {
+class ItemForm extends MitPrimaerschluesselForm {
 
     /**
      * @var Item

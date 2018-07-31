@@ -6,11 +6,12 @@ use Datenbank\DatenbankAbrufHandler;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\OhnePrimaerschluesselForm;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 use Model\Stadtplan\Gebaeude;
 
-class GebaeudeForm extends Form {
+class GebaeudeForm extends OhnePrimaerschluesselForm {
 
     /**
      * @var Gebaeude

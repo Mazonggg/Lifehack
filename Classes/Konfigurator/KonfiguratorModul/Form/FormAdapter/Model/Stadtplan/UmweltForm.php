@@ -5,11 +5,12 @@ namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\OhnePrimaerschluesselForm;
 use Model\Konstanten\TabellenName;
 use Model\Konstanten\TabellenSpalten;
 use Model\Stadtplan\Umwelt;
 
-class UmweltForm extends Form {
+class UmweltForm extends OhnePrimaerschluesselForm {
     /**
      * @var Umwelt $umwelt
      */
