@@ -8,30 +8,9 @@ const DISPLAY_NONE = 'display_none';
 
 class PopupController extends HtmlObjekt {
 
-    popSchliessenCallbackInfo() {
-        return {
-            modus: this._schliessenCallbackModus.pop(),
-            callback: this._schliessenCallbacks.pop(),
-            callbackInfo: this._schliessenCallbackInfos.pop()
-        };
-    }
-
-    addSchliessenCallback(modus, callback, callbackInfo) {
-        this._schliessenCallbackModus.push(modus);
-        this._schliessenCallbacks.push(callback);
-        this._schliessenCallbackInfos.push(callbackInfo);
-    }
-
-    schliessenCallbackVorhanden() {
-        return this._schliessenCallbackModus.length > 0;
-    }
-
     constructor(objekt) {
         super(objekt);
         this._schliesser = document.getElementById("popup_schliesser");
-        this._schliessenCallbackModus = [];
-        this._schliessenCallbacks = [];
-        this._schliessenCallbackInfos = [];
     }
 
     initPopup() {
@@ -39,15 +18,6 @@ class PopupController extends HtmlObjekt {
         this._schliesser.addEventListener('click', function () {
             popup.schliessePopup();
         });
-    }
-
-    schliessenCallback() {
-        let callback = popup.popSchliessenCallbackInfo();
-        AjaxHandler.get(
-            callback['modus'],
-            (callback['callback'] == null ? popup.setInhalt : callback['callback']),
-            callback['callbackInfo']
-        );
     }
 
     versteckePopup(verstecken) {
@@ -70,19 +40,11 @@ class PopupController extends HtmlObjekt {
     }
 
     schliessePopup() {
-        if (!popup.schliessenCallbackVorhanden()) {
-
-            popup.loeschenCallbackModus = [];
-            popup.loeschenCallbackInfo = [];
-
-            menue.ausOderEinblenden(false);
-            stadtplan.ausOderEinblenden(false);
-            stadtplan.overLayAusOderEinblenden(false);
-            body.fixieren(false);
-            popup.ausOderEinblenden(true);
-        } else {
-            popup.schliessenCallback();
-        }
+        menue.ausOderEinblenden(false);
+        stadtplan.ausOderEinblenden(false);
+        stadtplan.overLayAusOderEinblenden(false);
+        body.fixieren(false);
+        popup.ausOderEinblenden(true);
     }
 
     leerePopup() {

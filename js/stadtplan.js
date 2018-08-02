@@ -98,7 +98,6 @@ class StadtplanController extends HtmlObjekt {
             hinzuButtons[j].addEventListener('click', function (event) {
                 event.preventDefault();
                 popup.oeffnePopup();
-                popup.addSchliessenCallback({modus: 'stadtplan'}, stadtplan.ladeStadtPlanNeu, '');
                 AjaxHandler.get(splitElementIdZuObjekt(hinzuButtons[j].id), stadtplan.initStadtplanForm, ["form", true]);
                 stadtplan.macheHinzufuegenKachelAktiv();
             });

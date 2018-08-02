@@ -27,7 +27,6 @@ class MenueController extends HtmlObjekt {
 
     static oeffneListe(modus, callbackInfo) {
         popup.oeffnePopup(null);
-        popup.addSchliessenCallback(modus, null, callbackInfo);
         AjaxHandler.get(modus, popup.setInhalt, callbackInfo);
     }
 }
