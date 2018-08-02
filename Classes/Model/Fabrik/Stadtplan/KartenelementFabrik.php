@@ -2,7 +2,6 @@
 
 namespace Model\Fabrik\Stadtplan;
 
-use Austauschformat\UniqueAsciiGenerator;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 use Model\Fabrik\DatenbankEintragFabrik;

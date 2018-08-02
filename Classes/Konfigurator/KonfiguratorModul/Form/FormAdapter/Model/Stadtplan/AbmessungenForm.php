@@ -3,7 +3,6 @@
 namespace Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan;
 
 use Austauschformat\AustauschKonstanten;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\Form;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\IFormInputAdapter;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\InputAdapter\SimpleFormInputFabrik;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\OhnePrimaerschluesselForm;

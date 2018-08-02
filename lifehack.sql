@@ -614,7 +614,7 @@ INSERT INTO aufgabe
 (bezeichnung, gesetzesgrundlage)
 VALUES
   ('Besorge Dir einen Personalausweis',
-   '&sect; 1337\n\nAusweispflicht:\nJeder Buerger, der das sechzehnte Lebensjahr vollendet hat, ist dazu verpflichtet eines Personalausweis bei sich zu tragen usw.');
+   '&sect; 1337\n\nAusweispflicht:\nJeder B&uuml;rger, der das sechzehnte Lebensjahr vollendet hat, ist dazu verpflichtet eines Personalausweis bei sich zu tragen usw.');
 
 INSERT INTO teilaufgabe
 (menue_text,
@@ -702,7 +702,7 @@ INSERT INTO teilaufgabe
  belohnung_item_ref)
 VALUES
   ('Das Bankpersonal ben&ouml;tigt deinen Personalausweis, um dir dein Bankkonto erstellen zu k&ouml;nnen',
-   'Guten Tag!\nIch moechte ein Konto er&ouml;ffnen.',
+   'Guten Tag!\nIch m&ouml;chte ein Konto er&ouml;ffnen.',
    'Guten Tag!\nSehr gerne, daf&uuml;r brauche ich Ihren Personalausweis, um Ihre Daten aufzunehmen.',
    'Sehr gut, als n&auml;chstes m&uuml;ssen Sie ein Formular mit Ihren individuellen Anspr&uuml;chen ausf&uuml;llen.',
    'Tut mir leid, leider kann ich ohne Ihren g&uuml;ltigen Personalausweis kein Konto f&uuml;r Sie er&ouml;ffnen.',
