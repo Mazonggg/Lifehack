@@ -12,10 +12,6 @@ class Abmessung extends DatenbankEintrag {
      * @var int
      */
     private $x = 0, $breite = 0, $y = 0, $hoehe = 0;
-    /**
-     * @var string
-     */
-    private $identifier;
 
     /**
      * @var string
@@ -34,13 +30,6 @@ class Abmessung extends DatenbankEintrag {
         $this->y = $y;
         $this->breite = $breite;
         $this->hoehe = $hoehe;
-    }
-
-    /**
-     * @param string $identifier
-     */
-    public function setIdentifier($identifier) {
-        $this->identifier = $identifier;
     }
 
     /**
@@ -83,13 +72,6 @@ class Abmessung extends DatenbankEintrag {
      */
     public function yMax() {
         return $this->y + $this->hoehe;
-    }
-
-    /**
-     * @return string
-     */
-    public function getIdentifier() {
-        return $this->identifier;
     }
 
     /**

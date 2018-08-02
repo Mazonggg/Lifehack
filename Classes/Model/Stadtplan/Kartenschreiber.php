@@ -3,6 +3,7 @@
 namespace Model\Stadtplan;
 
 use Austauschformat\AustauschKonstanten;
+use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 use Singleton\SingletonPattern;
 
@@ -39,7 +40,7 @@ class Kartenschreiber extends SingletonPattern {
             foreach (explode(',', $eintrag[TabellenName::ABMESSUNG]) as $abmessung) {
                 array_push($abmessungen, $abmessung);
             }
-            $karte[$eintrag[AustauschKonstanten::ASCII_IDENTIFIERT]] = $abmessungen;
+            $karte[$eintrag[TabellenName::KARTENELEMENT . Keyword::ID]] = $abmessungen;
         }
         return $karte;
     }

@@ -18,7 +18,6 @@ class AustauschGenerator extends SingletonPattern {
         if (self::$_instance == null) {
             self::$_instance = new self();
             self::$_instance->dbhandler = DatenbankAbrufHandler::Instance();
-            self::$_instance->uniqueAschiiGenerator = UniqueAsciiGenerator::Instance();
             self::$_instance->kartenSchreiber = Kartenschreiber::Instance();
         }
         return self::$_instance;
@@ -28,11 +27,6 @@ class AustauschGenerator extends SingletonPattern {
      * @var DatenbankAbrufHandler
      */
     private $dbhandler;
-
-    /**
-     * @var UniqueAsciiGenerator
-     */
-    private $uniqueAschiiGenerator;
 
     /**
      * @var Kartenschreiber
@@ -53,7 +47,7 @@ class AustauschGenerator extends SingletonPattern {
      */
     public function getDatenKomplett() {
         $jsonInformation = $this->getDatenInformationen();
-        $karte = $this->getDatenKarte($jsonInformation[TabellenName::KARTENELEMENT]);
+        $karte = $this->kartenSchreiber->schreibeKarte($jsonInformation[TabellenName::KARTENELEMENT]);
         $jsonInformation[TabellenName::KARTENELEMENT] = $this->entferneAbmessungen($jsonInformation[TabellenName::KARTENELEMENT]);
         return [
             AustauschKonstanten::KONFIGURATION => $this->getDatenConfig(),
@@ -67,7 +61,6 @@ class AustauschGenerator extends SingletonPattern {
      */
     private function getDatenConfig() {
         return [
-            AustauschKonstanten::ASCII_LAENGE => $this->uniqueAschiiGenerator->getLaenge(),
             AustauschKonstanten::KACHEL_GROESSE => StadtplanModul::KACHELGROESZE
         ];
     }
@@ -79,17 +72,9 @@ class AustauschGenerator extends SingletonPattern {
         return [
             TabellenName::INSTITUT => $this->dbhandler->findElementDaten(TabellenName::INSTITUT),
             TabellenName::ITEM => $this->dbhandler->findElementDaten(TabellenName::ITEM),
-            TabellenName::KARTENELEMENT => $this->macheArrayAsciiIdentified($this->dbhandler->findElementDaten(TabellenName::KARTENELEMENT)),
+            TabellenName::KARTENELEMENT => $this->dbhandler->findElementDaten(TabellenName::KARTENELEMENT),
             TabellenName::AUFGABE => $this->dbhandler->findElementDaten(TabellenName::AUFGABE)
         ];
-    }
-
-    /**
-     * @param array $legende
-     * @return array
-     */
-    private function getDatenKarte($legende) {
-        return $this->kartenSchreiber->schreibeKarte($legende);
     }
 
     private function entferneAbmessungen($legende) {
@@ -99,20 +84,6 @@ class AustauschGenerator extends SingletonPattern {
             array_push($neueLegende, $eintrag);
         }
         return $neueLegende;
-    }
-
-    /**
-     * @param array $array
-     * @return array
-     */
-    private function macheArrayAsciiIdentified($array) {
-        $newArray = [];
-        foreach ($array as $arrayData) {
-            $arrayData[AustauschKonstanten::ASCII_IDENTIFIERT] = $this->uniqueAschiiGenerator->naechteZeichenkette();
-            array_push($newArray, $arrayData);
-        }
-        return $newArray;
-
     }
 }
 

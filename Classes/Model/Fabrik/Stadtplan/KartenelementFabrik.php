@@ -32,7 +32,6 @@ abstract class KartenelementFabrik extends DatenbankEintragFabrik {
         $kartenelement->setId((int)$eintragdaten[TabellenName::KARTENELEMENT . Keyword::ID]);
         $abmessungen = SimpleAbmessungFabrik::erzeugeAbmessungen(
             $eintragdaten[TabellenName::ABMESSUNG],
-            UniqueAsciiGenerator::Instance()->naechteZeichenkette(),
             $kartenelement->getId());
         $kartenelement->setAbmesungen($abmessungen);
         $kartenelement->setKartenelementAussehen(new Wertepaar(
