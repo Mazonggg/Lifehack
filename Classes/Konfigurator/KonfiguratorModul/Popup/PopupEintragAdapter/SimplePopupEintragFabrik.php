@@ -13,21 +13,20 @@ use Model\Einrichtung\Institut;
 class SimplePopupEintragFabrik {
 
     /**
-     * @param IDatenbankEintrag[] $datenbankEintraege
-     * @return IPopupEintragAdapter[]
+     * @param IDatenbankEintrag $datenbankEintrag
+     * @return IPopupEintragAdapter
      */
-    public static function erzeugePopupEintraege($datenbankEintraege) {
-        $eintragAdapters = [];
-        foreach ($datenbankEintraege as $datenbankEintrag) {
-            if ($datenbankEintrag instanceof Aufgabe) {
-                array_push($eintragAdapters, new AufgabePopupEintrag($datenbankEintrag));
-            } elseif ($datenbankEintrag instanceof Item) {
-                array_push($eintragAdapters, new ItemPopupEintrag($datenbankEintrag));
-            } elseif ($datenbankEintrag instanceof Institut) {
-                array_push($eintragAdapters, new InstitutPopupEintrag($datenbankEintrag));
-            }
+    public static function erzeugePopupEintrag($datenbankEintrag) {
+        if ($datenbankEintrag instanceof Aufgabe) {
+            $eintragAdapter = new AufgabePopupEintrag($datenbankEintrag);
+        } elseif ($datenbankEintrag instanceof Item) {
+            $eintragAdapter = new ItemPopupEintrag($datenbankEintrag);
+        } elseif ($datenbankEintrag instanceof Institut) {
+            $eintragAdapter = new InstitutPopupEintrag($datenbankEintrag);
+        } else {
+            $eintragAdapter = null;
         }
-        return $eintragAdapters;
+        return $eintragAdapter;
     }
 }
 

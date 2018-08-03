@@ -30,26 +30,24 @@ use Model\Stadtplan\Wohnhaus;
 class SimpleFormFabrik {
 
     /**
-     * @param IDatenbankEintrag[] $datenbankEintraege
+     * @param IDatenbankEintrag $datenbankEintrag
      * @return IFormAdapter[]
      */
-    public static function erzeugeForms($datenbankEintraege) {
+    public static function erzeugeForms($datenbankEintrag) {
         /**
          * @var IFormAdapter[]
          */
         $formAdapters = [];
-        foreach ($datenbankEintraege as $datenbankEintrag) {
-            if ($datenbankEintrag instanceof Aufgabe) {
-                array_push($formAdapters, new AufgabeForm($datenbankEintrag));
-            } elseif ($datenbankEintrag instanceof Item) {
-                array_push($formAdapters, new ItemForm($datenbankEintrag));
-            } elseif ($datenbankEintrag instanceof Teilaufgabe) {
-                array_push($formAdapters, new TeilaufgabeForm($datenbankEintrag));
-            } elseif ($datenbankEintrag instanceof Institut) {
-                array_push($formAdapters, new InstitutForm($datenbankEintrag));
-            } elseif ($datenbankEintrag instanceof Kartenelement) {
-                $formAdapters = array_merge($formAdapters, SimpleFormFabrik::erzeugeKartenelementForms($datenbankEintrag));
-            }
+        if ($datenbankEintrag instanceof Aufgabe) {
+            array_push($formAdapters, new AufgabeForm($datenbankEintrag));
+        } elseif ($datenbankEintrag instanceof Item) {
+            array_push($formAdapters, new ItemForm($datenbankEintrag));
+        } elseif ($datenbankEintrag instanceof Teilaufgabe) {
+            array_push($formAdapters, new TeilaufgabeForm($datenbankEintrag));
+        } elseif ($datenbankEintrag instanceof Institut) {
+            array_push($formAdapters, new InstitutForm($datenbankEintrag));
+        } elseif ($datenbankEintrag instanceof Kartenelement) {
+            $formAdapters = array_merge($formAdapters, SimpleFormFabrik::erzeugeKartenelementForms($datenbankEintrag));
         }
         return $formAdapters;
     }

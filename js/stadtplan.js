@@ -84,7 +84,6 @@ class StadtplanController extends HtmlObjekt {
                 event.preventDefault();
                 if (document.getElementById(STADTPLAN_CONTAINER).className.indexOf(AUSGEBLENDET) < 0) {
                     popup.oeffnePopup();
-                    popup.addSchliessenCallback({modus: 'stadtplan'}, stadtplan.ladeStadtPlanNeu, '');
                     AjaxHandler.get(splitElementIdZuObjekt(
                         stadtplan.kartenelemente[i].name),
                         stadtplan.initStadtplanForm,

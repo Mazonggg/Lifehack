@@ -3,8 +3,8 @@
 namespace Konfigurator\KonfiguratorModul\Stadtplan;
 
 use Konfigurator\KonfiguratorModul\HtmlModul;
-use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\IKachelAdapter;
-use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\SimpleKachelFabrik;
+use Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter\IKachelAdapter;
+use Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter\SimpleKachelFabrik;
 use Model\Stadtplan\Abmessung;
 use Model\Stadtplan\Kartenschreiber;
 use Model\Stadtplan\SimpleAbmessungFabrik;

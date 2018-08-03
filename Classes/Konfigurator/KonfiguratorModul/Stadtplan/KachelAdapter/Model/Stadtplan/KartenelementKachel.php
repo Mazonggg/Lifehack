@@ -1,8 +1,8 @@
 <?php
 
-namespace Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\Model\Stadtplan;
+namespace Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter\Model\Stadtplan;
 
-use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\Kachel;
+use Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter\Kachel;
 use Model\Konstanten\AjaxKeywords;
 use Model\Stadtplan\Abmessung;
 use Model\Stadtplan\IKartenelement;

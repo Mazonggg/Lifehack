@@ -1,6 +1,6 @@
 <?php
 
-namespace Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter;
+namespace Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter;
 
 use Konfigurator\KonfiguratorModul\IHtmlClass;
 use Model\Stadtplan\Abmessung;

@@ -9,7 +9,7 @@ use Konfigurator\KonfiguratorModul\IHtmlModul;
 use Konfigurator\KonfiguratorModul\Menue\MenueEintragAdapter\SimpleMenueEintragFabrik;
 use Konfigurator\KonfiguratorModul\Menue\MenueModul;
 use Konfigurator\KonfiguratorModul\Popup\PopupModul;
-use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\SimpleKachelFabrik;
+use Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter\SimpleKachelFabrik;
 use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanModul;
 use Model\Konstanten\TabellenName;
 use Model\ModelHandler;
@@ -26,20 +26,22 @@ class Konfigurator extends HtmlModul {
     public static function Instance() {
         if (self::$_instance == null) {
             self::$_instance = new self();
+            $menueEintraege = [
+                SimpleMenueEintragFabrik::erzeugeMenueEintrag(TabellenName::ITEM),
+                SimpleMenueEintragFabrik::erzeugeMenueEintrag(TabellenName::INSTITUT),
+                SimpleMenueEintragFabrik::erzeugeMenueEintrag(TabellenName::AUFGABE)
+
+            ];
+            $kacheln = [];
+            foreach (ModelHandler::Instance()->getKartenelementDaten() as $kartenelement) {
+                $kacheln = array_merge($kacheln, SimpleKachelFabrik::erzeugeKacheln($kartenelement));
+            }
             self::$_instance->htmlModule = [
                 self::$_instance,
                 PopupModul::Instance(),
-                MenueModul::Instance(
-                    SimpleMenueEintragFabrik::erzeugeMenueEintraege([
-                        TabellenName::ITEM,
-                        TabellenName::INSTITUT,
-                        TabellenName::AUFGABE
-                    ])),
+                MenueModul::Instance($menueEintraege),
                 FormModul::Instance(),
-                StadtplanModul::Instance(
-                    SimpleKachelFabrik::erzeugeKacheln(
-                        ModelHandler::Instance()->getKartenelementDaten()
-                    ))
+                StadtplanModul::Instance($kacheln)
             ];
             self::$_instance->headerGenerator = HeaderAbrufer::Instance();
         }

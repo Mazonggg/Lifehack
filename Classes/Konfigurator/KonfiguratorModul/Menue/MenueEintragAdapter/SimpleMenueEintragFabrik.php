@@ -5,15 +5,11 @@ namespace Konfigurator\KonfiguratorModul\Menue\MenueEintragAdapter;
 class SimpleMenueEintragFabrik {
 
     /**
-     * @param string[] $eintragNamen
-     * @return array
+     * @param string $eintragName
+     * @return MenueEintrag
      */
-    public static function erzeugeMenueEintraege($eintragNamen) {
-        $menueEintraege = [];
-        foreach ($eintragNamen as $eintragName) {
-            array_push($menueEintraege, new MenueEintrag($eintragName));
-        }
-        return $menueEintraege;
+    public static function erzeugeMenueEintrag($eintragName) {
+        return new MenueEintrag($eintragName);
     }
 }
 

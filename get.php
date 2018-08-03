@@ -7,7 +7,7 @@ use Konfigurator\KonfiguratorModul\Form\FormModul;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\SimpleFormFabrik;
 use Konfigurator\KonfiguratorModul\Popup\PopupAbrufer;
 use Konfigurator\KonfiguratorModul\Popup\PopupEintragAdapter\SimplePopupEintragFabrik;
-use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\SimpleKachelFabrik;
+use Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter\SimpleKachelFabrik;
 use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanModul;
 use Model\ModelHandler;
 use Model\Prozess\Aufgabe;
@@ -32,10 +32,11 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
     if ($modus === AjaxKeywords::BEARBEITEN) {
         $html = elementOeffnen($tabelle);
     } elseif ($modus === AjaxKeywords::STADTPLAN) {
-        $html = StadtplanModul::Instance(
-            SimpleKachelFabrik::erzeugeKacheln(
-                ModelHandler::Instance()->getKartenelementDaten()
-            ))->getModulHtml();
+        $kacheln = [];
+        foreach (ModelHandler::Instance()->getKartenelementDaten() as $kartenelement) {
+            $kacheln = array_merge($kacheln, SimpleKachelFabrik::erzeugeKacheln($kartenelement));
+        }
+        $html = StadtplanModul::Instance($kacheln)->getModulHtml();
     } else {
         $eintraege = [];
         switch ($tabelle) {
@@ -96,7 +97,10 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
             default:
                 die('Fehlerhafte Anfrage: ' . var_export($_GET));
         }
-        $formAdapters = SimpleFormFabrik::erzeugeForms($eintraege);
+        $formAdapters = [];
+        foreach ($eintraege as $eintrag) {
+            $formAdapters = array_merge($formAdapters, SimpleFormFabrik::erzeugeForms($eintrag));
+        }
         $html = FormModul::Instance()->getModulHtml($modus, $formAdapters);
     }
     echo json_encode($html);
@@ -120,7 +124,10 @@ function elementOeffnen($tabelle) {
             $daten = ModelHandler::Instance()->getAufgabeDaten();
             break;
     }
-    $listenEintraege = SimplePopupEintragFabrik::erzeugePopupEintraege($daten);
+    $listenEintraege = [];
+    foreach ($daten as $eintrag) {
+        array_push($listenEintraege, SimplePopupEintragFabrik::erzeugePopupEintrag($eintrag));
+    }
     return PopupAbrufer::Instance()->getPopupBlockDaten($tabelle, $listenEintraege);
 }
 

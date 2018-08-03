@@ -1,8 +1,8 @@
 <?php
 
-namespace Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\Model;
+namespace Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter\Model;
 
-use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanAdapter\Kachel;
+use Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter\Kachel;
 use Model\Konstanten\AjaxKeywords;
 use Model\Konstanten\TabellenName;
 use Model\Wertepaar;
