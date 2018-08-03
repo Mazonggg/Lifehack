@@ -47,7 +47,7 @@ class ModelHandler extends SingletonPattern {
      * @return IDatenbankEintrag[]
      */
     public function getInstitutDaten() {
-        return $this->datenbankEintragParser->arrayZuObjekten(
+        return $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
             $this->datenbankHandler->findElementDaten(TabellenName::INSTITUT),
             InstitutFabrik::Instance());
     }
@@ -56,7 +56,7 @@ class ModelHandler extends SingletonPattern {
      * @return IDatenbankEintrag[]
      */
     public function getItemDaten() {
-        return $this->datenbankEintragParser->arrayZuObjekten(
+        return $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
             $this->datenbankHandler->findElementDaten(TabellenName::ITEM),
             ItemFabrik::Instance());
     }
@@ -66,7 +66,7 @@ class ModelHandler extends SingletonPattern {
      * @return IDatenbankEintrag[]
      */
     public function getAufgabeDaten() {
-        return $this->datenbankEintragParser->arrayZuObjekten(
+        return $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
             $this->datenbankHandler->findElementDaten(TabellenName::AUFGABE),
             AufgabeFabrik::Instance());
     }
@@ -77,19 +77,19 @@ class ModelHandler extends SingletonPattern {
     public function getKartenelementDaten() {
         $kartenelementDaten = $this->datenbankHandler->findElementDaten(TabellenName::KARTENELEMENT);
         return array_merge(
-            $this->datenbankEintragParser->arrayZuObjekten(
+            $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
                 $kartenelementDaten,
                 UmweltFabrik::Instance()
             ),
-            $this->datenbankEintragParser->arrayZuObjekten(
+            $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
                 $kartenelementDaten,
                 GebaeudeFabrik::Instance()
             ),
-            $this->datenbankEintragParser->arrayZuObjekten(
+            $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
                 $kartenelementDaten,
                 NiederlassungFabrik::Instance()
             ),
-            $this->datenbankEintragParser->arrayZuObjekten(
+            $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
                 $kartenelementDaten,
                 WohnhausFabrik::Instance()
             ));

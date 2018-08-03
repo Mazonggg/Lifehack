@@ -283,9 +283,5 @@ class StadtplanController extends HtmlObjekt {
             zielKachel.style.gridColumnEnd.replace('span ', '') + '/' +
             zielKachel.style.gridRowEnd.replace('span ', '');
     }
-
-    ladeStadtPlanNeu() {
-        window.location.reload();
-    }
 }
 

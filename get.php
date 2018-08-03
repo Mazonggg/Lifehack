@@ -9,6 +9,7 @@ use Konfigurator\KonfiguratorModul\Popup\PopupAbrufer;
 use Konfigurator\KonfiguratorModul\Popup\PopupEintragAdapter\SimplePopupEintragFabrik;
 use Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter\SimpleKachelFabrik;
 use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanModul;
+use Model\DatenbankEintragParser;
 use Model\ModelHandler;
 use Model\Prozess\Aufgabe;
 use Model\Konstanten\AjaxKeywords;
@@ -39,60 +40,49 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
         $html = StadtplanModul::Instance($kacheln)->getModulHtml();
     } else {
         $eintraege = [];
+        if ($tabelle == TabellenName::UMWELT ||
+            $tabelle == TabellenName::WOHNHAUS ||
+            $tabelle == TabellenName::NIEDERLASSUNG ||
+            $tabelle == TabellenName::GEBAEUDE) {
+            $abruf = DatenbankAbrufHandler::Instance()->findElementDaten(TabellenName::KARTENELEMENT, $id);
+        } else {
+            $abruf = DatenbankAbrufHandler::Instance()->findElementDaten($tabelle, $id);
+        }
+        $eintragDaten = empty($abruf) ?: $abruf;
         switch ($tabelle) {
             case TabellenName::AUFGABE:
-                $aufgabenDaten = DatenbankAbrufHandler::Instance()->findElementDaten($tabelle, $id);
                 /**
-                 * @var Aufgabe $aufgabe
+                 * @var Aufgabe[] $aufgaben
                  */
-                $aufgabe = AufgabeFabrik::Instance()->erzeugeEintragObjekt(
-                    empty($aufgabenDaten) ?: $aufgabenDaten[0]
-                );
-                $eintraege = [$aufgabe];
-                foreach ($aufgabe->getTeilaufgaben() as $teilaufgabe) {
-                    array_push($eintraege, $teilaufgabe);
+                $aufgaben = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, AufgabeFabrik::Instance());
+                $eintraege = [];
+                foreach ($aufgaben as $aufgabe) {
+                    array_push($eintraege, $aufgabe);
+                    foreach ($aufgabe->getTeilaufgaben() as $teilaufgabe) {
+                        array_push($eintraege, $teilaufgabe);
+                    }
                 }
                 break;
             case TabellenName::ITEM:
-                $eintraege = [
-                    ItemFabrik::Instance()->erzeugeEintragObjekt(
-                        DatenbankAbrufHandler::Instance()->findElementDaten($tabelle, $id)[0]
-                    )];
+                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, ItemFabrik::Instance());
                 break;
             case TabellenName::TEILAUFGABE:
-                $eintraege = [
-                    TeilaufgabeFabrik::Instance()->erzeugeEintragObjekt()
-                ];
+                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, TeilaufgabeFabrik::Instance());
                 break;
             case TabellenName::INSTITUT:
-                $eintraege = [
-                    InstitutFabrik::Instance()->erzeugeEintragObjekt(
-                        DatenbankAbrufHandler::Instance()->findElementDaten($tabelle, $id)[0]
-                    )];
+                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, InstitutFabrik::Instance());
                 break;
             case TabellenName::UMWELT:
-                $eintraege = [
-                    UmweltFabrik::Instance()->erzeugeEintragObjekt(
-                        DatenbankAbrufHandler::Instance()->findElementDaten(TabellenName::KARTENELEMENT, $id)[0]
-                    )];
+                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, UmweltFabrik::Instance());
                 break;
             case TabellenName::WOHNHAUS:
-                $eintraege = [
-                    WohnhausFabrik::Instance()->erzeugeEintragObjekt(
-                        DatenbankAbrufHandler::Instance()->findElementDaten(TabellenName::KARTENELEMENT, $id)[0]
-                    )];
+                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, WohnhausFabrik::Instance());
                 break;
             case TabellenName::NIEDERLASSUNG:
-                $eintraege = [
-                    NiederlassungFabrik::Instance()->erzeugeEintragObjekt(
-                        DatenbankAbrufHandler::Instance()->findElementDaten(TabellenName::KARTENELEMENT, $id)[0]
-                    )];
+                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, NiederlassungFabrik::Instance());
                 break;
             case TabellenName::GEBAEUDE:
-                $eintraege = [
-                    GebaeudeFabrik::Instance()->erzeugeEintragObjekt(
-                        DatenbankAbrufHandler::Instance()->findElementDaten(TabellenName::KARTENELEMENT, $id)[0]
-                    )];
+                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, GebaeudeFabrik::Instance());
                 break;
             default:
                 die('Fehlerhafte Anfrage: ' . var_export($_GET));

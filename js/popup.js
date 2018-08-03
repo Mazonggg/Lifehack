@@ -40,11 +40,7 @@ class PopupController extends HtmlObjekt {
     }
 
     schliessePopup() {
-        menue.ausOderEinblenden(false);
-        stadtplan.ausOderEinblenden(false);
-        stadtplan.overLayAusOderEinblenden(false);
-        body.fixieren(false);
-        popup.ausOderEinblenden(true);
+        window.location.reload();
     }
 
     leerePopup() {

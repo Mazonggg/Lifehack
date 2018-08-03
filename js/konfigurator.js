@@ -25,7 +25,7 @@ const AjaxHandler = {
         requestObjekt.onload = function () {
             let antwort = requestObjekt.responseText;
             if (antwort.length > 0) {
-                alert(antwort);
+                console.log(antwort);
             }
             callback(antwort);
         };

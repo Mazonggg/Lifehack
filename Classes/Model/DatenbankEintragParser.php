@@ -30,18 +30,33 @@ class DatenbankEintragParser extends SingletonPattern {
      * @param IDatenbankEintragFabrik $fabrik
      * @return IDatenbankEintrag[]
      */
-    public function arrayZuObjekten($elementdatens, $fabrik) {
+    public function arrayZuDatenbankEintraegen($elementdatens, $fabrik) {
         /**
          * @var IDatenbankEintrag[] $eintraege
          */
         $eintraege = [];
         foreach ($elementdatens as $elementdaten) {
-            if (!($fabrik instanceof KartenelementFabrik) || $this->istRichtigeElementArt($elementdaten, $fabrik)) {
-                array_push($eintraege, $fabrik->erzeugeEintragObjekt($elementdaten));
+            $eintrag = $this->arrayZuDatenbankEintrag($elementdaten, $fabrik);
+            if ($eintrag !== null) {
+                array_push($eintraege, $eintrag);
             }
         }
         return $eintraege;
     }
+
+    /**
+     * @param array $elementdaten
+     * @param IDatenbankEintragFabrik $fabrik
+     * @return IDatenbankEintrag|null
+     */
+    public function arrayZuDatenbankEintrag($elementdaten, $fabrik) {
+        $eintrag = null;
+        if (!($fabrik instanceof KartenelementFabrik) || $this->istRichtigeElementArt($elementdaten, $fabrik)) {
+            $eintrag = $fabrik->erzeugeEintragObjekt($elementdaten);
+        }
+        return $eintrag;
+    }
+
 
     /**
      * @param array $elementdaten
