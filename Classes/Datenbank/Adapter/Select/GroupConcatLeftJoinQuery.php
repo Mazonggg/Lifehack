@@ -43,7 +43,7 @@ class GroupConcatLeftJoinQuery extends LeftJoinQuery {
     private function getGroupByParts() {
         return [
             Keyword::GROUP_BY,
-            $this->tabelle->getPrimaerschluessel()
+            $this->tabelle->getPrimaerschluessel()->getSchluessel()
         ];
     }
 }

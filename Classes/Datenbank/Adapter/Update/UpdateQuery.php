@@ -2,35 +2,11 @@
 
 namespace Datenbank\Adapter\Update;
 
-use Datenbank\Adapter\IQueryAdapter;
+use Datenbank\Adapter\Query;
 use Model\Konstanten\Keyword;
 use Model\Wertepaar;
 
-class UpdateQuery implements IQueryAdapter {
-    /**
-     * @var string
-     */
-    private $tabelle = "";
-    /**
-     * @var array
-     */
-    private $queryDaten = [];
-    /**
-     * @var Wertepaar
-     */
-    private $primaerschluessel;
-
-    /**
-     * InsertQueryAdapter constructor.
-     * @param string $tabelle
-     * @param array $queryDaten
-     * @param Wertepaar $primaerschluessel
-     */
-    public function __construct($tabelle, $queryDaten, $primaerschluessel) {
-        $this->tabelle = $tabelle;
-        $this->queryDaten = $queryDaten;
-        $this->primaerschluessel = $primaerschluessel;
-    }
+class UpdateQuery extends Query {
 
     /**
      * @return string
@@ -45,22 +21,22 @@ class UpdateQuery implements IQueryAdapter {
     protected function getUpdateQueryParts() {
         return [
             Keyword::UPDATE,
-            $this->tabelle,
+            $this->tabelle->getTabellenName(),
             Keyword::SET,
-            $this->verketteDatenpaare($this->queryDaten),
+            $this->verketteDatenpaare($this->tabelle->getSpalten(false)),
             Keyword::WHERE,
-            $this->verketteDatenpaare([$this->primaerschluessel->getSchluessel() => $this->primaerschluessel->getWert()])
+            $this->verketteDatenpaare([$this->tabelle->getPrimaerschluessel()])
         ];
     }
 
     /**
-     * @param array $wertePaare
+     * @param Wertepaar[] $wertePaare
      * @return string
      */
     private function verketteDatenpaare($wertePaare) {
         $werte = "";
-        foreach ($wertePaare as $schluessel => $wert) {
-            $werte .= $schluessel . Keyword::EQUALS . "'" . $wert . "', ";
+        foreach ($wertePaare as $wertePaar) {
+            $werte .= $wertePaar->getSchluessel() . Keyword::EQUALS . "'" . $wertePaar->getWert() . "', ";
         }
         return substr($werte, 0, -2);
     }

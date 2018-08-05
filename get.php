@@ -32,13 +32,9 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
     $html = "";
     if ($modus === AjaxKeywords::BEARBEITEN) {
         $html = elementOeffnen($tabelle);
-    } elseif ($modus === AjaxKeywords::STADTPLAN) {
-        $kacheln = [];
-        foreach (ModelHandler::Instance()->getKartenelementDaten() as $kartenelement) {
-            $kacheln = array_merge($kacheln, SimpleKachelFabrik::erzeugeKacheln($kartenelement));
-        }
-        $html = StadtplanModul::Instance($kacheln)->getModulHtml();
-    } else {
+    }/* else if ($modus === AjaxKeywords::ERSTELLEN) {
+        die('ERSTELLEN');
+    }*/ else {
         $eintraege = [];
         if ($tabelle == TabellenName::UMWELT ||
             $tabelle == TabellenName::WOHNHAUS ||

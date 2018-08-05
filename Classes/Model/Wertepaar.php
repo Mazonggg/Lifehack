@@ -7,18 +7,18 @@ final class Wertepaar {
     /**
      * @var string
      */
-    private $schluessel = "";
+    private $schluessel = '';
     /**
      * @var string
      */
-    private $wert = "";
+    private $wert = '';
 
     /**
      * Wertepaar constructor.
      * @param string $schluessel
      * @param string $wert
      */
-    public function __construct($schluessel, $wert) {
+    public function __construct($schluessel, $wert = '') {
         $this->schluessel = $schluessel;
         $this->wert = $wert;
     }

@@ -8,18 +8,6 @@ use Model\Konstanten\Keyword;
 class InsertQuery extends Query {
 
     /**
-     * @var array
-     */
-    private $queryDaten = [];
-
-    /**
-     * @param array $queryDaten
-     */
-    public function setQueryDaten($queryDaten) {
-        $this->queryDaten = $queryDaten;
-    }
-
-    /**
      * @return string
      */
     public function getQuery() {
@@ -37,17 +25,23 @@ class InsertQuery extends Query {
      * @return string[]
      */
     protected function getInsertQueryParts() {
+        $schluessel = [];
+        $werte = [];
+        foreach ($this->tabelle->getSpalten(false) as $spalte) {
+            array_push($schluessel, $spalte->getSchluessel());
+            array_push($werte, $spalte->getWert());
+        }
         return [
             Keyword::INSERT,
             Keyword::INTO,
             $this->tabelle->getTabellenName(),
             Keyword::BRACKET_OPEN,
-            implode(",", array_keys($this->queryDaten)),
+            implode(",", array_keys($schluessel)),
             Keyword::BRACKET_CLOSE,
             Keyword::VALUES,
             Keyword::BRACKET_OPEN,
             "'",
-            implode("','", array_values($this->queryDaten)),
+            implode("','", array_values($werte)),
             "'",
             Keyword::BRACKET_CLOSE
         ];

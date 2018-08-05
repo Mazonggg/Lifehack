@@ -4,21 +4,8 @@ namespace Datenbank\Adapter\Select;
 
 use Datenbank\Adapter\Query;
 use Model\Konstanten\Keyword;
-use Model\Wertepaar;
 
 class SelectQuery extends Query {
-
-    /**
-     * @var Wertepaar
-     */
-    protected $bedingung;
-
-    /**
-     * @param Wertepaar $bedingung
-     */
-    public function setBedingung($bedingung) {
-        $this->bedingung = $bedingung;
-    }
 
     /**
      * @return string
@@ -36,9 +23,13 @@ class SelectQuery extends Query {
      * @return string[]
      */
     protected function getSelectQueryParts() {
+        $spalten = [];
+        foreach ($this->tabelle->getSpalten(true) as $spalte) {
+            array_push($spalten, $spalte->getSchluessel());
+        }
         return [
             Keyword::SELECT,
-            implode(",", $this->tabelle->getSpalten(true)),
+            implode(",", $spalten),
             Keyword::FROM,
             $this->tabelle->getTabellenName()
         ];
@@ -50,9 +41,9 @@ class SelectQuery extends Query {
     protected function getBedingungQueryParts() {
         return [
             Keyword::WHERE,
-            $this->bedingung->getSchluessel(),
+            $this->tabelle->getPrimaerschluessel()->getSchluessel(),
             Keyword::EQUALS,
-            $this->bedingung->getWert()
+            $this->tabelle->getPrimaerschluessel()->getWert()
         ];
     }
 

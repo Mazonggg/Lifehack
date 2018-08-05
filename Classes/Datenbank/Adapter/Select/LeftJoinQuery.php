@@ -20,7 +20,7 @@ class LeftJoinQuery extends SelectQuery {
         return array_merge(
             $this->getSelectQueryParts(),
             $this->getJoinConditions(),
-            (isset($this->bedingung) ? $this->getBedingungQueryParts() : [])
+            (!empty($this->tabelle->getPrimaerschluessel()->getWert()) ? $this->getBedingungQueryParts() : [])
         );
     }
 

@@ -3,9 +3,10 @@
 namespace Datenbank\Adapter\Insert;
 
 use Datenbank\Adapter\IQueryAdapter;
-use Datenbank\Model\Tabelle;
+use Datenbank\Model\SimpleTabelleFabrik;
 use Model\Konstanten\AjaxKeywords;
 use Model\Konstanten\Keyword;
+use Model\Wertepaar;
 
 class SimpleInsertQueryFabrik {
 
@@ -19,12 +20,19 @@ class SimpleInsertQueryFabrik {
         $tabelle = $formDaten[AjaxKeywords::TABELLE];
         unset($formDaten[AjaxKeywords::TABELLE]);
 
-        $insertQuery = new InsertQuery(new Tabelle($tabelle));
         if (!empty($fremdSchluesselTabellenName && !empty($fremdschluesselId))) {
             $formDaten[$tabelle . "_" . $fremdSchluesselTabellenName . Keyword::REF] = $fremdschluesselId;
         }
-        $insertQuery->setQueryDaten($formDaten);
-        return $insertQuery;
+
+        $spalten = [];
+        foreach ($formDaten as $schluessel => $wert) {
+            array_push($spalten, new Wertepaar($schluessel, $wert));
+        }
+
+        return new InsertQuery(SimpleTabelleFabrik::erzeugeTabelle(
+            $tabelle,
+            $spalten
+        ));
     }
 }
 

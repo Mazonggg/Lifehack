@@ -2,17 +2,19 @@
 
 namespace Datenbank\Model;
 
+use Model\Wertepaar;
+
 class Tabelle {
     /**
      * @var string
      */
-    private $tabellenName = "";
+    private $tabellenName = '';
     /**
-     * @var string
+     * @var Wertepaar
      */
-    private $primaerschluessel = "";
+    private $primaerschluessel = null;
     /**
-     * @var string[]
+     * @var Wertepaar[]
      */
     private $spalten = [];
     /**
@@ -27,12 +29,12 @@ class Tabelle {
     /**
      * DbTabelle constructor.
      * @param string $tabellenName
-     * @param string $primaerschluessel
-     * @param string[] $spalten
+     * @param Wertepaar $primaerschluessel
+     * @param Wertepaar[] $spalten
      * @param Relation[] $relationen
      * @param GroupConcat[] $groupConcats
      */
-    public function __construct($tabellenName, $primaerschluessel = "", $spalten = [], $relationen = [], $groupConcats = []) {
+    public function __construct($tabellenName, $spalten = [], $primaerschluessel = null, $relationen = [], $groupConcats = []) {
         $this->tabellenName = $tabellenName;
         $this->primaerschluessel = $primaerschluessel;
         $this->spalten = $spalten;
@@ -48,7 +50,7 @@ class Tabelle {
     }
 
     /**
-     * @return string
+     * @return Wertepaar
      */
     public function getPrimaerschluessel() {
         return $this->primaerschluessel;
@@ -70,11 +72,11 @@ class Tabelle {
 
     /**
      * @param bool $mitSchluessel
-     * @return string[]
+     * @return Wertepaar[]
      */
     public function getSpalten($mitSchluessel) {
         /**
-         * @var string[]
+         * @var Wertepaar[]
          */
         return array_merge(($mitSchluessel ? [$this->primaerschluessel] : []), $this->spalten);
     }
