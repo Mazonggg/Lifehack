@@ -36,12 +36,12 @@ class InsertQuery extends Query {
             Keyword::INTO,
             $this->tabelle->getTabellenName(),
             Keyword::BRACKET_OPEN,
-            implode(",", array_keys($schluessel)),
+            implode(",", $schluessel),
             Keyword::BRACKET_CLOSE,
             Keyword::VALUES,
             Keyword::BRACKET_OPEN,
             "'",
-            implode("','", array_values($werte)),
+            implode("','", $werte),
             "'",
             Keyword::BRACKET_CLOSE
         ];

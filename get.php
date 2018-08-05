@@ -7,9 +7,9 @@ use Konfigurator\KonfiguratorModul\Form\FormModul;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\SimpleFormFabrik;
 use Konfigurator\KonfiguratorModul\Popup\PopupAbrufer;
 use Konfigurator\KonfiguratorModul\Popup\PopupEintragAdapter\SimplePopupEintragFabrik;
-use Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter\SimpleKachelFabrik;
-use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanModul;
 use Model\DatenbankEintragParser;
+use Model\Fabrik\IDatenbankEintragFabrik;
+use Model\IDatenbankEintrag;
 use Model\ModelHandler;
 use Model\Prozess\Aufgabe;
 use Model\Konstanten\AjaxKeywords;
@@ -32,9 +32,7 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
     $html = "";
     if ($modus === AjaxKeywords::BEARBEITEN) {
         $html = elementOeffnen($tabelle);
-    }/* else if ($modus === AjaxKeywords::ERSTELLEN) {
-        die('ERSTELLEN');
-    }*/ else {
+    } else {
         $eintraege = [];
         if ($tabelle == TabellenName::UMWELT ||
             $tabelle == TabellenName::WOHNHAUS ||
@@ -44,13 +42,17 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
         } else {
             $abruf = DatenbankAbrufHandler::Instance()->findElementDaten($tabelle, $id);
         }
-        $eintragDaten = empty($abruf) ?: $abruf;
+        if ($modus === AjaxKeywords::ERSTELLEN) {
+            $eintragDaten = [];
+        } else {
+            $eintragDaten = empty($abruf) ?: $abruf;
+        }
         switch ($tabelle) {
             case TabellenName::AUFGABE:
                 /**
                  * @var Aufgabe[] $aufgaben
                  */
-                $aufgaben = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, AufgabeFabrik::Instance());
+                $aufgaben = getEintraege($eintragDaten, AufgabeFabrik::Instance());
                 $eintraege = [];
                 foreach ($aufgaben as $aufgabe) {
                     array_push($eintraege, $aufgabe);
@@ -60,25 +62,25 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
                 }
                 break;
             case TabellenName::ITEM:
-                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, ItemFabrik::Instance());
+                $eintraege = getEintraege($eintragDaten, ItemFabrik::Instance());
                 break;
             case TabellenName::TEILAUFGABE:
-                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, TeilaufgabeFabrik::Instance());
+                $eintraege = getEintraege($eintragDaten, TeilaufgabeFabrik::Instance());
                 break;
             case TabellenName::INSTITUT:
-                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, InstitutFabrik::Instance());
+                $eintraege = getEintraege($eintragDaten, InstitutFabrik::Instance());
                 break;
             case TabellenName::UMWELT:
-                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, UmweltFabrik::Instance());
+                $eintraege = getEintraege($eintragDaten, UmweltFabrik::Instance());
                 break;
             case TabellenName::WOHNHAUS:
-                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, WohnhausFabrik::Instance());
+                $eintraege = getEintraege($eintragDaten, WohnhausFabrik::Instance());
                 break;
             case TabellenName::NIEDERLASSUNG:
-                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, NiederlassungFabrik::Instance());
+                $eintraege = getEintraege($eintragDaten, NiederlassungFabrik::Instance());
                 break;
             case TabellenName::GEBAEUDE:
-                $eintraege = DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, GebaeudeFabrik::Instance());
+                $eintraege = getEintraege($eintragDaten, GebaeudeFabrik::Instance());
                 break;
             default:
                 die('Fehlerhafte Anfrage: ' . var_export($_GET));
@@ -115,6 +117,19 @@ function elementOeffnen($tabelle) {
         array_push($listenEintraege, SimplePopupEintragFabrik::erzeugePopupEintrag($eintrag));
     }
     return PopupAbrufer::Instance()->getPopupBlockDaten($tabelle, $listenEintraege);
+}
+
+/**
+ * @param array $eintragDaten
+ * @param IDatenbankEintragFabrik $fabrik
+ * @return IDatenbankEintrag[]
+ */
+function getEintraege($eintragDaten, $fabrik) {
+    if (empty($eintragDaten)) {
+        return [$fabrik->erzeugeEintragObjekt()];
+    } else {
+        return DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, $fabrik);
+    }
 }
 
 /**

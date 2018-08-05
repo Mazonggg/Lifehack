@@ -29,7 +29,7 @@ class ItemFabrik extends DatenbankEintragFabrik {
     /**
      * @return Item
      */
-    protected function erzeugeLeeresEintragObjekt() {
+    public function erzeugeLeeresEintragObjekt() {
         return new Item();
     }
 

@@ -12,11 +12,11 @@ class SimpleInsertQueryFabrik {
 
     /**
      * @param array $formDaten
-     * @param string|null $fremdSchluesselTabellenName
-     * @param string|null $fremdschluesselId
+     * @param string $fremdSchluesselTabellenName
+     * @param string $fremdschluesselId
      * @return IQueryAdapter
      */
-    public static function erzeugeQueryAdapter($formDaten, $fremdSchluesselTabellenName, $fremdschluesselId) {
+    public static function erzeugeQueryAdapter($formDaten, $fremdSchluesselTabellenName = '', $fremdschluesselId = '') {
         $tabelle = $formDaten[AjaxKeywords::TABELLE];
         unset($formDaten[AjaxKeywords::TABELLE]);
 
@@ -28,7 +28,6 @@ class SimpleInsertQueryFabrik {
         foreach ($formDaten as $schluessel => $wert) {
             array_push($spalten, new Wertepaar($schluessel, $wert));
         }
-
         return new InsertQuery(SimpleTabelleFabrik::erzeugeTabelle(
             $tabelle,
             $spalten

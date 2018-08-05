@@ -33,7 +33,7 @@ class NiederlassungFabrik extends GebaeudeFabrik {
     /**
      * @return IDatenbankEintrag
      */
-    protected function erzeugeLeeresEintragObjekt() {
+    public function erzeugeLeeresEintragObjekt() {
         return new Niederlassung();
     }
 

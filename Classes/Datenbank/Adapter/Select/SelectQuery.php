@@ -14,7 +14,7 @@ class SelectQuery extends Query {
         return $this->verketteQueryElemente(
             array_merge(
                 $this->getSelectQueryParts(),
-                (isset($this->bedingung) ? $this->getBedingungQueryParts() : [])
+                (!empty($this->tabelle->getPrimaerschluessel()->getWert()) ? $this->getBedingungQueryParts() : [])
             )
         );
     }

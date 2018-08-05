@@ -16,9 +16,9 @@ class DeleteQuery extends Query {
             Keyword::FROM,
             $this->tabelle->getTabellenName(),
             Keyword::WHERE,
-            $this->tabelle->getTabellenName() . "." . $this->tabelle->getTabellenName() . Keyword::ID,
+            $this->tabelle->getPrimaerschluessel()->getSchluessel(),
             Keyword::EQUALS,
-            $this->tabelle->getPrimaerschluessel(),
+            $this->tabelle->getPrimaerschluessel()->getWert(),
             ";"
         ]);
     }

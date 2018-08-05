@@ -8,11 +8,6 @@ use Singleton\SingletonPattern;
 abstract class DatenbankEintragFabrik extends SingletonPattern implements IDatenbankEintragFabrik {
 
     /**
-     * @return IDatenbankEintrag
-     */
-    abstract protected function erzeugeLeeresEintragObjekt();
-
-    /**
      * @param IDatenbankEintrag $datenbankEintrag
      * @param array $eintragdaten
      * @return IDatenbankEintrag

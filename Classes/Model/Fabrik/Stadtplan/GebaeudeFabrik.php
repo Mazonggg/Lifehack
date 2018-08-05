@@ -35,7 +35,7 @@ class GebaeudeFabrik extends KartenelementFabrik {
     /**
      * @return IDatenbankEintrag
      */
-    protected function erzeugeLeeresEintragObjekt() {
+    public function erzeugeLeeresEintragObjekt() {
         return new Gebaeude();
     }
 

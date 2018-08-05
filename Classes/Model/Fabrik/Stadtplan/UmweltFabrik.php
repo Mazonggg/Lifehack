@@ -33,7 +33,7 @@ class UmweltFabrik extends KartenelementFabrik {
     /**
      * @return Umwelt
      */
-    protected function erzeugeLeeresEintragObjekt() {
+    public function erzeugeLeeresEintragObjekt() {
         return new Umwelt();
     }
 

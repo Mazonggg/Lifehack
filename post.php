@@ -11,10 +11,6 @@ use Model\Konstanten\AjaxKeywords;
 use Model\Konstanten\Keyword;
 
 if (isset($_POST)) {
-    /**
-     * @var IQueryAdapter[]
-     */
-    #die(json_encode($_POST[AjaxKeywords::DATEN]));
     $queryAdapters = [];
     $hauptForm = json_decode($_POST[AjaxKeywords::DATEN], true);
     $teilForms = [];
@@ -53,7 +49,6 @@ if (isset($_POST)) {
         array_push($queryAdapters, erzeugeQueryAdapter($hauptForm));
     }
     foreach ($queryAdapters as $queryAdapter) {
-        echo "<h1>query:</h1><p>" . $queryAdapter->getQuery() . "</p>";
         if (!DatenbankHandler::Instance()->fuehreQueryAus($queryAdapter)) {
             $fehlerMeldung = DatenbankHandler::Instance()->getFehler();
             die('Die Anfrage konnte nicht ausgeführt werden!: ' . $fehlerMeldung);
@@ -67,7 +62,7 @@ if (isset($_POST)) {
  * @param string $fremdschluesselId
  * @return IQueryAdapter|null
  */
-function erzeugeQueryAdapter($daten, $fremdSchluesselTabellenName = "", $fremdschluesselId = null) {
+function erzeugeQueryAdapter($daten, $fremdSchluesselTabellenName = '', $fremdschluesselId = '') {
     if (isset($daten[AjaxKeywords::MODUS])) {
         $modus = $daten[AjaxKeywords::MODUS];
         unset($daten[AjaxKeywords::MODUS]);

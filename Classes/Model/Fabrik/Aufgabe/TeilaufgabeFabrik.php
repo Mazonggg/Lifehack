@@ -30,7 +30,7 @@ class TeilaufgabeFabrik extends DatenbankEintragFabrik {
     /**
      * @return Teilaufgabe
      */
-    protected function erzeugeLeeresEintragObjekt() {
+    public function erzeugeLeeresEintragObjekt() {
         return new Teilaufgabe();
     }
 

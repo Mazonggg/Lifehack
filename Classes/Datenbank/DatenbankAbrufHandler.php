@@ -140,7 +140,8 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
             new Wertepaar(TabellenSpalten::AUFGABE_BEZEICHNUNG),
             new Wertepaar(TabellenSpalten::AUFGABE_GESETZESGRUNDLAGE)
         ], (empty($aufgabeId) ? null : SimpleQueryWertepaarFabrik::erzeugeQueryWertePaar(
-            TabellenName::AUFGABE . "." . TabellenName::AUFGABE . Keyword::ID, $aufgabeId))
+            TabellenName::AUFGABE . "." . TabellenName::AUFGABE . Keyword::ID,
+            $aufgabeId))
         );
 
         $aufgabenDaten = $this->getResult($adapter);
@@ -162,6 +163,7 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
     private function findTeilaufgabenDaten($aufgabeId) {
         $adapter = SimpleSelectQueryFabrik::erzeugeQueryAdapter(
             TabellenName::TEILAUFGABE, [
+            new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenName::TEILAUFGABE . Keyword::ID),
             new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_MENUE_TEXT),
             new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_ANSPRACHE_TEXT),
             new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_ANTWORT_TEXT),

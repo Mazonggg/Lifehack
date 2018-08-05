@@ -35,7 +35,7 @@ class AufgabeFabrik extends DatenbankEintragFabrik {
     /**
      * @return Aufgabe
      */
-    protected function erzeugeLeeresEintragObjekt() {
+    public function erzeugeLeeresEintragObjekt() {
         return new Aufgabe();
     }
 

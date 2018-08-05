@@ -33,7 +33,7 @@ class WohnhausFabrik extends GebaeudeFabrik {
     /**
      * @return Wohnhaus
      */
-    protected function erzeugeLeeresEintragObjekt() {
+    public function erzeugeLeeresEintragObjekt() {
         return new Wohnhaus();
     }
 
