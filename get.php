@@ -2,11 +2,11 @@
 
 include('autoloader.php');
 
+use Anwendung\Konfigurator\Popup\PopupEintragAdapter\SimplePopupEintragFabrik;
 use Datenbank\DatenbankAbrufHandler;
 use Anwendung\Konfigurator\Form\FormModulAdapter;
 use Anwendung\Konfigurator\Form\FormAdapter\SimpleFormFabrik;
 use Anwendung\Konfigurator\Popup\PopupAbrufer;
-use Anwendung\Konfigurator\Popup\EintragAdapter\SimpleEintragFabrik;
 use Model\DatenbankEintragParser;
 use Model\Fabrik\IDatenbankEintragFabrik;
 use Model\IDatenbankEintrag;
@@ -114,7 +114,7 @@ function elementOeffnen($tabelle) {
     }
     $listenEintraege = [];
     foreach ($daten as $eintrag) {
-        array_push($listenEintraege, SimpleEintragFabrik::erzeugePopupEintrag($eintrag));
+        array_push($listenEintraege, SimplePopupEintragFabrik::erzeugePopupEintrag($eintrag));
     }
     return PopupAbrufer::Instance()->getPopupBlockDaten($tabelle, $listenEintraege);
 }
