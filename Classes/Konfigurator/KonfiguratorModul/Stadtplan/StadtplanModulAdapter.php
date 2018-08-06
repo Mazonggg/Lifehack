@@ -2,14 +2,14 @@
 
 namespace Konfigurator\KonfiguratorModul\Stadtplan;
 
-use Konfigurator\KonfiguratorModul\HtmlModulAdapter;
+use Konfigurator\KonfiguratorModul\ModulAdapter;
 use Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter\IKachel;
 use Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter\SimpleKachelFabrik;
 use Model\Stadtplan\Abmessung;
 use Model\Stadtplan\Kartenschreiber;
 use Model\Stadtplan\SimpleAbmessungFabrik;
 
-class StadtplanModulAdapter extends HtmlModulAdapter {
+class StadtplanModulAdapter extends ModulAdapter {
     /**
      * @var StadtplanModulAdapter|null
      */

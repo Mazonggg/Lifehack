@@ -7,9 +7,9 @@ use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 use Model\Fabrik\IDatenbankEintragFabrik;
 use Model\Fabrik\Stadtplan\KartenelementFabrik;
-use Singleton\SingletonPattern;
+use Model\Singleton\ISingleton;
 
-class DatenbankEintragParser extends SingletonPattern {
+class DatenbankEintragParser implements ISingleton {
     /**
      * @var DatenbankEintragParser|null
      */

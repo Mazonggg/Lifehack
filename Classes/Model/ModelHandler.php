@@ -11,10 +11,10 @@ use Model\Fabrik\Einrichtung\NiederlassungFabrik;
 use Model\Fabrik\Stadtplan\GebaeudeFabrik;
 use Model\Fabrik\Stadtplan\UmweltFabrik;
 use Model\Fabrik\Stadtplan\WohnhausFabrik;
+use Model\Singleton\ISingleton;
 use Model\Stadtplan\IKartenelement;
-use Singleton\SingletonPattern;
 
-class ModelHandler extends SingletonPattern {
+class ModelHandler implements ISingleton {
     /**
      * @var ModelHandler|null
      */

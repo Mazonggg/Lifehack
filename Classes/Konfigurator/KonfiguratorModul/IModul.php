@@ -2,7 +2,7 @@
 
 namespace Konfigurator\KonfiguratorModul;
 
-interface IHtmlModul extends IHtmlClass, IHtmlTag, IHtmlId {
+interface IModul extends IHtmlClass, IHtmlTag, IHtmlId {
 
     /**
      * @return string

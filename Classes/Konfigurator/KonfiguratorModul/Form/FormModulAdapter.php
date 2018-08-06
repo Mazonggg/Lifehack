@@ -3,9 +3,9 @@
 namespace Konfigurator\KonfiguratorModul\Form;
 
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\IForm;
-use Konfigurator\KonfiguratorModul\HtmlModulAdapter;
+use Konfigurator\KonfiguratorModul\ModulAdapter;
 
-class FormModulAdapter extends HtmlModulAdapter {
+class FormModulAdapter extends ModulAdapter {
     /**
      * @var FormModulAdapter|null
      */

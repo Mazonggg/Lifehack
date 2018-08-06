@@ -5,9 +5,9 @@ namespace Model\Stadtplan;
 use Austauschformat\AustauschKonstanten;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
-use Singleton\SingletonPattern;
+use Model\Singleton\ISingleton;
 
-class Kartenschreiber extends SingletonPattern {
+class Kartenschreiber implements ISingleton {
 
     /**
      * @var Kartenschreiber

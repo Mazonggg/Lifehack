@@ -4,8 +4,8 @@ namespace Konfigurator;
 
 use Konfigurator\KonfiguratorModul\Form\FormModulAdapter;
 use Konfigurator\KonfiguratorModul\HeaderAbrufer;
-use Konfigurator\KonfiguratorModul\HtmlModulAdapter;
-use Konfigurator\KonfiguratorModul\IHtmlModul;
+use Konfigurator\KonfiguratorModul\ModulAdapter;
+use Konfigurator\KonfiguratorModul\IModul;
 use Konfigurator\KonfiguratorModul\Menue\MenueEintragAdapter\SimpleMenueEintragFabrik;
 use Konfigurator\KonfiguratorModul\Menue\MenueModulAdapter;
 use Konfigurator\KonfiguratorModul\Popup\PopupModulAdapter;
@@ -14,14 +14,14 @@ use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanModulAdapter;
 use Model\Konstanten\TabellenName;
 use Model\ModelHandler;
 
-class Konfigurator extends HtmlModulAdapter {
+class KonfiguratorModulAdapter extends ModulAdapter {
     /**
-     * @var Konfigurator|null
+     * @var KonfiguratorModulAdapter|null
      */
     private static $_instance = null;
 
     /**
-     * @return Konfigurator
+     * @return KonfiguratorModulAdapter
      */
     public static function Instance() {
         if (self::$_instance == null) {
@@ -49,7 +49,7 @@ class Konfigurator extends HtmlModulAdapter {
     }
 
     /**
-     * @var IHtmlModul[]
+     * @var IModul[]
      */
     private $htmlModule;
 
@@ -59,7 +59,7 @@ class Konfigurator extends HtmlModulAdapter {
     private $headerGenerator;
 
     /**
-     * @return IHtmlModul[]
+     * @return IModul[]
      */
     public function getHtmlModule() {
         return $this->htmlModule;

@@ -2,9 +2,9 @@
 
 namespace Konfigurator\KonfiguratorModul;
 
-use Singleton\SingletonPattern;
+use Model\Singleton\ISingleton;
 
-abstract class HtmlModulAdapter extends SingletonPattern implements IHtmlModul {
+abstract class ModulAdapter implements IModul, ISingleton {
 
     /**
      * @param string $inhalt = alternativ vogegebener Inhalt

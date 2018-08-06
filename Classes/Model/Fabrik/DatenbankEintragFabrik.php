@@ -3,9 +3,8 @@
 namespace Model\Fabrik;
 
 use Model\IDatenbankEintrag;
-use Singleton\SingletonPattern;
 
-abstract class DatenbankEintragFabrik extends SingletonPattern implements IDatenbankEintragFabrik {
+abstract class DatenbankEintragFabrik implements IDatenbankEintragFabrik {
 
     /**
      * @param IDatenbankEintrag $datenbankEintrag

@@ -3,8 +3,9 @@
 namespace Model\Fabrik;
 
 use Model\IDatenbankEintrag;
+use Model\Singleton\ISingleton;
 
-interface IDatenbankEintragFabrik {
+interface IDatenbankEintragFabrik extends ISingleton {
 
     /**
      * @param array $eintragdaten

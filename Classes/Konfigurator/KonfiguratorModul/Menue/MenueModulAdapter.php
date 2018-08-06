@@ -3,13 +3,13 @@
 namespace Konfigurator\KonfiguratorModul\Menue;
 
 use Datenbank\DatenbankAbrufHandler;
-use Konfigurator\KonfiguratorModul\HtmlModulAdapter;
+use Konfigurator\KonfiguratorModul\ModulAdapter;
 use Konfigurator\KonfiguratorModul\Menue\MenueEintragAdapter\IMenueEintrag;
 use Model\Konstanten\AjaxKeywords;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 
-class MenueModulAdapter extends HtmlModulAdapter {
+class MenueModulAdapter extends ModulAdapter {
     /**
      * @var MenueModulAdapter|null
      */

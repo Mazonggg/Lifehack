@@ -1,6 +1,6 @@
 <?php
 
-namespace Singleton;
+namespace Model\Singleton;
 
 interface ISingleton {
 

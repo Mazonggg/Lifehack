@@ -2,10 +2,10 @@
 
 namespace Konfigurator\KonfiguratorModul;
 
-use Konfigurator\Konfigurator;
-use Singleton\SingletonPattern;
+use Konfigurator\KonfiguratorModulAdapter;
+use Model\Singleton\ISingleton;
 
-class HeaderAbrufer extends SingletonPattern {
+class HeaderAbrufer implements ISingleton {
     /**
      * @var HeaderAbrufer|null
      */
@@ -34,7 +34,7 @@ class HeaderAbrufer extends SingletonPattern {
      */
     public function getHeader() {
         $header = "";
-        foreach (Konfigurator::Instance()->getHtmlModule() as $htmlGenerator) {
+        foreach (KonfiguratorModulAdapter::Instance()->getHtmlModule() as $htmlGenerator) {
             $header .=
                 self::STYLESHEET_LEFT . $htmlGenerator->getCssUrl() . self::STYLESHEET_RIGHT .
                 self::SCRIPT_LEFT . $htmlGenerator->getJavaScriptUrl() . self::SCRIPT_RIGHT;

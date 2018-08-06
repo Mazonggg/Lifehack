@@ -2,9 +2,9 @@
 
 namespace Konfigurator\KonfiguratorModul\Popup;
 
-use Konfigurator\KonfiguratorModul\HtmlModulAdapter;
+use Konfigurator\KonfiguratorModul\ModulAdapter;
 
-class PopupModulAdapter extends HtmlModulAdapter {
+class PopupModulAdapter extends ModulAdapter {
     /**
      * @var PopupModulAdapter|null
      */

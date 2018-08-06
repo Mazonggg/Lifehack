@@ -4,9 +4,9 @@ namespace Konfigurator\KonfiguratorModul\Popup;
 
 use Konfigurator\KonfiguratorModul\Popup\PopupEintragAdapter\IPopupEintrag;
 use Model\Konstanten\AjaxKeywords;
-use Singleton\SingletonPattern;
+use Model\Singleton\ISingleton;
 
-class PopupAbrufer extends SingletonPattern {
+class PopupAbrufer implements ISingleton {
     /**
      * @var PopupAbrufer|null
      */

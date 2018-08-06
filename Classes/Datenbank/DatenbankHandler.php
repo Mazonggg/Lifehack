@@ -3,11 +3,11 @@
 namespace Datenbank;
 
 use Datenbank\Adapter\IQuery;
+use Model\Singleton\ISingleton;
 use mysqli;
 use mysqli_result;
-use Singleton\SingletonPattern;
 
-class DatenbankHandler extends SingletonPattern {
+class DatenbankHandler implements ISingleton {
     /**
      * @var DatenbankHandler|null
      */
