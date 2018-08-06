@@ -2,7 +2,7 @@
 
 namespace Datenbank\Adapter\Select;
 
-use Datenbank\Adapter\IQueryAdapter;
+use Datenbank\Adapter\IQuery;
 use Datenbank\Model\GroupConcat;
 use Datenbank\Model\Relation;
 use Datenbank\Model\SimpleTabelleFabrik;
@@ -17,7 +17,7 @@ final class SimpleSelectQueryFabrik {
      * @param Wertepaar $schluessel
      * @param Relation[] $relationen
      * @param GroupConcat[] $groupConcats
-     * @return IQueryAdapter
+     * @return IQuery
      */
     public static function erzeugeQueryAdapter($tabellenName, $spalten, $schluessel = null, $relationen = [], $groupConcats = []) {
         $tabelle = SimpleTabelleFabrik::erzeugeTabelle(
@@ -28,12 +28,12 @@ final class SimpleSelectQueryFabrik {
             $groupConcats
         );
         if (!empty($groupConcats)) {
-            return new GroupConcatLeftJoinQuery($tabelle);
+            return new GroupConcatLeftJoinQueryAdapter($tabelle);
         }
         if (!empty($relationen)) {
-            return new LeftJoinQuery($tabelle);
+            return new LeftJoinQueryAdapter($tabelle);
         }
-        return new SelectQuery($tabelle);
+        return new SelectQueryAdapter($tabelle);
     }
 }
 

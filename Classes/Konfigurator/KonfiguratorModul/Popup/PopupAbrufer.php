@@ -2,7 +2,7 @@
 
 namespace Konfigurator\KonfiguratorModul\Popup;
 
-use Konfigurator\KonfiguratorModul\Popup\PopupEintragAdapter\IPopupEintragAdapter;
+use Konfigurator\KonfiguratorModul\Popup\PopupEintragAdapter\IPopupEintrag;
 use Model\Konstanten\AjaxKeywords;
 use Singleton\SingletonPattern;
 
@@ -24,7 +24,7 @@ class PopupAbrufer extends SingletonPattern {
 
     /**
      * @param string $tabelle
-     * @param IPopupEintragAdapter[] $blockDaten
+     * @param IPopupEintrag[] $blockDaten
      * @return string
      */
     public function getPopupBlockDaten($tabelle, $blockDaten) {

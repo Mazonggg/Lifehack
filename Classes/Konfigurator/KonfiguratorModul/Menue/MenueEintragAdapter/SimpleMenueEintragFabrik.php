@@ -6,10 +6,10 @@ class SimpleMenueEintragFabrik {
 
     /**
      * @param string $eintragName
-     * @return MenueEintrag
+     * @return MenueEintragAdapter
      */
     public static function erzeugeMenueEintrag($eintragName) {
-        return new MenueEintrag($eintragName);
+        return new MenueEintragAdapter($eintragName);
     }
 }
 

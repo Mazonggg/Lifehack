@@ -3,16 +3,16 @@
 namespace Konfigurator\KonfiguratorModul\Form\FormAdapter;
 
 use Datenbank\DatenbankAbrufHandler;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Prozess\AufgabeForm;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Prozess\ItemForm;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Prozess\TeilaufgabeForm;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Einrichtung\InstitutForm;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Einrichtung\NiederlassungForm;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan\AbmessungenForm;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan\GebaeudeForm;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan\KartenelementForm;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan\UmweltForm;
-use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan\WohnhausForm;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Prozess\AufgabeFormAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Prozess\ItemFormAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Prozess\TeilaufgabeFormAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Einrichtung\InstitutFormAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Einrichtung\NiederlassungFormAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan\AbmessungenFormAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan\GebaeudeFormAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan\KartenelementFormAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan\UmweltFormAdapter;
+use Konfigurator\KonfiguratorModul\Form\FormAdapter\Model\Stadtplan\WohnhausFormAdapter;
 use Model\Prozess\Aufgabe;
 use Model\Prozess\Item;
 use Model\Prozess\Teilaufgabe;
@@ -31,21 +31,21 @@ class SimpleFormFabrik {
 
     /**
      * @param IDatenbankEintrag $datenbankEintrag
-     * @return IFormAdapter[]
+     * @return IForm[]
      */
     public static function erzeugeForms($datenbankEintrag) {
         /**
-         * @var IFormAdapter[]
+         * @var IForm[]
          */
         $formAdapters = [];
         if ($datenbankEintrag instanceof Aufgabe) {
-            array_push($formAdapters, new AufgabeForm($datenbankEintrag));
+            array_push($formAdapters, new AufgabeFormAdapter($datenbankEintrag));
         } elseif ($datenbankEintrag instanceof Item) {
-            array_push($formAdapters, new ItemForm($datenbankEintrag));
+            array_push($formAdapters, new ItemFormAdapter($datenbankEintrag));
         } elseif ($datenbankEintrag instanceof Teilaufgabe) {
-            array_push($formAdapters, new TeilaufgabeForm($datenbankEintrag));
+            array_push($formAdapters, new TeilaufgabeFormAdapter($datenbankEintrag));
         } elseif ($datenbankEintrag instanceof Institut) {
-            array_push($formAdapters, new InstitutForm($datenbankEintrag));
+            array_push($formAdapters, new InstitutFormAdapter($datenbankEintrag));
         } elseif ($datenbankEintrag instanceof Kartenelement) {
             $formAdapters = array_merge($formAdapters, SimpleFormFabrik::erzeugeKartenelementForms($datenbankEintrag));
         }
@@ -54,21 +54,21 @@ class SimpleFormFabrik {
 
     /**
      * @param IKartenelement $kartenelement
-     * @return IFormAdapter[]
+     * @return IForm[]
      */
     private static function erzeugeKartenelementForms($kartenelement) {
         $formAdapters = [
-            new KartenelementForm(self::pruefeKartenelementArt($kartenelement)),
-            new AbmessungenForm($kartenelement->getAbmessungen())
+            new KartenelementFormAdapter(self::pruefeKartenelementArt($kartenelement)),
+            new AbmessungenFormAdapter($kartenelement->getAbmessungen())
         ];
         if ($kartenelement instanceof Umwelt) {
-            array_push($formAdapters, new UmweltForm($kartenelement));
+            array_push($formAdapters, new UmweltFormAdapter($kartenelement));
         } elseif ($kartenelement instanceof Gebaeude) {
-            array_push($formAdapters, new GebaeudeForm($kartenelement));
+            array_push($formAdapters, new GebaeudeFormAdapter($kartenelement));
             if ($kartenelement instanceof Wohnhaus) {
-                array_push($formAdapters, new WohnhausForm($kartenelement));
+                array_push($formAdapters, new WohnhausFormAdapter($kartenelement));
             } elseif ($kartenelement instanceof Niederlassung) {
-                array_push($formAdapters, new NiederlassungForm($kartenelement));
+                array_push($formAdapters, new NiederlassungFormAdapter($kartenelement));
             }
         }
         return $formAdapters;

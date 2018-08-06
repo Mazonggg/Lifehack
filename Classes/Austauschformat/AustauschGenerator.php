@@ -3,7 +3,7 @@
 namespace Austauschformat;
 
 use Datenbank\DatenbankAbrufHandler;
-use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanModul;
+use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanModulAdapter;
 use Model\Konstanten\TabellenName;
 use Model\Stadtplan\Kartenschreiber;
 use Singleton\SingletonPattern;
@@ -61,7 +61,7 @@ class AustauschGenerator extends SingletonPattern {
      */
     private function getDatenConfig() {
         return [
-            AustauschKonstanten::KACHEL_GROESSE => StadtplanModul::KACHELGROESZE
+            AustauschKonstanten::KACHEL_GROESSE => StadtplanModulAdapter::KACHELGROESZE
         ];
     }
 

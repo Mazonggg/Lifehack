@@ -2,7 +2,7 @@
 
 namespace Datenbank\Adapter\Update;
 
-use Datenbank\Adapter\IQueryAdapter;
+use Datenbank\Adapter\IQuery;
 use Datenbank\Model\SimpleTabelleFabrik;
 use Model\Konstanten\AjaxKeywords;
 use Model\Konstanten\Keyword;
@@ -12,7 +12,7 @@ class SimpleUpdateQueryFabrik {
 
     /**
      * @param array $formDaten
-     * @return IQueryAdapter
+     * @return IQuery
      */
     public static function erzeugeQueryAdapters($formDaten) {
         $tabellenName = $formDaten[AjaxKeywords::TABELLE];
@@ -28,7 +28,7 @@ class SimpleUpdateQueryFabrik {
         foreach ($formDaten as $schluessel => $wert) {
             array_push($spalten, new Wertepaar($schluessel, $wert));
         }
-        return new UpdateQuery(SimpleTabelleFabrik::erzeugeTabelle(
+        return new UpdateQueryAdapter(SimpleTabelleFabrik::erzeugeTabelle(
             $tabellenName,
             $spalten,
             $fremdschluessel

@@ -4,7 +4,7 @@ include('autoloader.php');
 
 use Datenbank\Adapter\Delete\SimpleDeleteQueryFabrik;
 use Datenbank\Adapter\Insert\SimpleInsertQueryFabrik;
-use Datenbank\Adapter\IQueryAdapter;
+use Datenbank\Adapter\IQuery;
 use Datenbank\Adapter\Update\SimpleUpdateQueryFabrik;
 use Datenbank\DatenbankHandler;
 use Model\Konstanten\AjaxKeywords;
@@ -60,7 +60,7 @@ if (isset($_POST)) {
  * @param array $daten
  * @param string $fremdSchluesselTabellenName
  * @param string $fremdschluesselId
- * @return IQueryAdapter|null
+ * @return IQuery|null
  */
 function erzeugeQueryAdapter($daten, $fremdSchluesselTabellenName = '', $fremdschluesselId = '') {
     if (isset($daten[AjaxKeywords::MODUS])) {

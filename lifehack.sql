@@ -194,6 +194,8 @@ INSERT INTO kartenelement_aussehen (kartenelement_aussehen_url) VALUES ('bank.pn
 INSERT INTO kartenelement_aussehen (kartenelement_aussehen_url) VALUES ('wohnhaus_schwarz.png');
 INSERT INTO kartenelement_aussehen (kartenelement_aussehen_url) VALUES ('wohnhaus_gruen.png');
 INSERT INTO kartenelement_aussehen (kartenelement_aussehen_url) VALUES ('wohnhaus_grau.png');
+INSERT INTO kartenelement_aussehen (kartenelement_aussehen_url) VALUES ('wohnhaus_orange.png');
+INSERT INTO kartenelement_aussehen (kartenelement_aussehen_url) VALUES ('wohnhaus_rot.png');
 
 INSERT INTO interieur_aussehen (interieur_aussehen_url) VALUES ('wohnhaus_innen.png');
 
@@ -224,17 +226,17 @@ VALUES
 INSERT INTO abmessung
 (welt_abmessung, abmessung_kartenelement_ref)
 VALUES
-  ('-19/-1/2/1',
+  ('-19/-2/2/2',
    LAST_INSERT_ID());
 INSERT INTO abmessung
 (welt_abmessung, abmessung_kartenelement_ref)
 VALUES
-  ('-1/-1/2/1',
+  ('-1/-2/2/2',
    LAST_INSERT_ID());
 INSERT INTO abmessung
 (welt_abmessung, abmessung_kartenelement_ref)
 VALUES
-  ('16/-1/2/1',
+  ('16/-2/2/2',
    LAST_INSERT_ID());
 INSERT INTO abmessung
 (welt_abmessung, abmessung_kartenelement_ref)
@@ -338,7 +340,7 @@ VALUES
 INSERT INTO abmessung
 (welt_abmessung, abmessung_kartenelement_ref)
 VALUES
-  ('-23/-9/13/8',
+  ('-23/-10/13/8',
    LAST_INSERT_ID());
 INSERT INTO gebaeude
 (gebaeude_kartenelement_ref, interieur_aussehen_ref)
@@ -367,7 +369,7 @@ VALUES
 INSERT INTO abmessung
 (welt_abmessung, abmessung_kartenelement_ref)
 VALUES
-  ('-6/-11/12/10',
+  ('-6/-12/12/10',
    LAST_INSERT_ID());
 INSERT INTO gebaeude
 (gebaeude_kartenelement_ref, interieur_aussehen_ref)
@@ -397,7 +399,7 @@ VALUES
 INSERT INTO abmessung
 (welt_abmessung, abmessung_kartenelement_ref)
 VALUES
-  ('11/-8/14/7',
+  ('11/-9/14/7',
    LAST_INSERT_ID());
 INSERT INTO gebaeude
 (gebaeude_kartenelement_ref, interieur_aussehen_ref)
@@ -453,7 +455,7 @@ VALUES
     WHERE kartenelement_art_name = 'wohnhaus'),
    (SELECT kartenelement_aussehen_id
     from kartenelement_aussehen
-    WHERE kartenelement_aussehen_url = 'wohnhaus_grau.png'));
+    WHERE kartenelement_aussehen_url = 'wohnhaus_gruen.png'));
 INSERT INTO abmessung
 (welt_abmessung, abmessung_kartenelement_ref)
 VALUES
@@ -480,7 +482,7 @@ VALUES
     WHERE kartenelement_art_name = 'wohnhaus'),
    (SELECT kartenelement_aussehen_id
     from kartenelement_aussehen
-    WHERE kartenelement_aussehen_url = 'wohnhaus_gruen.png'));
+    WHERE kartenelement_aussehen_url = 'wohnhaus_grau.png'));
 INSERT INTO abmessung
 (welt_abmessung, abmessung_kartenelement_ref)
 VALUES
@@ -507,7 +509,7 @@ VALUES
     WHERE kartenelement_art_name = 'wohnhaus'),
    (SELECT kartenelement_aussehen_id
     from kartenelement_aussehen
-    WHERE kartenelement_aussehen_url = 'wohnhaus_schwarz.png'));
+    WHERE kartenelement_aussehen_url = 'wohnhaus_orange.png'));
 INSERT INTO abmessung
 (welt_abmessung, abmessung_kartenelement_ref)
 VALUES
@@ -534,7 +536,7 @@ VALUES
     WHERE kartenelement_art_name = 'wohnhaus'),
    (SELECT kartenelement_aussehen_id
     from kartenelement_aussehen
-    WHERE kartenelement_aussehen_url = 'wohnhaus_schwarz.png'));
+    WHERE kartenelement_aussehen_url = 'wohnhaus_rot.png'));
 INSERT INTO abmessung
 (welt_abmessung, abmessung_kartenelement_ref)
 VALUES

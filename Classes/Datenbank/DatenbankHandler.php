@@ -2,7 +2,7 @@
 
 namespace Datenbank;
 
-use Datenbank\Adapter\IQueryAdapter;
+use Datenbank\Adapter\IQuery;
 use mysqli;
 use mysqli_result;
 use Singleton\SingletonPattern;
@@ -42,7 +42,7 @@ class DatenbankHandler extends SingletonPattern {
     }
 
     /**
-     * @param IQueryAdapter $adapter
+     * @param IQuery $adapter
      * @return array|bool
      */
     protected function getResult($adapter) {
@@ -55,7 +55,7 @@ class DatenbankHandler extends SingletonPattern {
     }
 
     /**
-     * @param IQueryAdapter $adapter
+     * @param IQuery $adapter
      * @return array|bool
      */
     public function fuehreQueryAus($adapter) {

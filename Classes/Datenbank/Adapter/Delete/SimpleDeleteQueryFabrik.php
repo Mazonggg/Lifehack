@@ -2,9 +2,8 @@
 
 namespace Datenbank\Adapter\Delete;
 
-use Datenbank\Adapter\IQueryAdapter;
+use Datenbank\Adapter\IQuery;
 use Datenbank\Model\SimpleTabelleFabrik;
-use Datenbank\Model\Tabelle;
 use Model\Konstanten\AjaxKeywords;
 use Model\Konstanten\Keyword;
 use Model\Wertepaar;
@@ -13,10 +12,10 @@ class SimpleDeleteQueryFabrik {
 
     /**
      * @param array $anfrageDaten
-     * @return IQueryAdapter
+     * @return IQuery
      */
     public static function erzeugeQueryAdapters($anfrageDaten) {
-        return new DeleteQuery(
+        return new DeleteQueryAdapter(
             SimpleTabelleFabrik::erzeugeTabelle(
                 $anfrageDaten[AjaxKeywords::TABELLE],
                 [],

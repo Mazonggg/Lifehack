@@ -3,7 +3,7 @@
 include('autoloader.php');
 
 use Datenbank\DatenbankAbrufHandler;
-use Konfigurator\KonfiguratorModul\Form\FormModul;
+use Konfigurator\KonfiguratorModul\Form\FormModulAdapter;
 use Konfigurator\KonfiguratorModul\Form\FormAdapter\SimpleFormFabrik;
 use Konfigurator\KonfiguratorModul\Popup\PopupAbrufer;
 use Konfigurator\KonfiguratorModul\Popup\PopupEintragAdapter\SimplePopupEintragFabrik;
@@ -89,7 +89,7 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
         foreach ($eintraege as $eintrag) {
             $formAdapters = array_merge($formAdapters, SimpleFormFabrik::erzeugeForms($eintrag));
         }
-        $html = FormModul::Instance()->getModulHtml($modus, $formAdapters);
+        $html = FormModulAdapter::Instance()->getModulHtml($modus, $formAdapters);
     }
     echo json_encode($html);
 } else {

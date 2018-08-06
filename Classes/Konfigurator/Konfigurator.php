@@ -2,19 +2,19 @@
 
 namespace Konfigurator;
 
-use Konfigurator\KonfiguratorModul\Form\FormModul;
+use Konfigurator\KonfiguratorModul\Form\FormModulAdapter;
 use Konfigurator\KonfiguratorModul\HeaderAbrufer;
-use Konfigurator\KonfiguratorModul\HtmlModul;
+use Konfigurator\KonfiguratorModul\HtmlModulAdapter;
 use Konfigurator\KonfiguratorModul\IHtmlModul;
 use Konfigurator\KonfiguratorModul\Menue\MenueEintragAdapter\SimpleMenueEintragFabrik;
-use Konfigurator\KonfiguratorModul\Menue\MenueModul;
-use Konfigurator\KonfiguratorModul\Popup\PopupModul;
+use Konfigurator\KonfiguratorModul\Menue\MenueModulAdapter;
+use Konfigurator\KonfiguratorModul\Popup\PopupModulAdapter;
 use Konfigurator\KonfiguratorModul\Stadtplan\KachelAdapter\SimpleKachelFabrik;
-use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanModul;
+use Konfigurator\KonfiguratorModul\Stadtplan\StadtplanModulAdapter;
 use Model\Konstanten\TabellenName;
 use Model\ModelHandler;
 
-class Konfigurator extends HtmlModul {
+class Konfigurator extends HtmlModulAdapter {
     /**
      * @var Konfigurator|null
      */
@@ -38,10 +38,10 @@ class Konfigurator extends HtmlModul {
             }
             self::$_instance->htmlModule = [
                 self::$_instance,
-                PopupModul::Instance(),
-                MenueModul::Instance($menueEintraege),
-                FormModul::Instance(),
-                StadtplanModul::Instance($kacheln)
+                PopupModulAdapter::Instance(),
+                MenueModulAdapter::Instance($menueEintraege),
+                FormModulAdapter::Instance(),
+                StadtplanModulAdapter::Instance($kacheln)
             ];
             self::$_instance->headerGenerator = HeaderAbrufer::Instance();
         }
