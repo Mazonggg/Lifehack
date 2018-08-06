@@ -1,7 +1,7 @@
 <?php
 
 use Austauschformat\AustauschGenerator;
-use Konfigurator\KonfiguratorModulAdapter;
+use Anwendung\KonfiguratorModulAdapter;
 use Model\Konstanten\AjaxKeywords;
 
 include('autoloader.php');
