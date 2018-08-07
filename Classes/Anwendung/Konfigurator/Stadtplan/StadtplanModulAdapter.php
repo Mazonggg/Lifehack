@@ -3,9 +3,9 @@
 namespace Anwendung\Konfigurator\Stadtplan;
 
 use Anwendung\Konfigurator\ModulAdapter;
-use Anwendung\Konfigurator\Stadtplan\KachelAdapter\IKachel;
-use Anwendung\Konfigurator\Stadtplan\KachelAdapter\Model\LeereKachelAdapter;
-use Anwendung\Konfigurator\Stadtplan\KachelAdapter\Model\Stadtplan\KartenelementKachelAdapter;
+use Anwendung\Konfigurator\Stadtplan\Kachel\IKachel;
+use Anwendung\Konfigurator\Stadtplan\Kachel\Model\LeereKachelAdapter;
+use Anwendung\Konfigurator\Stadtplan\Kachel\Model\Stadtplan\KartenelementKachelAdapter;
 use Model\IDatenbankEintrag;
 use Model\Stadtplan\Abmessung;
 use Model\Stadtplan\IKartenelement;

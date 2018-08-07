@@ -3,10 +3,10 @@
 namespace Anwendung\Konfigurator\Popup;
 
 use Anwendung\Konfigurator\ModulAdapter;
-use Anwendung\Konfigurator\Popup\PopupEintragAdapter\IPopupEintrag;
-use Anwendung\Konfigurator\Popup\PopupEintragAdapter\Model\Einrichtung\InstitutPopupEintragAdapter;
-use Anwendung\Konfigurator\Popup\PopupEintragAdapter\Model\Prozess\AufgabePopupEintragAdapter;
-use Anwendung\Konfigurator\Popup\PopupEintragAdapter\Model\Prozess\ItemPopupEintragAdapter;
+use Anwendung\Konfigurator\Popup\PopupEintrag\IPopupEintrag;
+use Anwendung\Konfigurator\Popup\PopupEintrag\Model\Einrichtung\InstitutPopupEintragAdapter;
+use Anwendung\Konfigurator\Popup\PopupEintrag\Model\Prozess\AufgabePopupEintragAdapter;
+use Anwendung\Konfigurator\Popup\PopupEintrag\Model\Prozess\ItemPopupEintragAdapter;
 use Model\Einrichtung\Institut;
 use Model\IDatenbankEintrag;
 use Model\Konstanten\AjaxKeywords;

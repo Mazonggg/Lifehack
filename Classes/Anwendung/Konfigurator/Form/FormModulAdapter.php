@@ -2,17 +2,17 @@
 
 namespace Anwendung\Konfigurator\Form;
 
-use Anwendung\Konfigurator\Form\FormAdapter\IForm;
-use Anwendung\Konfigurator\Form\FormAdapter\Model\Einrichtung\InstitutFormAdapter;
-use Anwendung\Konfigurator\Form\FormAdapter\Model\Einrichtung\NiederlassungFormAdapter;
-use Anwendung\Konfigurator\Form\FormAdapter\Model\Prozess\AufgabeFormAdapter;
-use Anwendung\Konfigurator\Form\FormAdapter\Model\Prozess\ItemFormAdapter;
-use Anwendung\Konfigurator\Form\FormAdapter\Model\Prozess\TeilaufgabeFormAdapter;
-use Anwendung\Konfigurator\Form\FormAdapter\Model\Stadtplan\AbmessungenFormAdapter;
-use Anwendung\Konfigurator\Form\FormAdapter\Model\Stadtplan\GebaeudeFormAdapter;
-use Anwendung\Konfigurator\Form\FormAdapter\Model\Stadtplan\KartenelementFormAdapter;
-use Anwendung\Konfigurator\Form\FormAdapter\Model\Stadtplan\UmweltFormAdapter;
-use Anwendung\Konfigurator\Form\FormAdapter\Model\Stadtplan\WohnhausFormAdapter;
+use Anwendung\Konfigurator\Form\FormEintrag\IFormEintrag;
+use Anwendung\Konfigurator\Form\FormEintrag\Model\Einrichtung\InstitutFormEintragAdapter;
+use Anwendung\Konfigurator\Form\FormEintrag\Model\Einrichtung\NiederlassungFormEintragAdapter;
+use Anwendung\Konfigurator\Form\FormEintrag\Model\Prozess\AufgabeFormEintragAdapter;
+use Anwendung\Konfigurator\Form\FormEintrag\Model\Prozess\ItemFormEintragAdapter;
+use Anwendung\Konfigurator\Form\FormEintrag\Model\Prozess\TeilaufgabeFormEintragAdapter;
+use Anwendung\Konfigurator\Form\FormEintrag\Model\Stadtplan\AbmessungenFormEintragAdapter;
+use Anwendung\Konfigurator\Form\FormEintrag\Model\Stadtplan\GebaeudeFormEintragAdapter;
+use Anwendung\Konfigurator\Form\FormEintrag\Model\Stadtplan\KartenelementFormEintragAdapter;
+use Anwendung\Konfigurator\Form\FormEintrag\Model\Stadtplan\UmweltFormEintragAdapter;
+use Anwendung\Konfigurator\Form\FormEintrag\Model\Stadtplan\WohnhausFormEintragAdapter;
 use Anwendung\Konfigurator\ModulAdapter;
 use Datenbank\DatenbankAbrufHandler;
 use Model\Einrichtung\Institut;
@@ -70,7 +70,7 @@ class FormModulAdapter extends ModulAdapter {
      */
     public function getModulHtml($eintraege) {
         /**
-         * @var IForm[] $teilFormulare
+         * @var IFormEintrag[] $teilFormulare
          */
         $teilFormulare = $this->erzeugeEintragAdapters($eintraege);
         if ($this->enthaeltHauptformular($teilFormulare)) {
@@ -98,7 +98,7 @@ class FormModulAdapter extends ModulAdapter {
     public function getInhaltHtml($eintraege) {
         $form = '';
         /**
-         * @var IForm[] $teilFormulare
+         * @var IFormEintrag[] $teilFormulare
          */
         $teilFormulare = $this->erzeugeEintragAdapters($eintraege);
         foreach ($teilFormulare as $teilFormular) {
@@ -130,21 +130,21 @@ class FormModulAdapter extends ModulAdapter {
 
     /**
      * @param IDatenbankEintrag $datenbankEintrag
-     * @return IForm[]
+     * @return IFormEintrag[]
      */
     protected function erzeugeEintragAdapter($datenbankEintrag) {
         /**
-         * @var IForm[]
+         * @var IFormEintrag[]
          */
         $formAdapters = [];
         if ($datenbankEintrag instanceof Aufgabe) {
-            array_push($formAdapters, new AufgabeFormAdapter($datenbankEintrag, $this->modus));
+            array_push($formAdapters, new AufgabeFormEintragAdapter($datenbankEintrag, $this->modus));
         } elseif ($datenbankEintrag instanceof Item) {
-            array_push($formAdapters, new ItemFormAdapter($datenbankEintrag, $this->modus));
+            array_push($formAdapters, new ItemFormEintragAdapter($datenbankEintrag, $this->modus));
         } elseif ($datenbankEintrag instanceof Teilaufgabe) {
-            array_push($formAdapters, new TeilaufgabeFormAdapter($datenbankEintrag, $this->modus));
+            array_push($formAdapters, new TeilaufgabeFormEintragAdapter($datenbankEintrag, $this->modus));
         } elseif ($datenbankEintrag instanceof Institut) {
-            array_push($formAdapters, new InstitutFormAdapter($datenbankEintrag, $this->modus));
+            array_push($formAdapters, new InstitutFormEintragAdapter($datenbankEintrag, $this->modus));
         } elseif ($datenbankEintrag instanceof Kartenelement) {
             $formAdapters = array_merge($formAdapters, $this->erzeugeKartenelementForms($datenbankEintrag));
         }
@@ -153,21 +153,21 @@ class FormModulAdapter extends ModulAdapter {
 
     /**
      * @param IKartenelement $kartenelement
-     * @return IForm[]
+     * @return IFormEintrag[]
      */
     private function erzeugeKartenelementForms($kartenelement) {
         $formAdapters = [
-            new KartenelementFormAdapter(self::pruefeKartenelementArt($kartenelement), $this->modus),
-            new AbmessungenFormAdapter($kartenelement->getAbmessungen(), $this->modus)
+            new KartenelementFormEintragAdapter(self::pruefeKartenelementArt($kartenelement), $this->modus),
+            new AbmessungenFormEintragAdapter($kartenelement->getAbmessungen(), $this->modus)
         ];
         if ($kartenelement instanceof Umwelt) {
-            array_push($formAdapters, new UmweltFormAdapter($kartenelement, $this->modus));
+            array_push($formAdapters, new UmweltFormEintragAdapter($kartenelement, $this->modus));
         } elseif ($kartenelement instanceof Gebaeude) {
-            array_push($formAdapters, new GebaeudeFormAdapter($kartenelement, $this->modus));
+            array_push($formAdapters, new GebaeudeFormEintragAdapter($kartenelement, $this->modus));
             if ($kartenelement instanceof Wohnhaus) {
-                array_push($formAdapters, new WohnhausFormAdapter($kartenelement, $this->modus));
+                array_push($formAdapters, new WohnhausFormEintragAdapter($kartenelement, $this->modus));
             } elseif ($kartenelement instanceof Niederlassung) {
-                array_push($formAdapters, new NiederlassungFormAdapter($kartenelement, $this->modus));
+                array_push($formAdapters, new NiederlassungFormEintragAdapter($kartenelement, $this->modus));
             }
         }
         return $formAdapters;
@@ -201,7 +201,7 @@ class FormModulAdapter extends ModulAdapter {
     }
 
     /**
-     * @param IForm[] $teilFormulare
+     * @param IFormEintrag[] $teilFormulare
      * @return bool
      */
     private function enthaeltHauptformular($teilFormulare) {
