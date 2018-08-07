@@ -21,8 +21,9 @@ class AbmessungenFormAdapter extends OhnePrimaerschluesselFormAdapter {
     /**
      * AbmessungenForm constructor.
      * @param Abmessung[] $abmessungen
+     * @param string $modus
      */
-    public function __construct($abmessungen) {
+    public function __construct($abmessungen, $modus) {
         if (empty($abmessungen)) {
             $abmessungen = [SimpleAbmessungFabrik::erzeugeAbmessung(
                 0 . AustauschKonstanten::ABMESSUNG_TRENNER .
@@ -31,7 +32,7 @@ class AbmessungenFormAdapter extends OhnePrimaerschluesselFormAdapter {
                 0 . AustauschKonstanten::ABMESSUNG_TRENNER
             )];
         }
-        parent::__construct($abmessungen[0]);
+        parent::__construct($abmessungen[0], $modus);
         $this->abmessungen = $abmessungen;
     }
 

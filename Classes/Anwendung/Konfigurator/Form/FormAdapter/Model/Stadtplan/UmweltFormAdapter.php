@@ -18,9 +18,10 @@ class UmweltFormAdapter extends OhnePrimaerschluesselFormAdapter {
     /**
      * UmweltFormAdapter constructor.
      * @param Umwelt $umwelt
+     * @param string $modus
      */
-    public function __construct($umwelt) {
-        parent::__construct($umwelt);
+    public function __construct($umwelt, $modus) {
+        parent::__construct($umwelt, $modus);
         $this->umwelt = $umwelt;
     }
 

@@ -18,9 +18,10 @@ class WohnhausFormAdapter extends OhnePrimaerschluesselFormAdapter {
     /**
      * WohnhausFormAdapter constructor.
      * @param Wohnhaus $wohnhaus
+     * @param string $modus
      */
-    public function __construct($wohnhaus) {
-        parent::__construct($wohnhaus);
+    public function __construct($wohnhaus, $modus) {
+        parent::__construct($wohnhaus, $modus);
         $this->wohnhaus = $wohnhaus;
     }
 

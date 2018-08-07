@@ -6,14 +6,9 @@ use Anwendung\Konfigurator\Form\FormAdapter\InputAdapter\IInput;
 use Anwendung\Konfigurator\IHtmlClass;
 use Anwendung\Konfigurator\IHtmlId;
 use Anwendung\Konfigurator\IHtmlTag;
+use Anwendung\Konfigurator\IModulEintrag;
 
-interface IForm extends IHtmlClass, IHtmlId, IHtmlTag {
-
-    /**
-     * @param string $modus
-     * @return string
-     */
-    public function getFormHtml($modus);
+interface IForm extends IModulEintrag, IHtmlClass, IHtmlId, IHtmlTag {
 
     /**
      * @return string

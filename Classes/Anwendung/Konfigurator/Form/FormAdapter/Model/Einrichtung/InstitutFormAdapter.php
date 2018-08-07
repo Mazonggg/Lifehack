@@ -20,9 +20,10 @@ class InstitutFormAdapter extends MitPrimaerschluesselFormAdapter {
     /**
      * InstitutFormAdapter constructor.
      * @param Institut $institut
+     * @param string $modus
      */
-    public function __construct($institut) {
-        parent::__construct($institut);
+    public function __construct($institut, $modus) {
+        parent::__construct($institut, $modus);
         $this->institut = $institut;
     }
 

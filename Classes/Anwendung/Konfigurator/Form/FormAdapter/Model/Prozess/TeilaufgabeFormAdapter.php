@@ -20,9 +20,10 @@ class TeilaufgabeFormAdapter extends MitPrimaerschluesselFormAdapter {
     /**
      * TeilaufgabeFormAdapter constructor.
      * @param Teilaufgabe $teilaufgabe
+     * @param string $modus
      */
-    public function __construct($teilaufgabe) {
-        parent::__construct($teilaufgabe);
+    public function __construct($teilaufgabe, $modus) {
+        parent::__construct($teilaufgabe, $modus);
         $this->teilaufgabe = $teilaufgabe;
     }
 

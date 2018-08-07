@@ -14,7 +14,7 @@ class Index {
 
         if (isset($_GET[AjaxKeywords::MODUS]) && $_GET[AjaxKeywords::MODUS] == self::KONFIG) {
             $konfigurator = KonfiguratorModulAdapter::Instance();
-            return $konfigurator->getModulHtml();
+            return $konfigurator->getModulHtml([]);
         } elseif (isset($_GET[AjaxKeywords::MODUS]) && $_GET[AjaxKeywords::MODUS] == self::JSON) {
             $austauschAbruf = AustauschGenerator::Instance();
             return $austauschAbruf->getJsonKomplett();

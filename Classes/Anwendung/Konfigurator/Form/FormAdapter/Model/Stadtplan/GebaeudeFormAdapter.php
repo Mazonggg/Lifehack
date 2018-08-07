@@ -20,9 +20,10 @@ class GebaeudeFormAdapter extends OhnePrimaerschluesselFormAdapter {
     /**
      * GebaeudeFormAdapter constructor.
      * @param Gebaeude $gebaeude
+     * @param string $modus
      */
-    public function __construct($gebaeude) {
-        parent::__construct($gebaeude);
+    public function __construct($gebaeude, $modus) {
+        parent::__construct($gebaeude, $modus);
         $this->gebaeude = $gebaeude;
     }
 

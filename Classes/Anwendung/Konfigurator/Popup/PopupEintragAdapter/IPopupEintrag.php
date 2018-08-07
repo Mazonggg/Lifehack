@@ -3,12 +3,9 @@
 namespace Anwendung\Konfigurator\Popup\PopupEintragAdapter;
 
 use Anwendung\Konfigurator\IHtmlClass;
+use Anwendung\Konfigurator\IModulEintrag;
 
-interface IPopupEintrag extends IHtmlClass {
+interface IPopupEintrag extends IModulEintrag, IHtmlClass {
 
-    /**
-     * @return string
-     */
-    public function getPopupEintragHtml();
 }
 

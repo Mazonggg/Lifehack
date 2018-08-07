@@ -3,6 +3,15 @@
 namespace Anwendung\Konfigurator\Popup;
 
 use Anwendung\Konfigurator\ModulAdapter;
+use Anwendung\Konfigurator\Popup\PopupEintragAdapter\IPopupEintrag;
+use Anwendung\Konfigurator\Popup\PopupEintragAdapter\Model\Einrichtung\InstitutPopupEintragAdapter;
+use Anwendung\Konfigurator\Popup\PopupEintragAdapter\Model\Prozess\AufgabePopupEintragAdapter;
+use Anwendung\Konfigurator\Popup\PopupEintragAdapter\Model\Prozess\ItemPopupEintragAdapter;
+use Model\Einrichtung\Institut;
+use Model\IDatenbankEintrag;
+use Model\Konstanten\AjaxKeywords;
+use Model\Prozess\Aufgabe;
+use Model\Prozess\Item;
 
 class PopupModulAdapter extends ModulAdapter {
     /**
@@ -35,9 +44,10 @@ class PopupModulAdapter extends ModulAdapter {
     }
 
     /**
+     * @param IDatenbankEintrag[] $eintraege
      * @return string
      */
-    protected function getInhalt() {
+    protected function getContainerHtml($eintraege) {
         return
             '<div id="popup_titel_container" class="align_right">' .
             '<h2 id="popup_titel"></h2>' .
@@ -47,10 +57,22 @@ class PopupModulAdapter extends ModulAdapter {
     }
 
     /**
+     * @param IDatenbankEintrag[] $eintraege
      * @return string
      */
-    public function getClass() {
-        return 'popup_container';
+    public function getInhaltHtml($eintraege) {
+        /**
+         * @var IPopupEintrag[] $blockDaten
+         */
+        $blockDaten = $this->erzeugeEintragAdapters($eintraege);
+        $tabelle = (isset($eintraege[0]) ? $eintraege[0]->getTabelle() : '');
+        $blockHtml = '<ul id="' . $tabelle . '_popup_block" class="popup_block">';
+        foreach ($blockDaten as $block) {
+            $blockHtml .= $block->getEintragHtml();
+        }
+        return $blockHtml .
+            '</ul>' .
+            self::getHinzuButton($tabelle . "_" . AjaxKeywords::ERSTELLEN, $tabelle . " neu erstellen");
     }
 
     /**
@@ -63,8 +85,50 @@ class PopupModulAdapter extends ModulAdapter {
     /**
      * @return string
      */
+    public function getClass() {
+        return 'popup_container';
+    }
+
+    /**
+     * @return string
+     */
     public function getTag() {
         return 'div';
+    }
+
+    /**
+     * @param IDatenbankEintrag $datenbankEintrag
+     * @return IPopupEintrag
+     */
+    protected function erzeugeEintragAdapter($datenbankEintrag) {
+        if ($datenbankEintrag instanceof Aufgabe) {
+            $eintragAdapter = new AufgabePopupEintragAdapter($datenbankEintrag);
+        } elseif ($datenbankEintrag instanceof Item) {
+            $eintragAdapter = new ItemPopupEintragAdapter($datenbankEintrag);
+        } elseif ($datenbankEintrag instanceof Institut) {
+            $eintragAdapter = new InstitutPopupEintragAdapter($datenbankEintrag);
+        } else {
+            $eintragAdapter = null;
+        }
+        return $eintragAdapter;
+    }
+
+    /**
+     * @param string $zweckId
+     * @param string $name
+     * @return string
+     */
+    private static function getHinzuButton($zweckId, $name) {
+        return
+            '<div class="neu_button_container">' .
+            '<button ' .
+            'id="' . $zweckId . '" ' .
+            'type="button" ' .
+            'class="neu_button hoverbox" ' .
+            'name="' . $name . '">' .
+            ucfirst($name) .
+            '</button>' .
+            '</div>';
     }
 }
 

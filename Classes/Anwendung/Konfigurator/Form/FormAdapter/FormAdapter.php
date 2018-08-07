@@ -20,18 +20,18 @@ abstract class FormAdapter implements IForm {
 
     /**
      * Form constructor.
+     * @param string $modus
      * @param IDatenbankEintrag $datenbankEintrag
      */
-    public function __construct($datenbankEintrag) {
+    public function __construct($datenbankEintrag, $modus) {
         $this->datenbankEintrag = $datenbankEintrag;
+        $this->modus = $modus;
     }
 
     /**
-     * @param string $modus
      * @return string
      */
-    public function getFormHtml($modus) {
-        $this->modus = $modus;
+    public function getEintragHtml() {
         $form =
             '<' . $this->getTag() . ' class="';
         if ($this->istTeilForm()) {

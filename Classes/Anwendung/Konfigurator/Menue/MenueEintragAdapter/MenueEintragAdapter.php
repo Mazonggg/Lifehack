@@ -43,7 +43,7 @@ class MenueEintragAdapter implements IMenueEintrag {
     /**
      * @return string
      */
-    public function getMenuePunktHtml() {
+    public function getEintragHtml() {
         return '<div id="' . $this->tabelle . '_menue" class="menue_block">' .
             $this->getMenueButton($this->tabelle) .
             '</div>';

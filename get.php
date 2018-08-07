@@ -2,11 +2,9 @@
 
 include('autoloader.php');
 
-use Anwendung\Konfigurator\Popup\PopupEintragAdapter\SimplePopupEintragFabrik;
+use Anwendung\Konfigurator\Popup\PopupModulAdapter;
 use Datenbank\DatenbankAbrufHandler;
 use Anwendung\Konfigurator\Form\FormModulAdapter;
-use Anwendung\Konfigurator\Form\FormAdapter\SimpleFormFabrik;
-use Anwendung\Konfigurator\Popup\PopupAbrufer;
 use Model\DatenbankEintragParser;
 use Model\Fabrik\IDatenbankEintragFabrik;
 use Model\IDatenbankEintrag;
@@ -85,11 +83,8 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
             default:
                 die('Fehlerhafte Anfrage: ' . var_export($_GET));
         }
-        $formAdapters = [];
-        foreach ($eintraege as $eintrag) {
-            $formAdapters = array_merge($formAdapters, SimpleFormFabrik::erzeugeForms($eintrag));
-        }
-        $html = FormModulAdapter::Instance()->getModulHtml($modus, $formAdapters);
+        FormModulAdapter::Instance()->setModus($modus);
+        $html = FormModulAdapter::Instance()->getModulHtml($eintraege);
     }
     echo json_encode($html);
 } else {
@@ -103,20 +98,16 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
 function elementOeffnen($tabelle) {
     switch ($tabelle) {
         case TabellenName::ITEM:
-            $daten = ModelHandler::Instance()->getItemDaten();
+            $eintraege = ModelHandler::Instance()->getItemDaten();
             break;
         case TabellenName::INSTITUT:
-            $daten = ModelHandler::Instance()->getInstitutDaten();
+            $eintraege = ModelHandler::Instance()->getInstitutDaten();
             break;
         default:
-            $daten = ModelHandler::Instance()->getAufgabeDaten();
+            $eintraege = ModelHandler::Instance()->getAufgabeDaten();
             break;
     }
-    $listenEintraege = [];
-    foreach ($daten as $eintrag) {
-        array_push($listenEintraege, SimplePopupEintragFabrik::erzeugePopupEintrag($eintrag));
-    }
-    return PopupAbrufer::Instance()->getPopupBlockDaten($tabelle, $listenEintraege);
+    return PopupModulAdapter::Instance()->getInhaltHtml($eintraege);
 }
 
 /**

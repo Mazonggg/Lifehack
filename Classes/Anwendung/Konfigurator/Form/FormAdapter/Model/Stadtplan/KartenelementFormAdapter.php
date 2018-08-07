@@ -20,9 +20,10 @@ class KartenelementFormAdapter extends MitPrimaerschluesselFormAdapter {
     /**
      * KartenelementForm constructor.
      * @param IKartenelement $kartenelement
+     * @param string $modus
      */
-    public function __construct($kartenelement) {
-        parent::__construct($kartenelement);
+    public function __construct($kartenelement, $modus) {
+        parent::__construct($kartenelement, $modus);
         $this->kartenelement = $kartenelement;
     }
 

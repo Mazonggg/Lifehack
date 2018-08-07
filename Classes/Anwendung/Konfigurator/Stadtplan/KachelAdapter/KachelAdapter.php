@@ -37,7 +37,7 @@ abstract class KachelAdapter implements IKachel {
      * @return Abmessung
      */
     private function getUmgerechneteAbmessungen() {
-        $stadtplanAbmessung = StadtplanModulAdapter::Instance()->getStadtplanGroesze();
+        $stadtplanAbmessung = StadtplanModulAdapter::Instance()->getStadtplanAbmessung();
         return SimpleAbmessungFabrik::erzeugeAbmessung(
             ($this->abmessung->xMin() - $stadtplanAbmessung->xMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .
             ($this->abmessung->yMin() - $stadtplanAbmessung->yMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .
@@ -59,7 +59,7 @@ abstract class KachelAdapter implements IKachel {
     /**
      * @return string
      */
-    public function getKachelHtml() {
+    public function getEintragHtml() {
         return '<' . $this->getTag() . $this->getAttributeHtml() . ' ></' . $this->getTag() . '>';
     }
 

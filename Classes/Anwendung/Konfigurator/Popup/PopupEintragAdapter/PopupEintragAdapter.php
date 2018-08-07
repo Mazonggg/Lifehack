@@ -23,7 +23,7 @@ abstract class PopupEintragAdapter implements IPopupEintrag {
     /**
      * @return string
      */
-    public function getPopupEintragHtml() {
+    public function getEintragHtml() {
         return '<' . $this->getTag() . ' class="' . $this->getClass() . '"><p>' . $this->getKurzInfo() . '</p>' .
             '<div class="popup_optionen">' .
             '<button id="' . $this->datenbankEintrag->getTabelle() . "_"

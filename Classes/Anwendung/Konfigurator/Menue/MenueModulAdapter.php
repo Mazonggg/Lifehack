@@ -2,36 +2,33 @@
 
 namespace Anwendung\Konfigurator\Menue;
 
+use Anwendung\Konfigurator\IHtmlClass;
+use Anwendung\Konfigurator\IHtmlId;
+use Anwendung\Konfigurator\IHtmlTag;
+use Anwendung\Konfigurator\Menue\MenueEintragAdapter\MenueEintragAdapter;
 use Datenbank\DatenbankAbrufHandler;
 use Anwendung\Konfigurator\ModulAdapter;
 use Anwendung\Konfigurator\Menue\MenueEintragAdapter\IMenueEintrag;
+use Model\IDatenbankEintrag;
 use Model\Konstanten\AjaxKeywords;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 
-class MenueModulAdapter extends ModulAdapter {
+class MenueModulAdapter extends ModulAdapter implements IHtmlClass, IHtmlTag, IHtmlId {
     /**
      * @var MenueModulAdapter|null
      */
     private static $_instance = null;
 
     /**
-     * @param string[] $elementArten
      * @return MenueModulAdapter
      */
-    public static function Instance($elementArten = []) {
+    public static function Instance() {
         if (self::$_instance == null) {
             self::$_instance = new self();
-            self::$_instance->elementArten = $elementArten;
         }
         return self::$_instance;
     }
-
-    /**
-     * @var IMenueEintrag[]
-     */
-    private $elementArten = [];
-
 
     /**
      * @return string
@@ -48,18 +45,17 @@ class MenueModulAdapter extends ModulAdapter {
     }
 
     /**
+     * @param IDatenbankEintrag[] $eintraege
      * @return string
      */
-    protected function getInhalt() {
+    protected function getContainerHtml($eintraege) {
         $menue =
             '<div id="logo_container" class="logo_container">' .
             '<p id="logo" class="logo">Lifehack</p>' .
             '</div>' .
             '<div id="menue" class="menue">' .
             '<h3>Inhalte bearbeiten</h3>';
-        foreach ($this->elementArten as $elementArt) {
-            $menue .= $elementArt->getMenuePunktHtml();
-        }
+        $menue .= $this->getInhaltHtml($eintraege);
         $menue .= '</div><div id="stadtplan_menue" class="menue">' .
             '<h3>Kartenelement hinzuf&uuml;gen</h3>';
         $kartenelementArten = DatenbankAbrufHandler::Instance()->findSpalteZuId(
@@ -73,6 +69,22 @@ class MenueModulAdapter extends ModulAdapter {
                 '</button></div></div>';
         }
         return $menue . '</div>';
+    }
+
+    /**
+     * @param IDatenbankEintrag[] $eintraege
+     * @return string
+     */
+    public function getInhaltHtml($eintraege) {
+        /**
+         * @var IMenueEintrag[] $elementArten
+         */
+        $elementArten = $this->erzeugeEintragAdapters($eintraege);
+        $menue = '';
+        foreach ($elementArten as $elementArt) {
+            $menue .= $elementArt->getEintragHtml();
+        }
+        return $menue;
     }
 
     /**
@@ -94,6 +106,14 @@ class MenueModulAdapter extends ModulAdapter {
      */
     public function getTag() {
         return 'div';
+    }
+
+    /**
+     * @param IDatenbankEintrag $datenbankEintrag
+     * @return IMenueEintrag
+     */
+    protected function erzeugeEintragAdapter($datenbankEintrag) {
+        return new MenueEintragAdapter($datenbankEintrag->getTabelle());
     }
 }
 

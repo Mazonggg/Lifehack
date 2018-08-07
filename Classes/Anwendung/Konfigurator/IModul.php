@@ -2,7 +2,9 @@
 
 namespace Anwendung\Konfigurator;
 
-interface IModul extends IHtmlClass, IHtmlTag, IHtmlId {
+use Model\IDatenbankEintrag;
+
+interface IModul {
 
     /**
      * @return string
@@ -15,8 +17,9 @@ interface IModul extends IHtmlClass, IHtmlTag, IHtmlId {
     public function getJavaScriptUrl();
 
     /**
+     * @param IDatenbankEintrag[] $eintraege
      * @return string
      */
-    public function getModulHtml();
+    public function getModulHtml($eintraege);
 }
 

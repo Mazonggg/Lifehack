@@ -19,9 +19,10 @@ class NiederlassungFormAdapter extends OhnePrimaerschluesselFormAdapter {
     /**
      * NiederlassungFormAdapter constructor.
      * @param Niederlassung $niederlassung
+     * @param string $modus
      */
-    public function __construct($niederlassung) {
-        parent::__construct($niederlassung);
+    public function __construct($niederlassung, $modus) {
+        parent::__construct($niederlassung, $modus);
         $this->niederlassung = $niederlassung;
     }
 

@@ -21,9 +21,10 @@ class ItemFormAdapter extends MitPrimaerschluesselFormAdapter {
     /**
      * ItemFormAdapter constructor.
      * @param Item $item
+     * @param string $modus
      */
-    public function __construct($item) {
-        parent::__construct($item);
+    public function __construct($item, $modus) {
+        parent::__construct($item, $modus);
         $this->item = $item;
     }
 

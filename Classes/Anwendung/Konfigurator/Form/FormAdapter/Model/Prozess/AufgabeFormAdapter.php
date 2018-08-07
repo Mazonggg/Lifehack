@@ -19,9 +19,10 @@ class AufgabeFormAdapter extends MitPrimaerschluesselFormAdapter {
     /**
      * AufgabeFormAdapter constructor.
      * @param Aufgabe $aufgabe
+     * @param string $modus
      */
-    public function __construct($aufgabe) {
-        parent::__construct($aufgabe);
+    public function __construct($aufgabe, $modus) {
+        parent::__construct($aufgabe, $modus);
         $this->aufgabe = $aufgabe;
     }
 
