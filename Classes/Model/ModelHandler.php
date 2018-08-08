@@ -3,6 +3,7 @@
 namespace Model;
 
 use Datenbank\DatenbankAbrufHandler;
+use Model\Einrichtung\Institut;
 use Model\Konstanten\TabellenName;
 use Model\Fabrik\Aufgabe\AufgabeFabrik;
 use Model\Fabrik\Aufgabe\ItemFabrik;
@@ -11,6 +12,8 @@ use Model\Fabrik\Einrichtung\NiederlassungFabrik;
 use Model\Fabrik\Stadtplan\GebaeudeFabrik;
 use Model\Fabrik\Stadtplan\UmweltFabrik;
 use Model\Fabrik\Stadtplan\WohnhausFabrik;
+use Model\Prozess\Aufgabe;
+use Model\Prozess\Item;
 use Model\Singleton\ISingleton;
 use Model\Stadtplan\IKartenelement;
 
@@ -44,31 +47,43 @@ class ModelHandler implements ISingleton {
 
 
     /**
-     * @return IDatenbankEintrag[]
+     * @return Institut[]
      */
     public function getInstitute() {
-        return $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
+        /**
+         * @var Institut[] $institute
+         */
+        $institute = $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
             $this->datenbankHandler->findElementDaten(TabellenName::INSTITUT),
             InstitutFabrik::Instance());
+        return $institute;
     }
 
     /**
-     * @return IDatenbankEintrag[]
+     * @return Item[]
      */
     public function getItems() {
-        return $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
+        /**
+         * @var Item[] $items
+         */
+        $items = $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
             $this->datenbankHandler->findElementDaten(TabellenName::ITEM),
             ItemFabrik::Instance());
+        return $items;
     }
 
 
     /**
-     * @return IDatenbankEintrag[]
+     * @return Aufgabe[]
      */
     public function getAufgaben() {
-        return $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
+        /**
+         * @var Aufgabe[] $aufgaben
+         */
+        $aufgaben = $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
             $this->datenbankHandler->findElementDaten(TabellenName::AUFGABE),
             AufgabeFabrik::Instance());
+        return $aufgaben;
     }
 
     /**

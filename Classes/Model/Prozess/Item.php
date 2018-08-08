@@ -11,7 +11,7 @@ class Item extends DatenbankEintrag {
     /**
      * @var Wertepaar
      */
-    private $itemArt;
+    private $item_art;
     /**
      * @var string
      */
@@ -30,21 +30,21 @@ class Item extends DatenbankEintrag {
      * Item constructor.
      */
     public function __construct() {
-        $this->itemArt = new Wertepaar('', '');
+        $this->item_art = new Wertepaar('', '');
     }
 
     /**
      * @return Wertepaar
      */
     public function getItemArt() {
-        return $this->itemArt;
+        return $this->item_art;
     }
 
     /**
-     * @param Wertepaar $itemArt
+     * @param Wertepaar $item_art
      */
-    public function setItemArt($itemArt) {
-        $this->itemArt = $itemArt;
+    public function setItemArt($item_art) {
+        $this->item_art = $item_art;
     }
 
     /**
