@@ -2,21 +2,22 @@
 
 namespace Anwendung\Konfigurator\Menue\MenueEintrag;
 
+use Model\IDatenbankEintrag;
 use Model\Konstanten\AjaxKeywords;
 
 class MenueEintragAdapter implements IMenueEintrag {
 
     /**
-     * @var string
+     * @var IDatenbankEintrag
      */
-    private $tabelle;
+    private $datenbankEintrag;
 
     /**
-     * MenueEintrag constructor.
-     * @param string $tabelle
+     * MenueEintragAdapter constructor.
+     * @param IDatenbankEintrag $datenbankEintrag
      */
-    public function __construct($tabelle) {
-        $this->tabelle = $tabelle;
+    public function __construct(IDatenbankEintrag $datenbankEintrag) {
+        $this->datenbankEintrag = $datenbankEintrag;
     }
 
     /**
@@ -30,7 +31,7 @@ class MenueEintragAdapter implements IMenueEintrag {
      * @return string
      */
     public function getId() {
-        return $this->tabelle;
+        return $this->datenbankEintrag->getId();
     }
 
     /**
@@ -44,8 +45,8 @@ class MenueEintragAdapter implements IMenueEintrag {
      * @return string
      */
     public function getEintragHtml() {
-        return '<div id="' . $this->tabelle . '_menue" class="menue_block">' .
-            $this->getMenueButton($this->tabelle) .
+        return '<div id="' . $this->datenbankEintrag->getTabelle() . '_menue" class="menue_block">' .
+            $this->getMenueButton($this->datenbankEintrag->getTabelle()) .
             '</div>';
     }
 

@@ -113,7 +113,7 @@ class MenueModulAdapter extends ModulAdapter implements IHtmlClass, IHtmlTag, IH
      * @return IMenueEintrag
      */
     protected function erzeugeEintragAdapter($datenbankEintrag) {
-        return new MenueEintragAdapter($datenbankEintrag->getTabelle());
+        return new MenueEintragAdapter($datenbankEintrag);
     }
 }
 
