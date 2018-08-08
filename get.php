@@ -98,13 +98,13 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
 function elementOeffnen($tabelle) {
     switch ($tabelle) {
         case TabellenName::ITEM:
-            $eintraege = ModelHandler::Instance()->getItemDaten();
+            $eintraege = ModelHandler::Instance()->getItems();
             break;
         case TabellenName::INSTITUT:
-            $eintraege = ModelHandler::Instance()->getInstitutDaten();
+            $eintraege = ModelHandler::Instance()->getInstitute();
             break;
         default:
-            $eintraege = ModelHandler::Instance()->getAufgabeDaten();
+            $eintraege = ModelHandler::Instance()->getAufgaben();
             break;
     }
     return PopupModulAdapter::Instance()->getInhaltHtml($eintraege);

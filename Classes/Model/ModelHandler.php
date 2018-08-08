@@ -46,7 +46,7 @@ class ModelHandler implements ISingleton {
     /**
      * @return IDatenbankEintrag[]
      */
-    public function getInstitutDaten() {
+    public function getInstitute() {
         return $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
             $this->datenbankHandler->findElementDaten(TabellenName::INSTITUT),
             InstitutFabrik::Instance());
@@ -55,7 +55,7 @@ class ModelHandler implements ISingleton {
     /**
      * @return IDatenbankEintrag[]
      */
-    public function getItemDaten() {
+    public function getItems() {
         return $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
             $this->datenbankHandler->findElementDaten(TabellenName::ITEM),
             ItemFabrik::Instance());
@@ -65,7 +65,7 @@ class ModelHandler implements ISingleton {
     /**
      * @return IDatenbankEintrag[]
      */
-    public function getAufgabeDaten() {
+    public function getAufgaben() {
         return $this->datenbankEintragParser->arrayZuDatenbankEintraegen(
             $this->datenbankHandler->findElementDaten(TabellenName::AUFGABE),
             AufgabeFabrik::Instance());
@@ -74,7 +74,7 @@ class ModelHandler implements ISingleton {
     /**
      * @return IKartenelement[]
      */
-    public function getKartenelementDaten() {
+    public function getKartenelemente() {
         $kartenelementDaten = $this->datenbankHandler->findElementDaten(TabellenName::KARTENELEMENT);
         return array_merge(
             $this->datenbankEintragParser->arrayZuDatenbankEintraegen(

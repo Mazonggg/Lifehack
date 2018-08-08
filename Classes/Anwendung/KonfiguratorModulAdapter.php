@@ -90,7 +90,7 @@ class KonfiguratorModulAdapter implements IModul {
             AufgabeFabrik::Instance()->erzeugeLeeresEintragObjekt()
         ]);
         $html .= $this->formModul->getModulHtml([]);
-        return $html . $this->stadtplanModul->getModulHtml(ModelHandler::Instance()->getKartenelementDaten());
+        return $html . $this->stadtplanModul->getModulHtml(ModelHandler::Instance()->getKartenelemente());
     }
 }
 
