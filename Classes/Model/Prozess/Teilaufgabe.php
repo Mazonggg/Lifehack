@@ -3,20 +3,21 @@
 namespace Model\Prozess;
 
 use Model\DatenbankEintrag;
+use Model\Fabrik\Aufgabe\ItemFabrik;
 use Model\Konstanten\TabellenName;
 use Model\Wertepaar;
 
 class Teilaufgabe extends DatenbankEintrag {
 
     /**
-     * @var string
+     * @var Item
      */
-    private $bedingungId = '';
+    private $bedingung;
 
     /**
-     * @var string
+     * @var Item
      */
-    private $belohnungId = '';
+    private $belohnung;
 
     /**
      * @var Wertepaar
@@ -37,37 +38,39 @@ class Teilaufgabe extends DatenbankEintrag {
      * Teilaufgabe constructor.
      */
     public function __construct() {
+        $this->bedingung = ItemFabrik::Instance()->erzeugeLeeresEintragObjekt();
+        $this->belohnung = ItemFabrik::Instance()->erzeugeLeeresEintragObjekt();
         $this->dialog = new Dialog();
         $this->teilaufgabeArt = new Wertepaar('', '');
         $this->institut_art = new Wertepaar('', '');
     }
 
     /**
-     * @return string
+     * @return Item
      */
-    public function getBedingungId() {
-        return $this->bedingungId;
+    public function getBedingung() {
+        return $this->bedingung;
     }
 
     /**
-     * @param string $bedingungId
+     * @param Item $bedingung
      */
-    public function setBedingungId($bedingungId) {
-        $this->bedingungId = $bedingungId;
+    public function setBedingung($bedingung) {
+        $this->bedingung = $bedingung;
     }
 
     /**
-     * @return string
+     * @return Item
      */
-    public function getBelohnungId() {
-        return $this->belohnungId;
+    public function getBelohnung() {
+        return $this->belohnung;
     }
 
     /**
-     * @param string $belohnungId
+     * @param Item $belohnung
      */
-    public function setBelohnungId($belohnungId) {
-        $this->belohnungId = $belohnungId;
+    public function setBelohnung($belohnung) {
+        $this->belohnung = $belohnung;
     }
 
     /**

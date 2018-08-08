@@ -737,7 +737,7 @@ INSERT INTO teilaufgabe
  belohnung_item_ref)
 VALUES
   ('Geb das ausgef&uuml;llte Formular ab, damit das Konto deinen Anspr&uuml;chen entspricht',
-   '-',
+   'Hallo, ich m&ouml;chte gern die Unterlagen zu meinem neuen Bankkonto abholen.',
    'Haben Sie das Formular ausgef&uuml;llt?',
    'Bittesehr. Zu Ihrer Freude erhalten Sie im Rahmen einer Werbungsaktion 100,00&euro; Startguthaben.',
    'Tut mir leid,\nleider kann ich ohne Sie m&uuml;ssen mir das ausgef&uuml;llte Formular geben, damit ich fortfahren kann.',

@@ -65,7 +65,7 @@ class TeilaufgabeFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
             TabellenSpalten::TEILAUFGABE_BEDINGUNG_ITEM_REF,
             [SimpleInputFabrik::INHALT => '',
                 SimpleInputFabrik::OPTIONEN => $items,
-                SimpleInputFabrik::SELECTED => $this->teilaufgabe->getBedingungId(),
+                SimpleInputFabrik::SELECTED => $this->teilaufgabe->getBedingung()->getId(),
                 SimpleInputFabrik::LABEL => 'Ben&ouml;tigtes Item']
         );
         $belohnungInput = SimpleInputFabrik::erzeugeFormInput(
@@ -73,7 +73,7 @@ class TeilaufgabeFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
             TabellenSpalten::TEILAUFGABE_BELOHNUNG_ITEM_REF,
             [SimpleInputFabrik::INHALT => '',
                 SimpleInputFabrik::OPTIONEN => $items,
-                SimpleInputFabrik::SELECTED => $this->teilaufgabe->getBelohnungId(),
+                SimpleInputFabrik::SELECTED => $this->teilaufgabe->getBelohnung()->getId(),
                 SimpleInputFabrik::LABEL => 'Erhaltenes Item']
         );
         $teilaufgabeArten = DatenbankAbrufHandler::Instance()->findSpalteZuId(

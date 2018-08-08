@@ -2,6 +2,8 @@
 
 namespace Model\Fabrik\Aufgabe;
 
+use Anwendung\Konfigurator\ModulAdapter;
+use Model\ModelHandler;
 use Model\Prozess\SimpleDialogFabrik;
 use Model\Prozess\Teilaufgabe;
 use Model\Konstanten\Keyword;
@@ -54,8 +56,14 @@ class TeilaufgabeFabrik extends DatenbankEintragFabrik {
         $teilaufgabe->setInstitutArt(new Wertepaar(
             $eintragdaten[TabellenName::INSTITUT_ART . Keyword::REF],
             $eintragdaten[TabellenName::INSTITUT_ART . Keyword::NAME]));
-        $teilaufgabe->setBedingungId($eintragdaten[TabellenSpalten::TEILAUFGABE_BEDINGUNG_ITEM_REF]);
-        $teilaufgabe->setBelohnungId($eintragdaten[TabellenSpalten::TEILAUFGABE_BELOHNUNG_ITEM_REF]);
+        $items = ModelHandler::Instance()->getItems();
+        foreach ($items as $item){
+            if($item->getId() == $eintragdaten[TabellenSpalten::TEILAUFGABE_BEDINGUNG_ITEM_REF]){
+                $teilaufgabe->setBedingung($item);
+            } else if($item->getId() == $eintragdaten[TabellenSpalten::TEILAUFGABE_BELOHNUNG_ITEM_REF]){
+                $teilaufgabe->setBelohnung($item);
+            }
+        }
         return $teilaufgabe;
     }
 }
