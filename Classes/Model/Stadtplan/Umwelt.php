@@ -20,6 +20,7 @@ class Umwelt extends Kartenelement {
      * Umwelt constructor.
      */
     public function __construct() {
+        parent::__construct();
     }
 
     /**

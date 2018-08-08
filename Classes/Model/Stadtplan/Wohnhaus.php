@@ -15,6 +15,7 @@ class Wohnhaus extends Gebaeude {
      * Wohnhaus constructor.
      */
     public function __construct() {
+        parent::__construct();
     }
 
     /**

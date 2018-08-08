@@ -30,7 +30,7 @@ class ModelHandler implements ISingleton {
         if (self::$_instance == null) {
             self::$_instance = new self();
             self::$_instance->datenbankHandler = DatenbankAbrufHandler::Instance();
-            self::$_instance->datenbankEintragParser = DatenbankEintragParser::Instance();
+            self::$_instance->datenbankEintragParser = new DatenbankEintragParser();
         }
         return self::$_instance;
     }

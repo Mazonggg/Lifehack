@@ -119,7 +119,8 @@ function getEintraege($eintragDaten, $fabrik) {
     if (empty($eintragDaten)) {
         return [$fabrik->erzeugeEintragObjekt()];
     } else {
-        return DatenbankEintragParser::Instance()->arrayZuDatenbankEintraegen($eintragDaten, $fabrik);
+        $parser = new DatenbankEintragParser();
+        return $parser->arrayZuDatenbankEintraegen($eintragDaten, $fabrik);
     }
 }
 
