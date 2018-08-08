@@ -5,11 +5,14 @@ namespace Model\Prozess;
 final class SimpleDialogFabrik {
 
     /**
-     * @param string $abmessungDaten
-     * @param string $kartenelementId
+     * @param string $menueText
+     * @param string $anspracheText
+     * @param string $antwortText
+     * @param string $erfuellungsText
+     * @param string $scheiternText
      * @return Dialog
      */
-    public static function erzeugeAbmessung($menueText, $anspracheText, $antwortText, $erfuellungsText, $scheiternText) {
+    public static function erzeugeDialog($menueText, $anspracheText, $antwortText, $erfuellungsText, $scheiternText) {
         $dialog = new Dialog();
         $dialog->setMenueText($menueText);
         $dialog->setAnspracheText($anspracheText);

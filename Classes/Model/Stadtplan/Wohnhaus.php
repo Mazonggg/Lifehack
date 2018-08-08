@@ -12,6 +12,12 @@ class Wohnhaus extends Gebaeude {
     private $wohneinheiten = 0;
 
     /**
+     * Wohnhaus constructor.
+     */
+    public function __construct() {
+    }
+
+    /**
      * @return int
      */
     public function getWohneinheiten() {

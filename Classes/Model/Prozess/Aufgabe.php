@@ -22,6 +22,12 @@ class Aufgabe extends DatenbankEintrag {
     private $teilaufgaben = [];
 
     /**
+     * Aufgabe constructor.
+     */
+    public function __construct() {
+    }
+
+    /**
      * @return string
      */
     public function getBezeichnung() {

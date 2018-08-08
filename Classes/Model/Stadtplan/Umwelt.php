@@ -17,6 +17,12 @@ class Umwelt extends Kartenelement {
     private $bezeichnung = "";
 
     /**
+     * Umwelt constructor.
+     */
+    public function __construct() {
+    }
+
+    /**
      * @return bool
      */
     public function isBegehbar() {

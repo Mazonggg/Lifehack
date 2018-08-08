@@ -25,7 +25,6 @@ class Abmessung extends DatenbankEintrag {
     }
 
     /**
-     * Abmessung constructor.
      * @param int $x
      * @param int $y
      * @param int $breite

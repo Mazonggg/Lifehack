@@ -7,22 +7,13 @@ use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 use Model\Fabrik\IDatenbankEintragFabrik;
 use Model\Fabrik\Stadtplan\KartenelementFabrik;
-use Model\Singleton\ISingleton;
 
-class DatenbankEintragParser implements ISingleton {
-    /**
-     * @var DatenbankEintragParser|null
-     */
-    protected static $_instance = null;
+class DatenbankEintragParser {
 
     /**
-     * @return DatenbankEintragParser
+     * DatenbankEintragParser constructor.
      */
-    public static function Instance() {
-        if (self::$_instance == null) {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
+    public function __construct() {
     }
 
     /**
