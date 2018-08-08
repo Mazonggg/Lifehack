@@ -2,6 +2,7 @@
 
 namespace Anwendung\Konfigurator\Form\FormEintrag\Input;
 
+use Model\SimpleWertepaarFabrik;
 use Model\Wertepaar;
 
 class NumberInputAdapter extends TextInputAdapter {
@@ -43,8 +44,8 @@ class NumberInputAdapter extends TextInputAdapter {
         return array_merge(
             parent::getAttribute(),
             [
-                new Wertepaar("min", $this->min),
-                new Wertepaar("max", $this->max)
+                SimpleWertepaarFabrik::erzeugeWertepaar("min", $this->min),
+                SimpleWertepaarFabrik::erzeugeWertepaar("max", $this->max)
             ]
         );
     }

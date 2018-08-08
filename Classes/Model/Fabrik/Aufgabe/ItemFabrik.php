@@ -8,7 +8,7 @@ use Model\Konstanten\TabellenSpalten;
 use Model\Konstanten\TabellenName;
 use Model\Fabrik\DatenbankEintragFabrik;
 use Model\IDatenbankEintrag;
-use Model\Wertepaar;
+use Model\SimpleWertepaarFabrik;
 
 class ItemFabrik extends DatenbankEintragFabrik {
     /**
@@ -40,7 +40,7 @@ class ItemFabrik extends DatenbankEintragFabrik {
      */
     protected function setAttribute($item, $eintragdaten) {
         $item->setId($eintragdaten[TabellenName::ITEM . Keyword::ID]);
-        $item->setItemArt(new Wertepaar(
+        $item->setItemArt(SimpleWertepaarFabrik::erzeugeWertepaar(
             $eintragdaten[TabellenName::ITEM_ART . Keyword::REF],
             $eintragdaten[TabellenName::ITEM_ART . Keyword::NAME]));
         $item->setName($eintragdaten[TabellenName::ITEM . Keyword::NAME]);

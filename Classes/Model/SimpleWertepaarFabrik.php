@@ -1,16 +1,14 @@
 <?php
 
-namespace Datenbank\Model;
+namespace Model;
 
-use Model\Wertepaar;
-
-final class SimpleQueryWertepaarFabrik {
+final class SimpleWertepaarFabrik {
     /**
      * @param string $schluessel
      * @param string $wert
      * @return Wertepaar
      */
-    public static function erzeugeQueryWertePaar($schluessel, $wert) {
+    public static function erzeugeWertepaar($schluessel = '', $wert = '') {
         return new Wertepaar($schluessel, $wert);
     }
 }

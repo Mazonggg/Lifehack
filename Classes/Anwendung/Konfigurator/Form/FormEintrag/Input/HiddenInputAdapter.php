@@ -2,6 +2,7 @@
 
 namespace Anwendung\Konfigurator\Form\FormEintrag\Input;
 
+use Model\SimpleWertepaarFabrik;
 use Model\Wertepaar;
 
 class HiddenInputAdapter extends TextInputAdapter {
@@ -23,7 +24,7 @@ class HiddenInputAdapter extends TextInputAdapter {
      */
     public function getAttribute() {
         return array_merge(parent::getAttribute(), [
-            new Wertepaar('value', $this->getInhalt())
+            SimpleWertepaarFabrik::erzeugeWertepaar('value', $this->getInhalt())
         ]);
     }
 

@@ -5,6 +5,7 @@ namespace Model\Prozess;
 use Model\DatenbankEintrag;
 use Model\Fabrik\Aufgabe\ItemFabrik;
 use Model\Konstanten\TabellenName;
+use Model\SimpleWertepaarFabrik;
 use Model\Wertepaar;
 
 class Teilaufgabe extends DatenbankEintrag {
@@ -41,8 +42,8 @@ class Teilaufgabe extends DatenbankEintrag {
         $this->bedingung = ItemFabrik::Instance()->erzeugeLeeresEintragObjekt();
         $this->belohnung = ItemFabrik::Instance()->erzeugeLeeresEintragObjekt();
         $this->dialog = new Dialog();
-        $this->teilaufgabeArt = new Wertepaar('', '');
-        $this->institut_art = new Wertepaar('', '');
+        $this->teilaufgabeArt = SimpleWertepaarFabrik::erzeugeWertepaar();
+        $this->institut_art = SimpleWertepaarFabrik::erzeugeWertepaar();
     }
 
     /**

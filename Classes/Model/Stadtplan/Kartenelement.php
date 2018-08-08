@@ -4,6 +4,7 @@ namespace Model\Stadtplan;
 
 use Model\DatenbankEintrag;
 use Model\Konstanten\TabellenName;
+use Model\SimpleWertepaarFabrik;
 use Model\Wertepaar;
 
 abstract class Kartenelement extends DatenbankEintrag implements IKartenelement {
@@ -27,7 +28,7 @@ abstract class Kartenelement extends DatenbankEintrag implements IKartenelement 
      * Kartenelement constructor.
      */
     public function __construct() {
-        $this->kartenelementAussehen = new Wertepaar('', '');
+        $this->kartenelementAussehen = SimpleWertepaarFabrik::erzeugeWertepaar();
     }
 
     /**

@@ -7,6 +7,7 @@ use Datenbank\Model\GroupConcat;
 use Datenbank\Model\Relation;
 use Datenbank\Model\SimpleTabelleFabrik;
 use Model\Konstanten\Keyword;
+use Model\SimpleWertepaarFabrik;
 use Model\Wertepaar;
 
 final class SimpleSelectQueryFabrik {
@@ -23,7 +24,7 @@ final class SimpleSelectQueryFabrik {
         $tabelle = SimpleTabelleFabrik::erzeugeTabelle(
             $tabellenName,
             $spalten,
-            (empty($schluessel) ? new Wertepaar($tabellenName . '.' . $tabellenName . Keyword::ID) : $schluessel),
+            (empty($schluessel) ? SimpleWertepaarFabrik::erzeugeWertepaar($tabellenName . '.' . $tabellenName . Keyword::ID) : $schluessel),
             $relationen,
             $groupConcats
         );

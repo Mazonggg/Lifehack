@@ -4,6 +4,7 @@ namespace Anwendung\Konfigurator\Stadtplan\Kachel;
 
 use Austauschformat\AustauschKonstanten;
 use Anwendung\Konfigurator\Stadtplan\StadtplanModulAdapter;
+use Model\SimpleWertepaarFabrik;
 use Model\Stadtplan\Abmessung;
 use Model\Stadtplan\SimpleAbmessungFabrik;
 use Model\Wertepaar;
@@ -28,8 +29,8 @@ abstract class KachelAdapter implements IKachel {
      */
     public function getAttribute() {
         return [
-            new Wertepaar('class', $this->getClass()),
-            new Wertepaar('name', $this->getName())
+            SimpleWertepaarFabrik::erzeugeWertepaar('class', $this->getClass()),
+            SimpleWertepaarFabrik::erzeugeWertepaar('name', $this->getName())
         ];
     }
 
@@ -51,8 +52,8 @@ abstract class KachelAdapter implements IKachel {
     public function getStyleAttribute() {
         $abmessungUmgerechnet = $this->getUmgerechneteAbmessungen();
         return [
-            new Wertepaar('grid-column', ($abmessungUmgerechnet->xMin() + 1) . " / span " . $abmessungUmgerechnet->getBreite()),
-            new Wertepaar('grid-row', ($abmessungUmgerechnet->yMin() + 1) . " / span " . $abmessungUmgerechnet->getHoehe())
+            SimpleWertepaarFabrik::erzeugeWertepaar('grid-column', ($abmessungUmgerechnet->xMin() + 1) . " / span " . $abmessungUmgerechnet->getBreite()),
+            SimpleWertepaarFabrik::erzeugeWertepaar('grid-row', ($abmessungUmgerechnet->yMin() + 1) . " / span " . $abmessungUmgerechnet->getHoehe())
         ];
     }
 

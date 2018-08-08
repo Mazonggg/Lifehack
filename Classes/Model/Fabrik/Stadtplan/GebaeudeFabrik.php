@@ -5,9 +5,9 @@ namespace Model\Fabrik\Stadtplan;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 use Model\IDatenbankEintrag;
+use Model\SimpleWertepaarFabrik;
 use Model\Stadtplan\Gebaeude;
 use Model\Stadtplan\IKartenelement;
-use Model\Wertepaar;
 
 class GebaeudeFabrik extends KartenelementFabrik {
     /**
@@ -46,7 +46,7 @@ class GebaeudeFabrik extends KartenelementFabrik {
      */
     protected function setAttribute($gebaeude, $eintragdaten) {
         $gebaeude->setInterieurAussehen(
-            new Wertepaar(
+            SimpleWertepaarFabrik::erzeugeWertepaar(
                 $eintragdaten[TabellenName::INTERIEUR_AUSSEHEN . Keyword::REF],
                 $eintragdaten[TabellenName::INTERIEUR_AUSSEHEN . Keyword::URL]
             ));

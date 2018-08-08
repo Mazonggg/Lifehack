@@ -3,6 +3,7 @@
 namespace Model\Einrichtung;
 
 use Model\Konstanten\TabellenName;
+use Model\SimpleWertepaarFabrik;
 use Model\Stadtplan\Gebaeude;
 use Model\Wertepaar;
 
@@ -18,7 +19,7 @@ class Niederlassung extends Gebaeude {
      */
     public function __construct() {
         parent::__construct();
-        $this->institut = new Wertepaar('', '');
+        $this->institut = SimpleWertepaarFabrik::erzeugeWertepaar();
     }
 
     /**

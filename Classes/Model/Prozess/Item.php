@@ -4,6 +4,7 @@ namespace Model\Prozess;
 
 use Model\DatenbankEintrag;
 use Model\Konstanten\TabellenName;
+use Model\SimpleWertepaarFabrik;
 use Model\Wertepaar;
 
 class Item extends DatenbankEintrag {
@@ -30,7 +31,7 @@ class Item extends DatenbankEintrag {
      * Item constructor.
      */
     public function __construct() {
-        $this->item_art = new Wertepaar('', '');
+        $this->item_art = SimpleWertepaarFabrik::erzeugeWertepaar();
     }
 
     /**

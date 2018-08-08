@@ -5,7 +5,7 @@ namespace Anwendung\Konfigurator\Stadtplan\Kachel\Model;
 use Anwendung\Konfigurator\Stadtplan\Kachel\KachelAdapter;
 use Model\Konstanten\AjaxKeywords;
 use Model\Konstanten\TabellenName;
-use Model\Wertepaar;
+use Model\SimpleWertepaarFabrik;
 
 class LeereKachelAdapter extends KachelAdapter {
 
@@ -18,7 +18,7 @@ class LeereKachelAdapter extends KachelAdapter {
 
     public function getAttribute() {
         return array_merge(parent::getAttribute(), [
-            new Wertepaar('id', TabellenName::KARTENELEMENT . '_' . AjaxKeywords::HINZUFUEGEN)
+            SimpleWertepaarFabrik::erzeugeWertepaar('id', TabellenName::KARTENELEMENT . '_' . AjaxKeywords::HINZUFUEGEN)
         ]);
     }
 }

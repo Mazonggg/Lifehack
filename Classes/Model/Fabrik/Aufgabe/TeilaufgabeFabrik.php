@@ -2,7 +2,6 @@
 
 namespace Model\Fabrik\Aufgabe;
 
-use Anwendung\Konfigurator\ModulAdapter;
 use Model\ModelHandler;
 use Model\Prozess\SimpleDialogFabrik;
 use Model\Prozess\Teilaufgabe;
@@ -11,7 +10,7 @@ use Model\Konstanten\TabellenSpalten;
 use Model\Konstanten\TabellenName;
 use Model\Fabrik\DatenbankEintragFabrik;
 use Model\IDatenbankEintrag;
-use Model\Wertepaar;
+use Model\SimpleWertepaarFabrik;
 
 class TeilaufgabeFabrik extends DatenbankEintragFabrik {
     /**
@@ -43,7 +42,7 @@ class TeilaufgabeFabrik extends DatenbankEintragFabrik {
      */
     protected function setAttribute($teilaufgabe, $eintragdaten) {
         $teilaufgabe->setId($eintragdaten[TabellenName::TEILAUFGABE . Keyword::ID]);
-        $teilaufgabe->setTeilaufgabeArt(new Wertepaar(
+        $teilaufgabe->setTeilaufgabeArt(SimpleWertepaarFabrik::erzeugeWertepaar(
             $eintragdaten[TabellenName::TEILAUFGABE_ART . Keyword::REF],
             $eintragdaten[TabellenName::TEILAUFGABE_ART . Keyword::NAME]));
         $teilaufgabe->setDialog(SimpleDialogFabrik::erzeugeDialog(
@@ -53,7 +52,7 @@ class TeilaufgabeFabrik extends DatenbankEintragFabrik {
             $eintragdaten[TabellenSpalten::TEILAUFGABE_ERFUELLUNGS_TEXT],
             $eintragdaten[TabellenSpalten::TEILAUFGABE_SCHEITERN_TEXT]
         ));
-        $teilaufgabe->setInstitutArt(new Wertepaar(
+        $teilaufgabe->setInstitutArt(SimpleWertepaarFabrik::erzeugeWertepaar(
             $eintragdaten[TabellenName::INSTITUT_ART . Keyword::REF],
             $eintragdaten[TabellenName::INSTITUT_ART . Keyword::NAME]));
         $items = ModelHandler::Instance()->getItems();

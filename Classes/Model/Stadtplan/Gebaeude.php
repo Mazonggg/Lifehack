@@ -3,6 +3,7 @@
 namespace Model\Stadtplan;
 
 use Model\Konstanten\TabellenName;
+use Model\SimpleWertepaarFabrik;
 use Model\Wertepaar;
 
 class Gebaeude extends Kartenelement {
@@ -17,7 +18,7 @@ class Gebaeude extends Kartenelement {
      */
     public function __construct() {
         parent::__construct();
-        $this->interieurAussehen = new Wertepaar('', '');
+        $this->interieurAussehen = SimpleWertepaarFabrik::erzeugeWertepaar();
     }
 
     /**

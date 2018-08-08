@@ -4,12 +4,12 @@ namespace Datenbank;
 
 use Datenbank\Adapter\Select\SimpleSelectQueryFabrik;
 use Datenbank\Model\SimpleGroupConcatFabrik;
-use Datenbank\Model\SimpleQueryWertepaarFabrik;
 use Datenbank\Model\SimpleRelationFabrik;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\Serialisierer;
 use Model\Konstanten\TabellenSpalten;
 use Model\Konstanten\TabellenName;
+use Model\SimpleWertepaarFabrik;
 use Model\Wertepaar;
 use mysqli;
 
@@ -56,19 +56,19 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
     private function findKartenelementDaten($kartenelementId = null) {
         $adapter = SimpleSelectQueryFabrik::erzeugeQueryAdapter(
             TabellenName::KARTENELEMENT, [
-            new Wertepaar(TabellenName::KARTENELEMENT . "." . TabellenName::KARTENELEMENT_ART . Keyword::REF),
-            new Wertepaar(TabellenName::KARTENELEMENT_ART . "." . TabellenName::KARTENELEMENT_ART . Keyword::NAME),
-            new Wertepaar(TabellenName::KARTENELEMENT . "." . TabellenName::KARTENELEMENT_AUSSEHEN . Keyword::REF),
-            new Wertepaar(TabellenName::KARTENELEMENT_AUSSEHEN . "." . TabellenName::KARTENELEMENT_AUSSEHEN . Keyword::URL),
-            new Wertepaar(TabellenName::UMWELT . "." . TabellenSpalten::UMWELT_BEZEICHUNG),
-            new Wertepaar(TabellenName::UMWELT . "." . TabellenSpalten::UMWELT_BEGEHBAR),
-            new Wertepaar(TabellenName::UMWELT . "." . TabellenSpalten::UMWELT_BEGEHBAR),
-            new Wertepaar(TabellenName::GEBAEUDE . "." . TabellenName::INTERIEUR_AUSSEHEN . Keyword::REF),
-            new Wertepaar(TabellenName::INTERIEUR_AUSSEHEN . "." . TabellenName::INTERIEUR_AUSSEHEN . Keyword::URL),
-            new Wertepaar(TabellenName::NIEDERLASSUNG . "." . TabellenName::NIEDERLASSUNG . '_' . TabellenName::INSTITUT . Keyword::REF),
-            new Wertepaar(TabellenName::INSTITUT . "." . TabellenName::INSTITUT . Keyword::NAME),
-            new Wertepaar(TabellenName::WOHNHAUS . "." . TabellenSpalten::WOHNHAUS_WOHNEINHEITEN)
-        ], (empty($kartenelementId) ? null : SimpleQueryWertepaarFabrik::erzeugeQueryWertePaar(
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::KARTENELEMENT . "." . TabellenName::KARTENELEMENT_ART . Keyword::REF),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::KARTENELEMENT_ART . "." . TabellenName::KARTENELEMENT_ART . Keyword::NAME),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::KARTENELEMENT . "." . TabellenName::KARTENELEMENT_AUSSEHEN . Keyword::REF),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::KARTENELEMENT_AUSSEHEN . "." . TabellenName::KARTENELEMENT_AUSSEHEN . Keyword::URL),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::UMWELT . "." . TabellenSpalten::UMWELT_BEZEICHUNG),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::UMWELT . "." . TabellenSpalten::UMWELT_BEGEHBAR),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::UMWELT . "." . TabellenSpalten::UMWELT_BEGEHBAR),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::GEBAEUDE . "." . TabellenName::INTERIEUR_AUSSEHEN . Keyword::REF),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::INTERIEUR_AUSSEHEN . "." . TabellenName::INTERIEUR_AUSSEHEN . Keyword::URL),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::NIEDERLASSUNG . "." . TabellenName::NIEDERLASSUNG . '_' . TabellenName::INSTITUT . Keyword::REF),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::INSTITUT . "." . TabellenName::INSTITUT . Keyword::NAME),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::WOHNHAUS . "." . TabellenSpalten::WOHNHAUS_WOHNEINHEITEN)
+        ], (empty($kartenelementId) ? null : SimpleWertepaarFabrik::erzeugeWertepaar(
             TabellenName::KARTENELEMENT . "." . TabellenName::KARTENELEMENT . Keyword::ID,
             $kartenelementId)
         ), [
@@ -113,11 +113,11 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
     private function findInstitutDaten($institutId = null) {
         $adapter = SimpleSelectQueryFabrik::erzeugeQueryAdapter(
             TabellenName::INSTITUT, [
-            new Wertepaar(TabellenName::INSTITUT . "." . TabellenName::INSTITUT . Keyword::NAME),
-            new Wertepaar(TabellenName::INSTITUT . "." . TabellenSpalten::INSTITUT_BESCHREIBUNG),
-            new Wertepaar(TabellenName::INSTITUT . "." . TabellenName::INSTITUT_ART . Keyword::REF),
-            new Wertepaar(TabellenName::INSTITUT_ART . "." . TabellenName::INSTITUT_ART . Keyword::NAME)
-        ], (empty($institutId) ? null : SimpleQueryWertepaarFabrik::erzeugeQueryWertePaar(
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::INSTITUT . "." . TabellenName::INSTITUT . Keyword::NAME),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::INSTITUT . "." . TabellenSpalten::INSTITUT_BESCHREIBUNG),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::INSTITUT . "." . TabellenName::INSTITUT_ART . Keyword::REF),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::INSTITUT_ART . "." . TabellenName::INSTITUT_ART . Keyword::NAME)
+        ], (empty($institutId) ? null : SimpleWertepaarFabrik::erzeugeWertepaar(
             TabellenName::INSTITUT . "." . TabellenName::INSTITUT . Keyword::ID,
             $institutId)
         ), [
@@ -137,9 +137,9 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
     private function findAufgabeDaten($aufgabeId = null) {
         $adapter = SimpleSelectQueryFabrik::erzeugeQueryAdapter(
             TabellenName::AUFGABE, [
-            new Wertepaar(TabellenSpalten::AUFGABE_BEZEICHNUNG),
-            new Wertepaar(TabellenSpalten::AUFGABE_GESETZESGRUNDLAGE)
-        ], (empty($aufgabeId) ? null : SimpleQueryWertepaarFabrik::erzeugeQueryWertePaar(
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenSpalten::AUFGABE_BEZEICHNUNG),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenSpalten::AUFGABE_GESETZESGRUNDLAGE)
+        ], (empty($aufgabeId) ? null : SimpleWertepaarFabrik::erzeugeWertepaar(
             TabellenName::AUFGABE . "." . TabellenName::AUFGABE . Keyword::ID,
             $aufgabeId))
         );
@@ -163,19 +163,19 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
     private function findTeilaufgabenDaten($aufgabeId) {
         $adapter = SimpleSelectQueryFabrik::erzeugeQueryAdapter(
             TabellenName::TEILAUFGABE, [
-            new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenName::TEILAUFGABE . Keyword::ID),
-            new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_MENUE_TEXT),
-            new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_ANSPRACHE_TEXT),
-            new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_ANTWORT_TEXT),
-            new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_ERFUELLUNGS_TEXT),
-            new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_SCHEITERN_TEXT),
-            new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_BEDINGUNG_ITEM_REF),
-            new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_BELOHNUNG_ITEM_REF),
-            new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenName::TEILAUFGABE_ART . Keyword::REF),
-            new Wertepaar(TabellenName::TEILAUFGABE_ART . "." . TabellenName::TEILAUFGABE_ART . Keyword::NAME),
-            new Wertepaar(TabellenName::TEILAUFGABE . "." . TabellenName::INSTITUT_ART . Keyword::REF),
-            new Wertepaar(TabellenName::INSTITUT_ART . "." . TabellenName::INSTITUT_ART . Keyword::NAME)
-        ], SimpleQueryWertepaarFabrik::erzeugeQueryWertePaar(
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::TEILAUFGABE . "." . TabellenName::TEILAUFGABE . Keyword::ID),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_MENUE_TEXT),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_ANSPRACHE_TEXT),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_ANTWORT_TEXT),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_ERFUELLUNGS_TEXT),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_SCHEITERN_TEXT),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_BEDINGUNG_ITEM_REF),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::TEILAUFGABE . "." . TabellenSpalten::TEILAUFGABE_BELOHNUNG_ITEM_REF),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::TEILAUFGABE . "." . TabellenName::TEILAUFGABE_ART . Keyword::REF),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::TEILAUFGABE_ART . "." . TabellenName::TEILAUFGABE_ART . Keyword::NAME),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::TEILAUFGABE . "." . TabellenName::INSTITUT_ART . Keyword::REF),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::INSTITUT_ART . "." . TabellenName::INSTITUT_ART . Keyword::NAME)
+        ], SimpleWertepaarFabrik::erzeugeWertepaar(
             TabellenName::TEILAUFGABE . "." . TabellenName::TEILAUFGABE . "_" . TabellenName::AUFGABE . Keyword::REF,
             $aufgabeId
         ), [
@@ -197,12 +197,12 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
     private function findItemDaten($itemId = null) {
         $adapter = SimpleSelectQueryFabrik::erzeugeQueryAdapter(
             TabellenName::ITEM, [
-            new Wertepaar(TabellenName::ITEM . "." . TabellenName::ITEM . Keyword::NAME),
-            new Wertepaar(TabellenName::ITEM . "." . TabellenSpalten::ITEM_GEWICHT),
-            new Wertepaar(TabellenName::ITEM . "." . TabellenSpalten::ITEM_KONFIGURATION),
-            new Wertepaar(TabellenName::ITEM . "." . TabellenName::ITEM_ART . Keyword::REF),
-            new Wertepaar(TabellenName::ITEM_ART . "." . TabellenName::ITEM_ART . Keyword::NAME)
-        ], (empty($itemId) ? null : SimpleQueryWertepaarFabrik::erzeugeQueryWertePaar(
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::ITEM . "." . TabellenName::ITEM . Keyword::NAME),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::ITEM . "." . TabellenSpalten::ITEM_GEWICHT),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::ITEM . "." . TabellenSpalten::ITEM_KONFIGURATION),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::ITEM . "." . TabellenName::ITEM_ART . Keyword::REF),
+            SimpleWertepaarFabrik::erzeugeWertepaar(TabellenName::ITEM_ART . "." . TabellenName::ITEM_ART . Keyword::NAME)
+        ], (empty($itemId) ? null : SimpleWertepaarFabrik::erzeugeWertepaar(
             TabellenName::ITEM . "." . TabellenName::ITEM . Keyword::ID,
             $itemId)
         ),
@@ -222,7 +222,7 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
      * @return Wertepaar[]|bool
      */
     public function findSpalteZuId($tabellenName, $spaltenName) {
-        $adapter = SimpleSelectQueryFabrik::erzeugeQueryAdapter($tabellenName, [new Wertepaar($spaltenName)]);
+        $adapter = SimpleSelectQueryFabrik::erzeugeQueryAdapter($tabellenName, [SimpleWertepaarFabrik::erzeugeWertepaar($spaltenName)]);
         return $this->arrayZuWertepaaren($this->getResult($adapter));
     }
 
@@ -237,7 +237,7 @@ final class DatenbankAbrufHandler extends DatenbankHandler {
         $wertepaare = [];
         if (is_array($daten)) {
             foreach ($daten as $eintrag) {
-                array_push($wertepaare, new Wertepaar(array_values($eintrag)[0], array_values($eintrag)[1]));
+                array_push($wertepaare, SimpleWertepaarFabrik::erzeugeWertepaar(array_values($eintrag)[0], array_values($eintrag)[1]));
             }
             return $wertepaare;
         } else {

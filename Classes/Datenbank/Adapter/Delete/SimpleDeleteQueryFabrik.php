@@ -6,7 +6,7 @@ use Datenbank\Adapter\IQuery;
 use Datenbank\Model\SimpleTabelleFabrik;
 use Model\Konstanten\AjaxKeywords;
 use Model\Konstanten\Keyword;
-use Model\Wertepaar;
+use Model\SimpleWertepaarFabrik;
 
 class SimpleDeleteQueryFabrik {
 
@@ -19,7 +19,7 @@ class SimpleDeleteQueryFabrik {
             SimpleTabelleFabrik::erzeugeTabelle(
                 $anfrageDaten[AjaxKeywords::TABELLE],
                 [],
-                new Wertepaar(
+                SimpleWertepaarFabrik::erzeugeWertepaar(
                     $anfrageDaten[AjaxKeywords::TABELLE] . '.' . $anfrageDaten[AjaxKeywords::TABELLE] . Keyword::ID,
                     $anfrageDaten[AjaxKeywords::ID]
                 )

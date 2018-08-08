@@ -2,6 +2,7 @@
 
 namespace Anwendung\Konfigurator\Form\FormEintrag\Input;
 
+use Model\SimpleWertepaarFabrik;
 use Model\Wertepaar;
 
 abstract class InputAdapter implements IInput {
@@ -78,11 +79,11 @@ abstract class InputAdapter implements IInput {
      */
     public function getAttribute() {
         return [
-            new Wertepaar('type', $this->getType()),
-            new Wertepaar('class', $this->getClass()),
-            new Wertepaar('name', $this->getName()),
-            new Wertepaar('placeholder', $this->getPlaceholder()),
-            new Wertepaar("required", "true")
+            SimpleWertepaarFabrik::erzeugeWertepaar('type', $this->getType()),
+            SimpleWertepaarFabrik::erzeugeWertepaar('class', $this->getClass()),
+            SimpleWertepaarFabrik::erzeugeWertepaar('name', $this->getName()),
+            SimpleWertepaarFabrik::erzeugeWertepaar('placeholder', $this->getPlaceholder()),
+            SimpleWertepaarFabrik::erzeugeWertepaar("required", "true")
         ];
     }
 

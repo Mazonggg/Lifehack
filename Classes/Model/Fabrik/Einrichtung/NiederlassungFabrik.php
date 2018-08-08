@@ -7,8 +7,8 @@ use Model\Konstanten\TabellenName;
 use Model\Fabrik\Stadtplan\GebaeudeFabrik;
 use Model\IDatenbankEintrag;
 use Model\Einrichtung\Niederlassung;
+use Model\SimpleWertepaarFabrik;
 use Model\Stadtplan\IKartenelement;
-use Model\Wertepaar;
 
 class NiederlassungFabrik extends GebaeudeFabrik {
     /**
@@ -43,7 +43,7 @@ class NiederlassungFabrik extends GebaeudeFabrik {
      * @return IKartenelement
      */
     protected function setAttribute($niederlassung, $eintragdaten) {
-        $niederlassung->setInstitut(new Wertepaar(
+        $niederlassung->setInstitut(SimpleWertepaarFabrik::erzeugeWertepaar(
             $eintragdaten[TabellenName::NIEDERLASSUNG . '_' . TabellenName::INSTITUT . Keyword::REF],
             $eintragdaten[TabellenName::INSTITUT . Keyword::NAME]
         ));

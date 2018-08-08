@@ -3,6 +3,7 @@
 namespace Datenbank\Model;
 
 use Model\Konstanten\Keyword;
+use Model\SimpleWertepaarFabrik;
 use Model\Wertepaar;
 
 class SimpleTabelleFabrik {
@@ -19,7 +20,7 @@ class SimpleTabelleFabrik {
             $tabellenName,
             $spalten,
             ($schluessel === null ?
-                new Wertepaar($tabellenName . "." . $tabellenName . Keyword::ID) :
+                SimpleWertepaarFabrik::erzeugeWertepaar($tabellenName . "." . $tabellenName . Keyword::ID) :
                 $schluessel),
             $relationen,
             $groupConcats

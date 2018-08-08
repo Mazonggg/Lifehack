@@ -6,7 +6,7 @@ use Datenbank\Adapter\IQuery;
 use Datenbank\Model\SimpleTabelleFabrik;
 use Model\Konstanten\AjaxKeywords;
 use Model\Konstanten\Keyword;
-use Model\Wertepaar;
+use Model\SimpleWertepaarFabrik;
 
 class SimpleInsertQueryFabrik {
 
@@ -26,7 +26,7 @@ class SimpleInsertQueryFabrik {
 
         $spalten = [];
         foreach ($formDaten as $schluessel => $wert) {
-            array_push($spalten, new Wertepaar($schluessel, $wert));
+            array_push($spalten, SimpleWertepaarFabrik::erzeugeWertepaar($schluessel, $wert));
         }
         return new InsertQueryAdapter(SimpleTabelleFabrik::erzeugeTabelle(
             $tabelle,

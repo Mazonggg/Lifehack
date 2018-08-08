@@ -8,7 +8,7 @@ use Model\Konstanten\TabellenName;
 use Model\Fabrik\DatenbankEintragFabrik;
 use Model\IDatenbankEintrag;
 use Model\Einrichtung\Institut;
-use Model\Wertepaar;
+use Model\SimpleWertepaarFabrik;
 
 class InstitutFabrik extends DatenbankEintragFabrik {
     /**
@@ -42,7 +42,7 @@ class InstitutFabrik extends DatenbankEintragFabrik {
         $institut->setId($eintragdaten[TabellenName::INSTITUT . Keyword::ID]);
         $institut->setName($eintragdaten[TabellenName::INSTITUT . Keyword::NAME]);
         $institut->setBeschreibung($eintragdaten[TabellenSpalten::INSTITUT_BESCHREIBUNG]);
-        $institut->setInstitutArt(new Wertepaar(
+        $institut->setInstitutArt(SimpleWertepaarFabrik::erzeugeWertepaar(
             $eintragdaten[TabellenName::INSTITUT_ART . Keyword::REF],
             $eintragdaten[TabellenName::INSTITUT_ART . Keyword::NAME]
         ));

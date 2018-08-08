@@ -4,6 +4,7 @@ namespace Model\Einrichtung;
 
 use Model\DatenbankEintrag;
 use Model\Konstanten\TabellenName;
+use Model\SimpleWertepaarFabrik;
 use Model\Wertepaar;
 
 class Institut extends DatenbankEintrag {
@@ -31,7 +32,7 @@ class Institut extends DatenbankEintrag {
      * Einrichtung constructor.
      */
     public function __construct() {
-        $this->institut_art = new Wertepaar('', '');
+        $this->institut_art = SimpleWertepaarFabrik::erzeugeWertepaar();
     }
 
     /**

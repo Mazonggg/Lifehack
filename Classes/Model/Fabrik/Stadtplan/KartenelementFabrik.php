@@ -5,9 +5,9 @@ namespace Model\Fabrik\Stadtplan;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 use Model\Fabrik\DatenbankEintragFabrik;
+use Model\SimpleWertepaarFabrik;
 use Model\Stadtplan\Kartenelement;
 use Model\Stadtplan\SimpleAbmessungFabrik;
-use Model\Wertepaar;
 
 abstract class KartenelementFabrik extends DatenbankEintragFabrik {
     /**
@@ -33,11 +33,11 @@ abstract class KartenelementFabrik extends DatenbankEintragFabrik {
             $eintragdaten[TabellenName::ABMESSUNG],
             $kartenelement->getId());
         $kartenelement->setAbmesungen($abmessungen);
-        $kartenelement->setKartenelementAussehen(new Wertepaar(
+        $kartenelement->setKartenelementAussehen(SimpleWertepaarFabrik::erzeugeWertepaar(
             $eintragdaten[TabellenName::KARTENELEMENT_AUSSEHEN . Keyword::REF],
             $eintragdaten[TabellenName::KARTENELEMENT_AUSSEHEN . Keyword::URL]
         ));
-        $kartenelement->setKartenelementArt(new Wertepaar(
+        $kartenelement->setKartenelementArt(SimpleWertepaarFabrik::erzeugeWertepaar(
             $eintragdaten[TabellenName::KARTENELEMENT_ART . Keyword::REF],
             $eintragdaten[TabellenName::KARTENELEMENT_ART . Keyword::NAME]
         ));
