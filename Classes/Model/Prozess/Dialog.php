@@ -6,42 +6,32 @@ class Dialog {
     /**
      * @var string
      */
-    private $menueText;
+    private $menueText = '';
 
     /**
      * @var string
      */
-    private $anspracheText;
+    private $anspracheText = '';
 
     /**
      * @var string
      */
-    private $antwortText;
+    private $antwortText = '';
 
     /**
      * @var string
      */
-    private $erfuellungsText;
+    private $erfuellungsText = '';
 
     /**
      * @var string
      */
-    private $scheiternText;
+    private $scheiternText = '';
 
     /**
      * Dialog constructor.
-     * @param string $menueText
-     * @param string $anspracheText
-     * @param string $antwortText
-     * @param string $erfuellungsText
-     * @param string $scheiternText
      */
-    public function __construct($menueText = "", $anspracheText = "", $antwortText = "", $erfuellungsText = "", $scheiternText = "") {
-        $this->menueText = $menueText;
-        $this->anspracheText = $anspracheText;
-        $this->antwortText = $antwortText;
-        $this->erfuellungsText = $erfuellungsText;
-        $this->scheiternText = $scheiternText;
+    public function __construct() {
     }
 
     /**
@@ -52,10 +42,24 @@ class Dialog {
     }
 
     /**
+     * @param string $menueText
+     */
+    public function setMenueText($menueText) {
+        $this->menueText = $menueText;
+    }
+
+    /**
      * @return string
      */
     public function getAnspracheText() {
         return $this->anspracheText;
+    }
+
+    /**
+     * @param string $anspracheText
+     */
+    public function setAnspracheText($anspracheText) {
+        $this->anspracheText = $anspracheText;
     }
 
     /**
@@ -66,6 +70,13 @@ class Dialog {
     }
 
     /**
+     * @param string $antwortText
+     */
+    public function setAntwortText($antwortText) {
+        $this->antwortText = $antwortText;
+    }
+
+    /**
      * @return string
      */
     public function getErfuellungsText() {
@@ -73,10 +84,24 @@ class Dialog {
     }
 
     /**
+     * @param string $erfuellungsText
+     */
+    public function setErfuellungsText($erfuellungsText) {
+        $this->erfuellungsText = $erfuellungsText;
+    }
+
+    /**
      * @return string
      */
     public function getScheiternText() {
         return $this->scheiternText;
+    }
+
+    /**
+     * @param string $scheiternText
+     */
+    public function setScheiternText($scheiternText) {
+        $this->scheiternText = $scheiternText;
     }
 }
 

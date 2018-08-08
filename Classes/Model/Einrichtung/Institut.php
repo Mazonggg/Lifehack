@@ -16,11 +16,11 @@ class Institut extends DatenbankEintrag {
     /**
      * @var string
      */
-    private $name;
+    private $name = '';
     /**
      * @var string
      */
-    private $beschreibung;
+    private $beschreibung = '';
 
     /**
      * @var Wertepaar

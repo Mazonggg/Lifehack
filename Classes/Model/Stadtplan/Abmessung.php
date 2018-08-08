@@ -20,6 +20,12 @@ class Abmessung extends DatenbankEintrag {
 
     /**
      * Abmessung constructor.
+     */
+    public function __construct() {
+    }
+
+    /**
+     * Abmessung constructor.
      * @param int $x
      * @param int $y
      * @param int $breite

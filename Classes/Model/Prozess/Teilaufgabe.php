@@ -11,12 +11,12 @@ class Teilaufgabe extends DatenbankEintrag {
     /**
      * @var string
      */
-    private $bedingungId;
+    private $bedingungId = '';
 
     /**
      * @var string
      */
-    private $belohnungId;
+    private $belohnungId = '';
 
     /**
      * @var Wertepaar
@@ -41,7 +41,6 @@ class Teilaufgabe extends DatenbankEintrag {
         $this->teilaufgabeArt = new Wertepaar('', '');
         $this->institut_art = new Wertepaar('', '');
     }
-
 
     /**
      * @return string

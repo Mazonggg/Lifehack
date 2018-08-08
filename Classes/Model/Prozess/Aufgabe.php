@@ -10,11 +10,11 @@ class Aufgabe extends DatenbankEintrag {
     /**
      * @var string
      */
-    private $bezeichnung = "";
+    private $bezeichnung = '';
     /**
      * @var string
      */
-    private $gesetzesgrundlage = "";
+    private $gesetzesgrundlage = '';
 
     /**
      * @var Teilaufgabe[]

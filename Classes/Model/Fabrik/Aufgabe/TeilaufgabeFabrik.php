@@ -2,7 +2,7 @@
 
 namespace Model\Fabrik\Aufgabe;
 
-use Model\Prozess\Dialog;
+use Model\Prozess\SimpleDialogFabrik;
 use Model\Prozess\Teilaufgabe;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenSpalten;
@@ -44,7 +44,7 @@ class TeilaufgabeFabrik extends DatenbankEintragFabrik {
         $teilaufgabe->setTeilaufgabeArt(new Wertepaar(
             $eintragdaten[TabellenName::TEILAUFGABE_ART . Keyword::REF],
             $eintragdaten[TabellenName::TEILAUFGABE_ART . Keyword::NAME]));
-        $teilaufgabe->setDialog(new Dialog(
+        $teilaufgabe->setDialog(SimpleDialogFabrik::erzeugeAbmessung(
             $eintragdaten[TabellenSpalten::TEILAUFGABE_MENUE_TEXT],
             $eintragdaten[TabellenSpalten::TEILAUFGABE_ANSPRACHE_TEXT],
             $eintragdaten[TabellenSpalten::TEILAUFGABE_ANTWORT_TEXT],

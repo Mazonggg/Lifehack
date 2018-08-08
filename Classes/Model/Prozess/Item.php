@@ -15,16 +15,16 @@ class Item extends DatenbankEintrag {
     /**
      * @var string
      */
-    private $name;
+    private $name = '';
     /**
      * @var int
      */
-    private $gewicht;
+    private $gewicht = -1;
 
     /**
      * @var string
      */
-    private $konfiguration;
+    private $konfiguration = '';
 
     /**
      * Item constructor.
