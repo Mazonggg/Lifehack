@@ -50,7 +50,7 @@ class AustauschAbrufer implements ISingleton {
         $karte = $this->kartenSchreiber->schreibeKarte($jsonInformation[TabellenName::KARTENELEMENT]);
         $jsonInformation[TabellenName::KARTENELEMENT] = $this->entferneAbmessungen($jsonInformation[TabellenName::KARTENELEMENT]);
         return [
-            AustauschKonstanten::KONFIGURATION => $this->getDatenConfig(),
+            AustauschKonstanten::KONFIGURATION => $this->getDatenKonfiguration(),
             AustauschKonstanten::INFORMATION => $jsonInformation,
             AustauschKonstanten::KARTE => $karte
         ];
@@ -59,7 +59,7 @@ class AustauschAbrufer implements ISingleton {
     /**
      * @return array
      */
-    private function getDatenConfig() {
+    private function getDatenKonfiguration() {
         return [
             AustauschKonstanten::KACHEL_GROESSE => StadtplanModul::KACHELGROESZE
         ];
