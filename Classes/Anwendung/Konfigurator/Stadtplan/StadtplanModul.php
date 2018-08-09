@@ -100,31 +100,17 @@ class StadtplanModul extends Modul {
     }
 
     /**
-     * @return string
-     */
-    public function getClass() {
-        return $this->getId();
-    }
-
-    /**
-     * @return string
-     */
-    public function getTag() {
-        return 'div';
-    }
-
-    /**
-     * @param IKartenelement $datenbankEintrag
+     * @param IKartenelement $eintrag
      * @return IKachel[]
      */
-    protected function erzeugeEintragAdapter($datenbankEintrag) {
-        if (empty($datenbankEintrag)) {
+    protected function erzeugeEintragAdapter($eintrag) {
+        if (empty($eintrag)) {
             return [new LeereKachelAdapter(SimpleAbmessungFabrik::erzeugeAbmessung('1/1/1/1', ''))];
         } else {
             $kacheln = [];
-            foreach ($datenbankEintrag->getAbmessungen() as $abmessung) {
+            foreach ($eintrag->getAbmessungen() as $abmessung) {
                 array_push($this->abmessungen, $abmessung);
-                array_push($kacheln, new KartenelementKachelAdapter($abmessung, $datenbankEintrag));
+                array_push($kacheln, new KartenelementKachelAdapter($abmessung, $eintrag));
             }
             return $kacheln;
         }

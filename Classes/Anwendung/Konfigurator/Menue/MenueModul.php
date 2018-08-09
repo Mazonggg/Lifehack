@@ -95,25 +95,11 @@ class MenueModul extends Modul implements IHtmlClass, IHtmlTag, IHtmlId {
     }
 
     /**
-     * @return string
-     */
-    public function getClass() {
-        return $this->getId();
-    }
-
-    /**
-     * @return string
-     */
-    public function getTag() {
-        return 'div';
-    }
-
-    /**
-     * @param IDatenbankEintrag $datenbankEintrag
+     * @param IDatenbankEintrag $eintrag
      * @return IMenueEintrag
      */
-    protected function erzeugeEintragAdapter($datenbankEintrag) {
-        return new MenueEintragAdapter($datenbankEintrag);
+    protected function erzeugeEintragAdapter($eintrag) {
+        return new MenueEintragAdapter($eintrag);
     }
 }
 

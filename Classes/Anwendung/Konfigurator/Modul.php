@@ -20,6 +20,20 @@ abstract class Modul implements IModul, ISingleton, IHtmlClass, IHtmlTag, IHtmlI
     }
 
     /**
+     * @return string
+     */
+    public function getClass() {
+        return $this->getId();
+    }
+
+    /**
+     * @return string
+     */
+    public function getTag() {
+        return 'div';
+    }
+
+    /**
      * @param IDatenbankEintrag[] $eintraege
      * @return string
      */
@@ -32,18 +46,18 @@ abstract class Modul implements IModul, ISingleton, IHtmlClass, IHtmlTag, IHtmlI
     abstract public function getInhaltHtml($eintraege);
 
     /**
-     * @param IDatenbankEintrag $datenbankEintrag
+     * @param IDatenbankEintrag $eintrag
      * @return IModulEintrag|IModulEintrag[]
      */
-    abstract protected function erzeugeEintragAdapter($datenbankEintrag);
+    abstract protected function erzeugeEintragAdapter($eintrag);
 
     /**
-     * @param IDatenbankEintrag[] $datenbankEintraege
+     * @param IDatenbankEintrag[] $eintraege
      * @return IModulEintrag[]
      */
-    protected function erzeugeEintragAdapters($datenbankEintraege) {
+    protected function erzeugeEintragAdapters($eintraege) {
         $adapters = [];
-        foreach ($datenbankEintraege as $datenbankEintrag) {
+        foreach ($eintraege as $datenbankEintrag) {
             $adapter = $this->erzeugeEintragAdapter($datenbankEintrag);
             if (is_array($adapter) && !is_object($adapter)) {
                 $adapters = array_merge($adapters, $adapter);

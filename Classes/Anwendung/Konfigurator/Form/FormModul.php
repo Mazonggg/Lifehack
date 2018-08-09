@@ -115,38 +115,24 @@ class FormModul extends Modul {
     }
 
     /**
-     * @return string
-     */
-    public function getClass() {
-        return $this->getId();
-    }
-
-    /**
-     * @return string
-     */
-    public function getTag() {
-        return 'div';
-    }
-
-    /**
-     * @param IDatenbankEintrag $datenbankEintrag
+     * @param IDatenbankEintrag $eintrag
      * @return IFormEintrag[]
      */
-    protected function erzeugeEintragAdapter($datenbankEintrag) {
+    protected function erzeugeEintragAdapter($eintrag) {
         /**
          * @var IFormEintrag[]
          */
         $formAdapters = [];
-        if ($datenbankEintrag instanceof Aufgabe) {
-            array_push($formAdapters, new AufgabeFormEintragAdapter($datenbankEintrag, $this->modus));
-        } elseif ($datenbankEintrag instanceof Item) {
-            array_push($formAdapters, new ItemFormEintragAdapter($datenbankEintrag, $this->modus));
-        } elseif ($datenbankEintrag instanceof Teilaufgabe) {
-            array_push($formAdapters, new TeilaufgabeFormEintragAdapter($datenbankEintrag, $this->modus));
-        } elseif ($datenbankEintrag instanceof Institut) {
-            array_push($formAdapters, new InstitutFormEintragAdapter($datenbankEintrag, $this->modus));
-        } elseif ($datenbankEintrag instanceof Kartenelement) {
-            $formAdapters = array_merge($formAdapters, $this->erzeugeKartenelementForms($datenbankEintrag));
+        if ($eintrag instanceof Aufgabe) {
+            array_push($formAdapters, new AufgabeFormEintragAdapter($eintrag, $this->modus));
+        } elseif ($eintrag instanceof Item) {
+            array_push($formAdapters, new ItemFormEintragAdapter($eintrag, $this->modus));
+        } elseif ($eintrag instanceof Teilaufgabe) {
+            array_push($formAdapters, new TeilaufgabeFormEintragAdapter($eintrag, $this->modus));
+        } elseif ($eintrag instanceof Institut) {
+            array_push($formAdapters, new InstitutFormEintragAdapter($eintrag, $this->modus));
+        } elseif ($eintrag instanceof Kartenelement) {
+            $formAdapters = array_merge($formAdapters, $this->erzeugeKartenelementForms($eintrag));
         }
         return $formAdapters;
     }

@@ -79,34 +79,20 @@ class PopupModul extends Modul {
      * @return string
      */
     public function getId() {
-        return $this->getClass();
-    }
-
-    /**
-     * @return string
-     */
-    public function getClass() {
         return 'popup_container';
     }
 
     /**
-     * @return string
-     */
-    public function getTag() {
-        return 'div';
-    }
-
-    /**
-     * @param IDatenbankEintrag $datenbankEintrag
+     * @param IDatenbankEintrag $eintrag
      * @return IPopupEintrag
      */
-    protected function erzeugeEintragAdapter($datenbankEintrag) {
-        if ($datenbankEintrag instanceof Aufgabe) {
-            $eintragAdapter = new AufgabePopupEintragAdapter($datenbankEintrag);
-        } elseif ($datenbankEintrag instanceof Item) {
-            $eintragAdapter = new ItemPopupEintragAdapter($datenbankEintrag);
-        } elseif ($datenbankEintrag instanceof Institut) {
-            $eintragAdapter = new InstitutPopupEintragAdapter($datenbankEintrag);
+    protected function erzeugeEintragAdapter($eintrag) {
+        if ($eintrag instanceof Aufgabe) {
+            $eintragAdapter = new AufgabePopupEintragAdapter($eintrag);
+        } elseif ($eintrag instanceof Item) {
+            $eintragAdapter = new ItemPopupEintragAdapter($eintrag);
+        } elseif ($eintrag instanceof Institut) {
+            $eintragAdapter = new InstitutPopupEintragAdapter($eintrag);
         } else {
             $eintragAdapter = null;
         }
