@@ -1,6 +1,6 @@
 <?php
 
-use Austauschformat\AustauschGenerator;
+use Austauschformat\AustauschAbrufer;
 use Anwendung\KonfiguratorModul;
 use Model\Konstanten\AjaxKeywords;
 
@@ -16,7 +16,7 @@ class Index {
             $konfigurator = KonfiguratorModul::Instance();
             return $konfigurator->getModulHtml([]);
         } elseif (isset($_GET[AjaxKeywords::MODUS]) && $_GET[AjaxKeywords::MODUS] == self::JSON) {
-            $austauschAbruf = AustauschGenerator::Instance();
+            $austauschAbruf = AustauschAbrufer::Instance();
             return $austauschAbruf->getJsonKomplett();
         } else {
             return self::getMenueLink(self::JSON) . self::getMenueLink(self::KONFIG);

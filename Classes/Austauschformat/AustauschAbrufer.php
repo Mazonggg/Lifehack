@@ -8,9 +8,9 @@ use Model\Konstanten\TabellenName;
 use Model\Singleton\ISingleton;
 use Model\Stadtplan\Kartenschreiber;
 
-class AustauschGenerator implements ISingleton {
+class AustauschAbrufer implements ISingleton {
     /**
-     * @var AustauschGenerator|null
+     * @var AustauschAbrufer|null
      */
     protected static $_instance = null;
 
