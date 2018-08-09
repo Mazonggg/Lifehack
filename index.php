@@ -13,8 +13,8 @@ class Index {
     public static function getContent() {
 
         if (isset($_GET[AjaxKeywords::MODUS]) && $_GET[AjaxKeywords::MODUS] == self::KONFIG) {
-            $konfigurator = KonfiguratorModul::Instance();
-            return $konfigurator->getModulHtml([]);
+            $konfiguratorModul = KonfiguratorModul::Instance();
+            return $konfiguratorModul->getModulHtml([]);
         } elseif (isset($_GET[AjaxKeywords::MODUS]) && $_GET[AjaxKeywords::MODUS] == self::JSON) {
             $austauschAbrufer = AustauschAbrufer::Instance();
             return $austauschAbrufer->getJsonKomplett();
