@@ -31,7 +31,7 @@ class KonfiguratorModul implements IModul {
             self::$_instance->menueModul = MenueModul::Instance();
             self::$_instance->formModul = FormModul::Instance();
             self::$_instance->stadtplanModul = StadtplanModul::Instance();
-            self::$_instance->headerGenerator = HeaderAbrufer::Instance();
+            self::$_instance->headerAbrufer = HeaderAbrufer::Instance();
         }
         return self::$_instance;
     }
@@ -44,7 +44,7 @@ class KonfiguratorModul implements IModul {
     /**
      * @var HeaderAbrufer
      */
-    private $headerGenerator;
+    private $headerAbrufer;
 
     /**
      * @return string
@@ -66,7 +66,7 @@ class KonfiguratorModul implements IModul {
      */
     public function getModulHtml($eintraege) {
         return '<!DOCTYPE html><html lang="en">' .
-            $this->headerGenerator->getHeader() .
+            $this->headerAbrufer->getHeader() .
             '<body>' .
             $this->getHtmlVonModulen() .
             '</body></html>';
@@ -75,7 +75,7 @@ class KonfiguratorModul implements IModul {
     /**
      * @return IModul[]
      */
-    public function getHtmlModule() {
+    public function getModule() {
         return [$this, $this->popupModul, $this->menueModul, $this->formModul, $this->stadtplanModul];
     }
 

@@ -34,10 +34,10 @@ class HeaderAbrufer implements ISingleton {
      */
     public function getHeader() {
         $header = "";
-        foreach (KonfiguratorModul::Instance()->getHtmlModule() as $htmlGenerator) {
+        foreach (KonfiguratorModul::Instance()->getModule() as $modul) {
             $header .=
-                self::STYLESHEET_LEFT . $htmlGenerator->getCssUrl() . self::STYLESHEET_RIGHT .
-                self::SCRIPT_LEFT . $htmlGenerator->getJavaScriptUrl() . self::SCRIPT_RIGHT;
+                self::STYLESHEET_LEFT . $modul->getCssUrl() . self::STYLESHEET_RIGHT .
+                self::SCRIPT_LEFT . $modul->getJavaScriptUrl() . self::SCRIPT_RIGHT;
         }
         return self::HEAD_LEFT . $header . self::HEAD_RIGHT;
     }
