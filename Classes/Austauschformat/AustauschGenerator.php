@@ -45,7 +45,7 @@ class AustauschGenerator implements ISingleton {
     /**
      * @return array
      */
-    public function getDatenKomplett() {
+    private function getDatenKomplett() {
         $jsonInformation = $this->getDatenInformationen();
         $karte = $this->kartenSchreiber->schreibeKarte($jsonInformation[TabellenName::KARTENELEMENT]);
         $jsonInformation[TabellenName::KARTENELEMENT] = $this->entferneAbmessungen($jsonInformation[TabellenName::KARTENELEMENT]);
