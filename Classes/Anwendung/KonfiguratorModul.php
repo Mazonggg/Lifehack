@@ -14,14 +14,14 @@ use Model\Fabrik\Einrichtung\InstitutFabrik;
 use Model\IDatenbankEintrag;
 use Model\ModelHandler;
 
-class KonfiguratorModulAdapter implements IModul {
+class KonfiguratorModul implements IModul {
     /**
-     * @var KonfiguratorModulAdapter|null
+     * @var KonfiguratorModul|null
      */
     private static $_instance = null;
 
     /**
-     * @return KonfiguratorModulAdapter
+     * @return KonfiguratorModul
      */
     public static function Instance() {
         if (self::$_instance == null) {

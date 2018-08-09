@@ -2,7 +2,7 @@
 
 namespace Anwendung\Konfigurator;
 
-use Anwendung\KonfiguratorModulAdapter;
+use Anwendung\KonfiguratorModul;
 use Model\Singleton\ISingleton;
 
 class HeaderAbrufer implements ISingleton {
@@ -34,7 +34,7 @@ class HeaderAbrufer implements ISingleton {
      */
     public function getHeader() {
         $header = "";
-        foreach (KonfiguratorModulAdapter::Instance()->getHtmlModule() as $htmlGenerator) {
+        foreach (KonfiguratorModul::Instance()->getHtmlModule() as $htmlGenerator) {
             $header .=
                 self::STYLESHEET_LEFT . $htmlGenerator->getCssUrl() . self::STYLESHEET_RIGHT .
                 self::SCRIPT_LEFT . $htmlGenerator->getJavaScriptUrl() . self::SCRIPT_RIGHT;

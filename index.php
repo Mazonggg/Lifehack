@@ -1,7 +1,7 @@
 <?php
 
 use Austauschformat\AustauschGenerator;
-use Anwendung\KonfiguratorModulAdapter;
+use Anwendung\KonfiguratorModul;
 use Model\Konstanten\AjaxKeywords;
 
 include('autoloader.php');
@@ -13,7 +13,7 @@ class Index {
     public static function getContent() {
 
         if (isset($_GET[AjaxKeywords::MODUS]) && $_GET[AjaxKeywords::MODUS] == self::KONFIG) {
-            $konfigurator = KonfiguratorModulAdapter::Instance();
+            $konfigurator = KonfiguratorModul::Instance();
             return $konfigurator->getModulHtml([]);
         } elseif (isset($_GET[AjaxKeywords::MODUS]) && $_GET[AjaxKeywords::MODUS] == self::JSON) {
             $austauschAbruf = AustauschGenerator::Instance();
