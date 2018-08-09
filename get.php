@@ -2,9 +2,9 @@
 
 include('autoloader.php');
 
-use Anwendung\Konfigurator\Popup\PopupModulAdapter;
+use Anwendung\Konfigurator\Popup\PopupModul;
 use Datenbank\DatenbankAbrufHandler;
-use Anwendung\Konfigurator\Form\FormModulAdapter;
+use Anwendung\Konfigurator\Form\FormModul;
 use Model\DatenbankEintragParser;
 use Model\Fabrik\IDatenbankEintragFabrik;
 use Model\IDatenbankEintrag;
@@ -83,8 +83,8 @@ if (isset($_GET[AjaxKeywords::MODUS])) {
             default:
                 die('Fehlerhafte Anfrage: ' . var_export($_GET));
         }
-        FormModulAdapter::Instance()->setModus($modus);
-        $html = FormModulAdapter::Instance()->getModulHtml($eintraege);
+        FormModul::Instance()->setModus($modus);
+        $html = FormModul::Instance()->getModulHtml($eintraege);
     }
     echo json_encode($html);
 } else {
@@ -107,7 +107,7 @@ function elementOeffnen($tabelle) {
             $eintraege = ModelHandler::Instance()->getAufgaben();
             break;
     }
-    return PopupModulAdapter::Instance()->getInhaltHtml($eintraege);
+    return PopupModul::Instance()->getInhaltHtml($eintraege);
 }
 
 /**

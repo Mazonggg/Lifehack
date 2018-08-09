@@ -2,7 +2,7 @@
 
 namespace Anwendung\Konfigurator\Popup;
 
-use Anwendung\Konfigurator\ModulAdapter;
+use Anwendung\Konfigurator\Modul;
 use Anwendung\Konfigurator\Popup\PopupEintrag\IPopupEintrag;
 use Anwendung\Konfigurator\Popup\PopupEintrag\Model\Einrichtung\InstitutPopupEintragAdapter;
 use Anwendung\Konfigurator\Popup\PopupEintrag\Model\Prozess\AufgabePopupEintragAdapter;
@@ -13,14 +13,14 @@ use Model\Konstanten\AjaxKeywords;
 use Model\Prozess\Aufgabe;
 use Model\Prozess\Item;
 
-class PopupModulAdapter extends ModulAdapter {
+class PopupModul extends Modul {
     /**
-     * @var PopupModulAdapter|null
+     * @var PopupModul|null
      */
     private static $_instance = null;
 
     /**
-     * @return PopupModulAdapter
+     * @return PopupModul
      */
     public static function Instance() {
         if (self::$_instance == null) {

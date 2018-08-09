@@ -5,7 +5,7 @@ namespace Anwendung\Konfigurator\Form\FormEintrag\Input;
 use Model\SimpleWertepaarFabrik;
 use Model\Wertepaar;
 
-abstract class InputAdapter implements IInput {
+abstract class Input implements IInput {
     /**
      * @var string
      */

@@ -2,7 +2,7 @@
 
 namespace Anwendung\Konfigurator\Form\FormEintrag\Input;
 
-class TextareaInputAdapter extends TextInputAdapter {
+class TextareaInput extends TextInput {
 
     /**
      * @return string

@@ -2,7 +2,7 @@
 
 namespace Anwendung\Konfigurator\Form\FormEintrag\Input;
 
-class AuswahlButtonInputAdapter extends ButtonInputAdapter {
+class AuswahlButtonInput extends ButtonInput {
 
     /**
      * @var string

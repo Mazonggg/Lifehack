@@ -4,7 +4,7 @@ namespace Anwendung\Konfigurator\Form\FormEintrag\Input;
 
 use Model\Wertepaar;
 
-class BooleanInputAdapter extends SelectInputAdapter {
+class BooleanInput extends SelectInput {
 
     /**
      * @param Wertepaar[] $optionen

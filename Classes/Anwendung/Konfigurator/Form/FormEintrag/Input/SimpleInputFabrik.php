@@ -34,38 +34,38 @@ class SimpleInputFabrik {
      */
     public static function erzeugeFormInput($type, $name, $daten) {
         if ($type == self::NUMBER) {
-            $formInput = new NumberInputAdapter($name, $daten[self::INHALT]);
+            $formInput = new NumberInput($name, $daten[self::INHALT]);
             $formInput->setMin($daten[self::MIN]);
             $formInput->setMax($daten[self::MAX]);
             $formInput->setLabel($daten[self::LABEL]);
         } elseif ($type == self::TEXTAREA) {
-            $formInput = new TextareaInputAdapter($name, $daten[self::INHALT]);
+            $formInput = new TextareaInput($name, $daten[self::INHALT]);
         } elseif ($type == self::SELECT) {
-            $formInput = new SelectInputAdapter($name, $daten[self::INHALT]);
+            $formInput = new SelectInput($name, $daten[self::INHALT]);
             $formInput->setOptionen($daten[self::OPTIONEN]);
             $formInput->setSelected($daten[self::SELECTED]);
             $formInput->setLabel($daten[self::LABEL]);
         } elseif ($type == self::AUSWAHLBILD) {
-            $formInput = new AuswahlbildInputAdapter($name, $daten[self::INHALT]);
+            $formInput = new AuswahlbildInput($name, $daten[self::INHALT]);
             $formInput->setOptionen($daten[self::OPTIONEN]);
             $formInput->setSelected($daten[self::SELECTED]);
             $formInput->setLabel($daten[self::LABEL]);
         } elseif ($type == self::BOOLEAN) {
-            $formInput = new BooleanInputAdapter($name, $daten[self::INHALT]);
+            $formInput = new BooleanInput($name, $daten[self::INHALT]);
             $formInput->setSelected($daten[self::SELECTED]);
             $formInput->setLabel($daten[self::LABEL]);
         } elseif ($type == self::NEUBUTTON) {
-            $formInput = new NeuButtonInputAdapter($name, $daten[self::INHALT]);
+            $formInput = new NeuButtonInput($name, $daten[self::INHALT]);
             $formInput->setId($daten[self::ID]);
         } elseif ($type == self::HIDDEN) {
-            $formInput = new HiddenInputAdapter($name, $daten[self::INHALT]);
+            $formInput = new HiddenInput($name, $daten[self::INHALT]);
             $formInput->setId($daten[self::ID]);
         } elseif ($type == self::AUSWAHL_BUTTON) {
-            $formInput = new AuswahlButtonInputAdapter($name, $daten[self::INHALT]);
+            $formInput = new AuswahlButtonInput($name, $daten[self::INHALT]);
             $formInput->setWert($daten[self::WERT]);
             $formInput->setId($daten[self::ID]);
         } else {
-            $formInput = new TextInputAdapter($name, $daten[self::INHALT]);
+            $formInput = new TextInput($name, $daten[self::INHALT]);
         }
         return $formInput;
     }

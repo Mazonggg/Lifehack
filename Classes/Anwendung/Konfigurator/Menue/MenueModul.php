@@ -7,21 +7,21 @@ use Anwendung\Konfigurator\IHtmlId;
 use Anwendung\Konfigurator\IHtmlTag;
 use Anwendung\Konfigurator\Menue\MenueEintrag\MenueEintragAdapter;
 use Datenbank\DatenbankAbrufHandler;
-use Anwendung\Konfigurator\ModulAdapter;
+use Anwendung\Konfigurator\Modul;
 use Anwendung\Konfigurator\Menue\MenueEintrag\IMenueEintrag;
 use Model\IDatenbankEintrag;
 use Model\Konstanten\AjaxKeywords;
 use Model\Konstanten\Keyword;
 use Model\Konstanten\TabellenName;
 
-class MenueModulAdapter extends ModulAdapter implements IHtmlClass, IHtmlTag, IHtmlId {
+class MenueModul extends Modul implements IHtmlClass, IHtmlTag, IHtmlId {
     /**
-     * @var MenueModulAdapter|null
+     * @var MenueModul|null
      */
     private static $_instance = null;
 
     /**
-     * @return MenueModulAdapter
+     * @return MenueModul
      */
     public static function Instance() {
         if (self::$_instance == null) {

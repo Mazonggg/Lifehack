@@ -3,7 +3,7 @@
 namespace Anwendung\Konfigurator\Stadtplan\Kachel;
 
 use Austauschformat\AustauschKonstanten;
-use Anwendung\Konfigurator\Stadtplan\StadtplanModulAdapter;
+use Anwendung\Konfigurator\Stadtplan\StadtplanModul;
 use Model\SimpleWertepaarFabrik;
 use Model\Stadtplan\Abmessung;
 use Model\Stadtplan\SimpleAbmessungFabrik;
@@ -38,7 +38,7 @@ abstract class KachelAdapter implements IKachel {
      * @return Abmessung
      */
     private function getUmgerechneteAbmessungen() {
-        $stadtplanAbmessung = StadtplanModulAdapter::Instance()->getStadtplanAbmessung();
+        $stadtplanAbmessung = StadtplanModul::Instance()->getStadtplanAbmessung();
         return SimpleAbmessungFabrik::erzeugeAbmessung(
             ($this->abmessung->xMin() - $stadtplanAbmessung->xMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .
             ($this->abmessung->yMin() - $stadtplanAbmessung->yMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .

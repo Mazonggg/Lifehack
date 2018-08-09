@@ -2,10 +2,7 @@
 
 namespace Anwendung\Konfigurator\Form\FormEintrag\Input;
 
-use Model\SimpleWertepaarFabrik;
-use Model\Wertepaar;
-
-class HiddenInputAdapter extends TextInputAdapter {
+abstract class ButtonInput extends Input {
 
     /**
      * @var string
@@ -16,16 +13,7 @@ class HiddenInputAdapter extends TextInputAdapter {
      * @return string
      */
     public function getClass() {
-        return parent::getClass() . ' hidden';
-    }
-
-    /**
-     * @return Wertepaar[]
-     */
-    public function getAttribute() {
-        return array_merge(parent::getAttribute(), [
-            SimpleWertepaarFabrik::erzeugeWertepaar('value', $this->getInhalt())
-        ]);
+        return 'form_item hoverbox form_button';
     }
 
     /**
@@ -40,6 +28,20 @@ class HiddenInputAdapter extends TextInputAdapter {
      */
     public function setId($id) {
         $this->id = $id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTag() {
+        return 'button';
+    }
+
+    /**
+     * @return string
+     */
+    public function getType() {
+        return '';
     }
 }
 

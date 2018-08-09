@@ -5,7 +5,7 @@ namespace Anwendung\Konfigurator;
 use Model\IDatenbankEintrag;
 use Model\Singleton\ISingleton;
 
-abstract class ModulAdapter implements IModul, ISingleton, IHtmlClass, IHtmlTag, IHtmlId {
+abstract class Modul implements IModul, ISingleton, IHtmlClass, IHtmlTag, IHtmlId {
 
     /**
      * @param IDatenbankEintrag[] $eintraege

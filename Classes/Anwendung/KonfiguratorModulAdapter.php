@@ -2,12 +2,12 @@
 
 namespace Anwendung;
 
-use Anwendung\Konfigurator\Form\FormModulAdapter;
+use Anwendung\Konfigurator\Form\FormModul;
 use Anwendung\Konfigurator\HeaderAbrufer;
 use Anwendung\Konfigurator\IModul;
-use Anwendung\Konfigurator\Menue\MenueModulAdapter;
-use Anwendung\Konfigurator\Popup\PopupModulAdapter;
-use Anwendung\Konfigurator\Stadtplan\StadtplanModulAdapter;
+use Anwendung\Konfigurator\Menue\MenueModul;
+use Anwendung\Konfigurator\Popup\PopupModul;
+use Anwendung\Konfigurator\Stadtplan\StadtplanModul;
 use Model\Fabrik\Aufgabe\AufgabeFabrik;
 use Model\Fabrik\Aufgabe\ItemFabrik;
 use Model\Fabrik\Einrichtung\InstitutFabrik;
@@ -27,10 +27,10 @@ class KonfiguratorModulAdapter implements IModul {
         if (self::$_instance == null) {
             self::$_instance = new self();
 
-            self::$_instance->popupModul = PopupModulAdapter::Instance();
-            self::$_instance->menueModul = MenueModulAdapter::Instance();
-            self::$_instance->formModul = FormModulAdapter::Instance();
-            self::$_instance->stadtplanModul = StadtplanModulAdapter::Instance();
+            self::$_instance->popupModul = PopupModul::Instance();
+            self::$_instance->menueModul = MenueModul::Instance();
+            self::$_instance->formModul = FormModul::Instance();
+            self::$_instance->stadtplanModul = StadtplanModul::Instance();
             self::$_instance->headerGenerator = HeaderAbrufer::Instance();
         }
         return self::$_instance;

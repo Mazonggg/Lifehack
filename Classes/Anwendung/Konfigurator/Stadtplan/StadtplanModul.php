@@ -2,7 +2,7 @@
 
 namespace Anwendung\Konfigurator\Stadtplan;
 
-use Anwendung\Konfigurator\ModulAdapter;
+use Anwendung\Konfigurator\Modul;
 use Anwendung\Konfigurator\Stadtplan\Kachel\IKachel;
 use Anwendung\Konfigurator\Stadtplan\Kachel\Model\LeereKachelAdapter;
 use Anwendung\Konfigurator\Stadtplan\Kachel\Model\Stadtplan\KartenelementKachelAdapter;
@@ -12,14 +12,14 @@ use Model\Stadtplan\IKartenelement;
 use Model\Stadtplan\Kartenschreiber;
 use Model\Stadtplan\SimpleAbmessungFabrik;
 
-class StadtplanModulAdapter extends ModulAdapter {
+class StadtplanModul extends Modul {
     /**
-     * @var StadtplanModulAdapter|null
+     * @var StadtplanModul|null
      */
     private static $_instance = null;
 
     /**
-     * @return StadtplanModulAdapter
+     * @return StadtplanModul
      */
     public static function Instance() {
         if (self::$_instance == null) {

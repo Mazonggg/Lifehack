@@ -13,7 +13,7 @@ use Anwendung\Konfigurator\Form\FormEintrag\Model\Stadtplan\GebaeudeFormEintragA
 use Anwendung\Konfigurator\Form\FormEintrag\Model\Stadtplan\KartenelementFormEintragAdapter;
 use Anwendung\Konfigurator\Form\FormEintrag\Model\Stadtplan\UmweltFormEintragAdapter;
 use Anwendung\Konfigurator\Form\FormEintrag\Model\Stadtplan\WohnhausFormEintragAdapter;
-use Anwendung\Konfigurator\ModulAdapter;
+use Anwendung\Konfigurator\Modul;
 use Datenbank\DatenbankAbrufHandler;
 use Model\Einrichtung\Institut;
 use Model\Einrichtung\Niederlassung;
@@ -29,14 +29,14 @@ use Model\Stadtplan\Kartenelement;
 use Model\Stadtplan\Umwelt;
 use Model\Stadtplan\Wohnhaus;
 
-class FormModulAdapter extends ModulAdapter {
+class FormModul extends Modul {
     /**
-     * @var FormModulAdapter|null
+     * @var FormModul|null
      */
     private static $_instance = null;
 
     /**
-     * @return FormModulAdapter
+     * @return FormModul
      */
     public static function Instance() {
         if (self::$_instance == null) {
