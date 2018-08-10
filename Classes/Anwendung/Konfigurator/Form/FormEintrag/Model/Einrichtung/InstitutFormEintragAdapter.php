@@ -12,20 +12,11 @@ use Model\Einrichtung\Institut;
 use Model\Konstanten\TabellenSpalten;
 
 class InstitutFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
+
     /**
      * @var Institut
      */
-    private $institut;
-
-    /**
-     * InstitutFormAdapter constructor.
-     * @param Institut $institut
-     * @param string $modus
-     */
-    public function __construct($institut, $modus) {
-        parent::__construct($institut, $modus);
-        $this->institut = $institut;
-    }
+    protected $datenbankEintrag;
 
     /**
      * @return IInput[]
@@ -34,12 +25,12 @@ class InstitutFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
         $nameInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXT,
             TabellenName::INSTITUT . Keyword::NAME,
-            [SimpleInputFabrik::INHALT => $this->institut->getName()]
+            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getName()]
         );
         $beschreibungInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXTAREA,
             TabellenSpalten::INSTITUT_BESCHREIBUNG,
-            [SimpleInputFabrik::INHALT => $this->institut->getBeschreibung()]
+            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getBeschreibung()]
         );
         $institutArten = DatenbankAbrufHandler::Instance()->findSpalteZuId(
             TabellenName::INSTITUT_ART,
@@ -50,7 +41,7 @@ class InstitutFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
             TabellenName::INSTITUT_ART . Keyword::REF,
             [SimpleInputFabrik::INHALT => '',
                 SimpleInputFabrik::OPTIONEN => $institutArten,
-                SimpleInputFabrik::SELECTED => $this->institut->getInstitutArt()->getSchluessel(),
+                SimpleInputFabrik::SELECTED => $this->datenbankEintrag->getInstitutArt()->getSchluessel(),
                 SimpleInputFabrik::LABEL => 'Art des Instituts']
         );
         return [$nameInput, $beschreibungInput, $instituArtInput];

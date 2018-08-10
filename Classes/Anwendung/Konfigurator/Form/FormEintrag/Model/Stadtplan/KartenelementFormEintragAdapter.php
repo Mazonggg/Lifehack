@@ -15,17 +15,7 @@ class KartenelementFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
     /**
      * @var IKartenelement
      */
-    private $kartenelement;
-
-    /**
-     * KartenelementForm constructor.
-     * @param IKartenelement $kartenelement
-     * @param string $modus
-     */
-    public function __construct($kartenelement, $modus) {
-        parent::__construct($kartenelement, $modus);
-        $this->kartenelement = $kartenelement;
-    }
+    protected $datenbankEintrag;
 
     /**
      * @return IInput[]
@@ -34,7 +24,7 @@ class KartenelementFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
         $kartenelementArtInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::HIDDEN,
             TabellenName::KARTENELEMENT_ART . Keyword::REF,
-            [SimpleInputFabrik::INHALT => $this->kartenelement->getKartenelementArt()->getSchluessel(),
+            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getKartenelementArt()->getSchluessel(),
                 SimpleInputFabrik::ID => '']
         );
         $kartenelementAussehens = DatenbankAbrufHandler::Instance()->findSpalteZuId(
@@ -46,7 +36,7 @@ class KartenelementFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
             TabellenName::KARTENELEMENT_AUSSEHEN . Keyword::REF,
             [SimpleInputFabrik::INHALT => '',
                 SimpleInputFabrik::OPTIONEN => $kartenelementAussehens,
-                SimpleInputFabrik::SELECTED => $this->kartenelement->getKartenelementAussehen()->getSchluessel(),
+                SimpleInputFabrik::SELECTED => $this->datenbankEintrag->getKartenelementAussehen()->getSchluessel(),
                 SimpleInputFabrik::LABEL => 'Aussehen des Elements']
         );
         return [

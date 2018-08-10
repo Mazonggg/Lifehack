@@ -11,20 +11,11 @@ use Model\Konstanten\TabellenName;
 use Model\Einrichtung\Niederlassung;
 
 class NiederlassungFormEintragAdapter extends OhnePrimaerschluesselFormAdapter {
+
     /**
      * @var Niederlassung
      */
-    private $niederlassung;
-
-    /**
-     * NiederlassungFormAdapter constructor.
-     * @param Niederlassung $niederlassung
-     * @param string $modus
-     */
-    public function __construct($niederlassung, $modus) {
-        parent::__construct($niederlassung, $modus);
-        $this->niederlassung = $niederlassung;
-    }
+    protected $datenbankEintrag;
 
     /**
      * @return IInput[]
@@ -39,7 +30,7 @@ class NiederlassungFormEintragAdapter extends OhnePrimaerschluesselFormAdapter {
             TabellenName::NIEDERLASSUNG . '_' . TabellenName::INSTITUT . Keyword::REF,
             [SimpleInputFabrik::INHALT => '',
                 SimpleInputFabrik::OPTIONEN => $interieurAussehens,
-                SimpleInputFabrik::SELECTED => $this->niederlassung->getInstitut()->getSchluessel(),
+                SimpleInputFabrik::SELECTED => $this->datenbankEintrag->getInstitut()->getSchluessel(),
                 SimpleInputFabrik::LABEL => 'Geh&ouml;rt zu Einrichtung']
         );
         return [$interieurAussehensInput];

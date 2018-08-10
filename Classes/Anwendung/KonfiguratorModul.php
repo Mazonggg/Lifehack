@@ -66,10 +66,7 @@ class KonfiguratorModul implements IModul {
      */
     public function getModulHtml($eintraege) {
         return '<!DOCTYPE html><html lang="en">' .
-            $this->headerAbrufer->getHeader() .
-            '<body>' .
-            $this->getHtmlVonModulen() .
-            '</body></html>';
+            $this->headerAbrufer->getHeader() . $this->getInhalt($eintraege) . '</html>';
     }
 
     /**
@@ -91,6 +88,16 @@ class KonfiguratorModul implements IModul {
         ]);
         $html .= $this->formModul->getModulHtml([]);
         return $html . $this->stadtplanModul->getModulHtml(ModelHandler::Instance()->getKartenelemente());
+    }
+
+    /**
+     * @param IDatenbankEintrag[] $eintraege
+     * @return string
+     */
+    public function getInhalt($eintraege) {
+        return '<body>' .
+            $this->getHtmlVonModulen() .
+            '</body>';
     }
 }
 

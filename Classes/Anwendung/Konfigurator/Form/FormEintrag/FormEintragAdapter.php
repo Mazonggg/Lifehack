@@ -4,27 +4,20 @@ namespace Anwendung\Konfigurator\Form\FormEintrag;
 
 use Anwendung\Konfigurator\Form\FormEintrag\Input\IInput;
 use Anwendung\Konfigurator\Form\FormEintrag\Input\SimpleInputFabrik;
+use Anwendung\Konfigurator\ModulEintragAdapter;
 use Model\Konstanten\AjaxKeywords;
-use Model\IDatenbankEintrag;
 
-abstract class FormEintragAdapter implements IFormEintrag {
-    /**
-     * @var IDatenbankEintrag
-     */
-    protected $datenbankEintrag;
+abstract class FormEintragAdapter extends ModulEintragAdapter implements IFormEintrag {
 
     /**
      * @var string
      */
-    private $modus;
+    private $modus = '';
 
     /**
-     * Form constructor.
      * @param string $modus
-     * @param IDatenbankEintrag $datenbankEintrag
      */
-    public function __construct($datenbankEintrag, $modus) {
-        $this->datenbankEintrag = $datenbankEintrag;
+    public function setModus($modus) {
         $this->modus = $modus;
     }
 

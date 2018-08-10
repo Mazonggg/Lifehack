@@ -10,20 +10,11 @@ use Model\Konstanten\TabellenSpalten;
 use Model\Stadtplan\Wohnhaus;
 
 class WohnhausFormEintragAdapter extends OhnePrimaerschluesselFormAdapter {
-    /**
-     * @var Wohnhaus $wohnhaus
-     */
-    private $wohnhaus;
 
     /**
-     * WohnhausFormAdapter constructor.
-     * @param Wohnhaus $wohnhaus
-     * @param string $modus
+     * @var Wohnhaus $datenbankEintrag
      */
-    public function __construct($wohnhaus, $modus) {
-        parent::__construct($wohnhaus, $modus);
-        $this->wohnhaus = $wohnhaus;
-    }
+    protected $datenbankEintrag;
 
     /**
      * @return IInput[]
@@ -32,7 +23,7 @@ class WohnhausFormEintragAdapter extends OhnePrimaerschluesselFormAdapter {
         $wohneinheitenInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::NUMBER,
             TabellenSpalten::WOHNHAUS_WOHNEINHEITEN,
-            [SimpleInputFabrik::INHALT => $this->wohnhaus->getWohneinheiten(),
+            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getWohneinheiten(),
                 SimpleInputFabrik::MIN => '1',
                 SimpleInputFabrik::MAX => '20',
                 SimpleInputFabrik::LABEL => 'Anzahl der Wohneinheiten']

@@ -10,20 +10,11 @@ use Model\Konstanten\TabellenSpalten;
 use Model\Stadtplan\Umwelt;
 
 class UmweltFormEintragAdapter extends OhnePrimaerschluesselFormAdapter {
-    /**
-     * @var Umwelt $umwelt
-     */
-    private $umwelt;
 
     /**
-     * UmweltFormAdapter constructor.
-     * @param Umwelt $umwelt
-     * @param string $modus
+     * @var Umwelt $datenbankEintrag
      */
-    public function __construct($umwelt, $modus) {
-        parent::__construct($umwelt, $modus);
-        $this->umwelt = $umwelt;
-    }
+    protected $datenbankEintrag;
 
     /**
      * @return IInput[]
@@ -33,13 +24,13 @@ class UmweltFormEintragAdapter extends OhnePrimaerschluesselFormAdapter {
             SimpleInputFabrik::BOOLEAN,
             TabellenSpalten::UMWELT_BEGEHBAR,
             [SimpleInputFabrik::INHALT => '',
-                SimpleInputFabrik::SELECTED => $this->umwelt->isBegehbar(),
+                SimpleInputFabrik::SELECTED => $this->datenbankEintrag->isBegehbar(),
                 SimpleInputFabrik::LABEL => 'Ist das Element begehbar?']
         );
         $bezeichnungInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXT,
             TabellenSpalten::UMWELT_BEZEICHUNG,
-            [SimpleInputFabrik::INHALT => $this->umwelt->getBezeichnung(),
+            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getBezeichnung(),
                 SimpleInputFabrik::LABEL => 'Bezeichnung des Elements']
         );
         return [$begehbarInput, $bezeichnungInput];

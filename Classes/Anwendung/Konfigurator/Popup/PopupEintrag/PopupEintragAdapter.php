@@ -2,23 +2,11 @@
 
 namespace Anwendung\Konfigurator\Popup\PopupEintrag;
 
+use Anwendung\Konfigurator\ModulEintragAdapter;
 use Model\Konstanten\AjaxKeywords;
-use Model\IDatenbankEintrag;
 use Model\Wertepaar;
 
-abstract class PopupEintragAdapter implements IPopupEintrag {
-    /**
-     * @var IDatenbankEintrag
-     */
-    private $datenbankEintrag;
-
-    /**
-     * PopupListenEintragAdapter constructor.
-     * @param IDatenbankEintrag $datenbankEintrag
-     */
-    public function __construct($datenbankEintrag) {
-        $this->datenbankEintrag = $datenbankEintrag;
-    }
+abstract class PopupEintragAdapter extends ModulEintragAdapter implements IPopupEintrag {
 
     /**
      * @return string

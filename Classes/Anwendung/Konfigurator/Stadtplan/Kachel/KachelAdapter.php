@@ -2,6 +2,7 @@
 
 namespace Anwendung\Konfigurator\Stadtplan\Kachel;
 
+use Anwendung\Konfigurator\ModulEintragAdapter;
 use Austauschformat\AustauschKonstanten;
 use Anwendung\Konfigurator\Stadtplan\StadtplanModul;
 use Model\SimpleWertepaarFabrik;
@@ -9,20 +10,12 @@ use Model\Stadtplan\Abmessung;
 use Model\Stadtplan\SimpleAbmessungFabrik;
 use Model\Wertepaar;
 
-abstract class KachelAdapter implements IKachel {
+abstract class KachelAdapter extends ModulEintragAdapter implements IKachel {
 
     /**
      * @var Abmessung
      */
-    private $abmessung;
-
-    /**
-     * KartenelementKachelAdapter constructor.
-     * @param Abmessung $abmessung
-     */
-    public function __construct($abmessung) {
-        $this->abmessung = $abmessung;
-    }
+    protected $datenbankEintrag;
 
     /**
      * @return Wertepaar[]
@@ -40,10 +33,10 @@ abstract class KachelAdapter implements IKachel {
     private function getUmgerechneteAbmessungen() {
         $stadtplanAbmessung = StadtplanModul::Instance()->getStadtplanAbmessung();
         return SimpleAbmessungFabrik::erzeugeAbmessung(
-            ($this->abmessung->xMin() - $stadtplanAbmessung->xMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .
-            ($this->abmessung->yMin() - $stadtplanAbmessung->yMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .
-            $this->abmessung->getBreite() . AustauschKonstanten::ABMESSUNG_TRENNER .
-            $this->abmessung->getHoehe() . AustauschKonstanten::ABMESSUNG_TRENNER, '');
+            ($this->datenbankEintrag->xMin() - $stadtplanAbmessung->xMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .
+            ($this->datenbankEintrag->yMin() - $stadtplanAbmessung->yMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .
+            $this->datenbankEintrag->getBreite() . AustauschKonstanten::ABMESSUNG_TRENNER .
+            $this->datenbankEintrag->getHoehe() . AustauschKonstanten::ABMESSUNG_TRENNER, '');
     }
 
     /**
@@ -79,8 +72,8 @@ abstract class KachelAdapter implements IKachel {
     /**
      * @return Abmessung
      */
-    public function getAbmessung() {
-        return $this->abmessung;
+    public function getDatenbankEintrag() {
+        return $this->datenbankEintrag;
     }
 
     /**

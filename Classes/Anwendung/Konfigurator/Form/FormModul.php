@@ -120,21 +120,26 @@ class FormModul extends Modul {
      */
     protected function erzeugeEintragAdapter($eintrag) {
         /**
-         * @var IFormEintrag[]
+         * @var IFormEintrag
          */
-        $formAdapters = [];
+        $formAdapter = null;
         if ($eintrag instanceof Aufgabe) {
-            array_push($formAdapters, new AufgabeFormEintragAdapter($eintrag, $this->modus));
+            $formAdapter = new AufgabeFormEintragAdapter($eintrag);
         } elseif ($eintrag instanceof Item) {
-            array_push($formAdapters, new ItemFormEintragAdapter($eintrag, $this->modus));
+            $formAdapter = new ItemFormEintragAdapter($eintrag);
         } elseif ($eintrag instanceof Teilaufgabe) {
-            array_push($formAdapters, new TeilaufgabeFormEintragAdapter($eintrag, $this->modus));
+            $formAdapter = new TeilaufgabeFormEintragAdapter($eintrag);
         } elseif ($eintrag instanceof Institut) {
-            array_push($formAdapters, new InstitutFormEintragAdapter($eintrag, $this->modus));
-        } elseif ($eintrag instanceof Kartenelement) {
-            $formAdapters = array_merge($formAdapters, $this->erzeugeKartenelementForms($eintrag));
+            $formAdapter = new InstitutFormEintragAdapter($eintrag);
+        } elseif ($eintrag instanceof IKartenelement) {
+            return $this->erzeugeKartenelementForms($eintrag);
         }
-        return $formAdapters;
+        if (isset($formAdapter)) {
+            $formAdapter->setModus($this->modus);
+            return [$formAdapter];
+        } else {
+            return [];
+        }
     }
 
     /**
@@ -143,18 +148,21 @@ class FormModul extends Modul {
      */
     private function erzeugeKartenelementForms($kartenelement) {
         $formAdapters = [
-            new KartenelementFormEintragAdapter(self::pruefeKartenelementArt($kartenelement), $this->modus),
-            new AbmessungenFormEintragAdapter($kartenelement->getAbmessungen(), $this->modus)
+            new KartenelementFormEintragAdapter(self::pruefeKartenelementArt($kartenelement)),
+            new AbmessungenFormEintragAdapter($kartenelement->getAbmessungen())
         ];
         if ($kartenelement instanceof Umwelt) {
-            array_push($formAdapters, new UmweltFormEintragAdapter($kartenelement, $this->modus));
+            array_push($formAdapters, new UmweltFormEintragAdapter($kartenelement));
         } elseif ($kartenelement instanceof Gebaeude) {
-            array_push($formAdapters, new GebaeudeFormEintragAdapter($kartenelement, $this->modus));
+            array_push($formAdapters, new GebaeudeFormEintragAdapter($kartenelement));
             if ($kartenelement instanceof Wohnhaus) {
-                array_push($formAdapters, new WohnhausFormEintragAdapter($kartenelement, $this->modus));
+                array_push($formAdapters, new WohnhausFormEintragAdapter($kartenelement));
             } elseif ($kartenelement instanceof Niederlassung) {
-                array_push($formAdapters, new NiederlassungFormEintragAdapter($kartenelement, $this->modus));
+                array_push($formAdapters, new NiederlassungFormEintragAdapter($kartenelement));
             }
+        }
+        foreach ($formAdapters as $formAdapter) {
+            $formAdapter->setModus($this->modus);
         }
         return $formAdapters;
     }

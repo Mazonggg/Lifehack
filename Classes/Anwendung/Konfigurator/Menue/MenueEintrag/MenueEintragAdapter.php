@@ -2,23 +2,10 @@
 
 namespace Anwendung\Konfigurator\Menue\MenueEintrag;
 
-use Model\IDatenbankEintrag;
+use Anwendung\Konfigurator\ModulEintragAdapter;
 use Model\Konstanten\AjaxKeywords;
 
-class MenueEintragAdapter implements IMenueEintrag {
-
-    /**
-     * @var IDatenbankEintrag
-     */
-    private $datenbankEintrag;
-
-    /**
-     * MenueEintragAdapter constructor.
-     * @param IDatenbankEintrag $datenbankEintrag
-     */
-    public function __construct(IDatenbankEintrag $datenbankEintrag) {
-        $this->datenbankEintrag = $datenbankEintrag;
-    }
+class MenueEintragAdapter extends ModulEintragAdapter implements IMenueEintrag {
 
     /**
      * @return string
