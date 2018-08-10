@@ -24,7 +24,7 @@ abstract class FormEintragAdapter extends ModulEintragAdapter implements IFormEi
     /**
      * @return string
      */
-    public function getEintragHtml() {
+    public function getEintragInhalt() {
         $form =
             '<' . $this->getTag() . ' class="';
         if ($this->istTeilForm()) {

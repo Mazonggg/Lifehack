@@ -7,6 +7,6 @@ interface IModulEintrag {
     /**
      * @return string
      */
-    public function getEintragHtml();
+    public function getEintragInhalt();
 }
 

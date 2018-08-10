@@ -82,7 +82,7 @@ class MenueModul extends Modul implements IHtmlClass, IHtmlTag, IHtmlId {
         $elementArten = $this->erzeugeEintragAdapters($eintraege);
         $menue = '';
         foreach ($elementArten as $elementArt) {
-            $menue .= $elementArt->getEintragHtml();
+            $menue .= $elementArt->getEintragInhalt();
         }
         return $menue;
     }

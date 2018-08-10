@@ -87,9 +87,9 @@ class StadtplanModul extends Modul {
         $kacheln = $this->erzeugeEintragAdapters($eintraege);
         $html = '';
         foreach ($kacheln as $kachel) {
-            $html .= $kachel->getEintragHtml();
+            $html .= $kachel->getEintragInhalt();
         }
-        return $html . $this->erzeugeEintragAdapter(null)[0]->getEintragHtml();
+        return $html . $this->erzeugeEintragAdapter(null)[0]->getEintragInhalt();
     }
 
     /**

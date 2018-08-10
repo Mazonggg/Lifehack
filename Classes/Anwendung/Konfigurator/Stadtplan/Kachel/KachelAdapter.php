@@ -53,7 +53,7 @@ abstract class KachelAdapter extends ModulEintragAdapter implements IKachel {
     /**
      * @return string
      */
-    public function getEintragHtml() {
+    public function getEintragInhalt() {
         return '<' . $this->getTag() . $this->getAttributeHtml() . ' ></' . $this->getTag() . '>';
     }
 

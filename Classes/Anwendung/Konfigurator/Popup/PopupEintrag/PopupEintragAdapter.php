@@ -11,7 +11,7 @@ abstract class PopupEintragAdapter extends ModulEintragAdapter implements IPopup
     /**
      * @return string
      */
-    public function getEintragHtml() {
+    public function getEintragInhalt() {
         return '<' . $this->getTag() . ' class="' . $this->getClass() . '"><p>' . $this->getKurzInfo() . '</p>' .
             '<div class="popup_optionen">' .
             '<button id="' . $this->eintrag->getTabelle() . "_"

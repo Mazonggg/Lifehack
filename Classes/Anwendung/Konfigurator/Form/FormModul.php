@@ -102,7 +102,7 @@ class FormModul extends Modul {
          */
         $teilFormulare = $this->erzeugeEintragAdapters($eintraege);
         foreach ($teilFormulare as $teilFormular) {
-            $form .= '<div>' . $teilFormular->getEintragHtml() . '</div>';
+            $form .= '<div>' . $teilFormular->getEintragInhalt() . '</div>';
         }
         return $form;
     }

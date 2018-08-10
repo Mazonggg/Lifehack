@@ -66,14 +66,13 @@ class KonfiguratorModul implements IModul {
      */
     public function getModulHtml($eintraege) {
         return '<!DOCTYPE html><html lang="en">' .
-            $this->headerAbrufer->getHeader() . $this->getInhalt($eintraege) . '</html>';
-    }
-
-    /**
-     * @return IModul[]
-     */
-    public function getModule() {
-        return [$this, $this->popupModul, $this->menueModul, $this->formModul, $this->stadtplanModul];
+            $this->headerAbrufer->getHeader([
+                $this, $this->popupModul,
+                $this->menueModul,
+                $this->formModul,
+                $this->stadtplanModul
+            ]) .
+            $this->getInhalt($eintraege) . '</html>';
     }
 
     /**

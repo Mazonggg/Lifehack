@@ -31,7 +31,7 @@ class MenueEintragAdapter extends ModulEintragAdapter implements IMenueEintrag {
     /**
      * @return string
      */
-    public function getEintragHtml() {
+    public function getEintragInhalt() {
         return '<div id="' . $this->eintrag->getTabelle() . '_menue" class="menue_block">' .
             $this->getMenueButton($this->eintrag->getTabelle()) .
             '</div>';

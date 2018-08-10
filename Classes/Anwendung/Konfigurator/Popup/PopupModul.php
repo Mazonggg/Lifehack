@@ -68,7 +68,7 @@ class PopupModul extends Modul {
         $tabelle = (isset($eintraege[0]) ? $eintraege[0]->getTabelle() : '');
         $blockHtml = '<ul id="' . $tabelle . '_popup_block" class="popup_block">';
         foreach ($blockDaten as $block) {
-            $blockHtml .= $block->getEintragHtml();
+            $blockHtml .= $block->getEintragInhalt();
         }
         return $blockHtml .
             '</ul>' .
