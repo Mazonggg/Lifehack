@@ -15,7 +15,7 @@ class GebaeudeFormEintragAdapter extends OhnePrimaerschluesselFormAdapter {
     /**
      * @var Gebaeude
      */
-    protected $datenbankEintrag;
+    protected $eintrag;
 
     /**
      * @return IInput[]
@@ -30,7 +30,7 @@ class GebaeudeFormEintragAdapter extends OhnePrimaerschluesselFormAdapter {
             TabellenName::INTERIEUR_AUSSEHEN . Keyword::REF,
             [SimpleInputFabrik::INHALT => '',
                 SimpleInputFabrik::OPTIONEN => $interieurAussehens,
-                SimpleInputFabrik::SELECTED => $this->datenbankEintrag->getInterieurAussehen()->getSchluessel(),
+                SimpleInputFabrik::SELECTED => $this->eintrag->getInterieurAussehen()->getSchluessel(),
                 SimpleInputFabrik::LABEL => 'Aussehen des Innenraums']
         );
         return [$interieurAussehensInput];

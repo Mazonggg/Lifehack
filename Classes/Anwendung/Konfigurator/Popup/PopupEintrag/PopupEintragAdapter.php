@@ -14,9 +14,9 @@ abstract class PopupEintragAdapter extends ModulEintragAdapter implements IPopup
     public function getEintragHtml() {
         return '<' . $this->getTag() . ' class="' . $this->getClass() . '"><p>' . $this->getKurzInfo() . '</p>' .
             '<div class="popup_optionen">' .
-            '<button id="' . $this->datenbankEintrag->getTabelle() . "_"
+            '<button id="' . $this->eintrag->getTabelle() . "_"
             . AjaxKeywords::AKTUALISIEREN . "-"
-            . $this->datenbankEintrag->getId() .
+            . $this->eintrag->getId() .
             '" class="wechsel_button bearbeiten hoverbox">' .
             '</button>' .
             '</div>' .

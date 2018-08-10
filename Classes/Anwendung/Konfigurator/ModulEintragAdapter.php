@@ -8,14 +8,14 @@ abstract class ModulEintragAdapter implements IModulEintrag {
     /**
      * @var IDatenbankEintrag
      */
-    protected $datenbankEintrag;
+    protected $eintrag;
 
     /**
      * ModulEintragAdapter constructor.
      * @param IDatenbankEintrag $datenbankEintrag
      */
     public function __construct(IDatenbankEintrag $datenbankEintrag) {
-        $this->datenbankEintrag = $datenbankEintrag;
+        $this->eintrag = $datenbankEintrag;
     }
 }
 

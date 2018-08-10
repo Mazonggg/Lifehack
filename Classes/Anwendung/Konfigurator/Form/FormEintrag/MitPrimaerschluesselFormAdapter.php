@@ -7,7 +7,7 @@ abstract class MitPrimaerschluesselFormAdapter extends FormEintragAdapter {
      * @return string
      */
     public function getDatenbankEintragId() {
-        return $this->datenbankEintrag->getId();
+        return $this->eintrag->getId();
     }
 }
 

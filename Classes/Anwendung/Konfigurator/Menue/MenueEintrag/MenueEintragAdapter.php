@@ -18,7 +18,7 @@ class MenueEintragAdapter extends ModulEintragAdapter implements IMenueEintrag {
      * @return string
      */
     public function getId() {
-        return $this->datenbankEintrag->getId();
+        return $this->eintrag->getId();
     }
 
     /**
@@ -32,8 +32,8 @@ class MenueEintragAdapter extends ModulEintragAdapter implements IMenueEintrag {
      * @return string
      */
     public function getEintragHtml() {
-        return '<div id="' . $this->datenbankEintrag->getTabelle() . '_menue" class="menue_block">' .
-            $this->getMenueButton($this->datenbankEintrag->getTabelle()) .
+        return '<div id="' . $this->eintrag->getTabelle() . '_menue" class="menue_block">' .
+            $this->getMenueButton($this->eintrag->getTabelle()) .
             '</div>';
     }
 

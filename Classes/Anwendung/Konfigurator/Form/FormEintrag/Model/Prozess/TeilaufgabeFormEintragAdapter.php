@@ -16,7 +16,7 @@ class TeilaufgabeFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
     /**
      * @var Teilaufgabe
      */
-    protected $datenbankEintrag;
+    protected $eintrag;
 
     /**
      * @return IInput[]
@@ -25,27 +25,27 @@ class TeilaufgabeFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
         $menueTextInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXTAREA,
             TabellenSpalten::TEILAUFGABE_MENUE_TEXT,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getDialog()->getMenueText()]
+            [SimpleInputFabrik::INHALT => $this->eintrag->getDialog()->getMenueText()]
         );
         $anspracheTextInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXTAREA,
             TabellenSpalten::TEILAUFGABE_ANSPRACHE_TEXT,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getDialog()->getAnspracheText()]
+            [SimpleInputFabrik::INHALT => $this->eintrag->getDialog()->getAnspracheText()]
         );
         $antwortTextInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXTAREA,
             TabellenSpalten::TEILAUFGABE_ANTWORT_TEXT,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getDialog()->getAntwortText()]
+            [SimpleInputFabrik::INHALT => $this->eintrag->getDialog()->getAntwortText()]
         );
         $erfuellungTextInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXTAREA,
             TabellenSpalten::TEILAUFGABE_ERFUELLUNGS_TEXT,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getDialog()->getErfuellungsText()]
+            [SimpleInputFabrik::INHALT => $this->eintrag->getDialog()->getErfuellungsText()]
         );
         $scheiternTextInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXTAREA,
             TabellenSpalten::TEILAUFGABE_SCHEITERN_TEXT,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getDialog()->getScheiternText()]
+            [SimpleInputFabrik::INHALT => $this->eintrag->getDialog()->getScheiternText()]
         );
         $items = DatenbankAbrufHandler::Instance()->findSpalteZuId(
             TabellenName::ITEM,
@@ -56,7 +56,7 @@ class TeilaufgabeFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
             TabellenSpalten::TEILAUFGABE_BEDINGUNG_ITEM_REF,
             [SimpleInputFabrik::INHALT => '',
                 SimpleInputFabrik::OPTIONEN => $items,
-                SimpleInputFabrik::SELECTED => $this->datenbankEintrag->getBedingung()->getId(),
+                SimpleInputFabrik::SELECTED => $this->eintrag->getBedingung()->getId(),
                 SimpleInputFabrik::LABEL => 'Ben&ouml;tigtes Item']
         );
         $belohnungInput = SimpleInputFabrik::erzeugeFormInput(
@@ -64,7 +64,7 @@ class TeilaufgabeFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
             TabellenSpalten::TEILAUFGABE_BELOHNUNG_ITEM_REF,
             [SimpleInputFabrik::INHALT => '',
                 SimpleInputFabrik::OPTIONEN => $items,
-                SimpleInputFabrik::SELECTED => $this->datenbankEintrag->getBelohnung()->getId(),
+                SimpleInputFabrik::SELECTED => $this->eintrag->getBelohnung()->getId(),
                 SimpleInputFabrik::LABEL => 'Erhaltenes Item']
         );
         $teilaufgabeArten = DatenbankAbrufHandler::Instance()->findSpalteZuId(
@@ -76,7 +76,7 @@ class TeilaufgabeFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
             TabellenName::TEILAUFGABE_ART . Keyword::REF,
             [SimpleInputFabrik::INHALT => '',
                 SimpleInputFabrik::OPTIONEN => $teilaufgabeArten,
-                SimpleInputFabrik::SELECTED => $this->datenbankEintrag->getTeilaufgabeArt()->getSchluessel(),
+                SimpleInputFabrik::SELECTED => $this->eintrag->getTeilaufgabeArt()->getSchluessel(),
                 SimpleInputFabrik::LABEL => 'Art der Teilaufgabe']
         );
         $institutArten = DatenbankAbrufHandler::Instance()->findSpalteZuId(
@@ -88,7 +88,7 @@ class TeilaufgabeFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
             TabellenName::INSTITUT_ART . Keyword::REF,
             [SimpleInputFabrik::INHALT => '',
                 SimpleInputFabrik::OPTIONEN => $institutArten,
-                SimpleInputFabrik::SELECTED => $this->datenbankEintrag->getInstitutArt()->getSchluessel(),
+                SimpleInputFabrik::SELECTED => $this->eintrag->getInstitutArt()->getSchluessel(),
                 SimpleInputFabrik::LABEL => 'Art des Instituts']
         );
         return [

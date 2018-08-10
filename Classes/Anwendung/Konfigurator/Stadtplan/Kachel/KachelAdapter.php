@@ -15,7 +15,7 @@ abstract class KachelAdapter extends ModulEintragAdapter implements IKachel {
     /**
      * @var Abmessung
      */
-    protected $datenbankEintrag;
+    protected $eintrag;
 
     /**
      * @return Wertepaar[]
@@ -33,10 +33,10 @@ abstract class KachelAdapter extends ModulEintragAdapter implements IKachel {
     private function getUmgerechneteAbmessungen() {
         $stadtplanAbmessung = StadtplanModul::Instance()->getStadtplanAbmessung();
         return SimpleAbmessungFabrik::erzeugeAbmessung(
-            ($this->datenbankEintrag->xMin() - $stadtplanAbmessung->xMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .
-            ($this->datenbankEintrag->yMin() - $stadtplanAbmessung->yMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .
-            $this->datenbankEintrag->getBreite() . AustauschKonstanten::ABMESSUNG_TRENNER .
-            $this->datenbankEintrag->getHoehe() . AustauschKonstanten::ABMESSUNG_TRENNER, '');
+            ($this->eintrag->xMin() - $stadtplanAbmessung->xMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .
+            ($this->eintrag->yMin() - $stadtplanAbmessung->yMin()) . AustauschKonstanten::ABMESSUNG_TRENNER .
+            $this->eintrag->getBreite() . AustauschKonstanten::ABMESSUNG_TRENNER .
+            $this->eintrag->getHoehe() . AustauschKonstanten::ABMESSUNG_TRENNER, '');
     }
 
     /**
@@ -72,8 +72,8 @@ abstract class KachelAdapter extends ModulEintragAdapter implements IKachel {
     /**
      * @return Abmessung
      */
-    public function getDatenbankEintrag() {
-        return $this->datenbankEintrag;
+    public function getEintrag() {
+        return $this->eintrag;
     }
 
     /**

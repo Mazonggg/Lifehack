@@ -14,7 +14,7 @@ class AufgabeFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
     /**
      * @var Aufgabe
      */
-    protected $datenbankEintrag;
+    protected $eintrag;
 
     /**
      * @return IInput[]
@@ -24,17 +24,17 @@ class AufgabeFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
         $bezeichnungInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXT,
             TabellenSpalten::AUFGABE_BEZEICHNUNG,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getBezeichnung()]
+            [SimpleInputFabrik::INHALT => $this->eintrag->getBezeichnung()]
         );
         $gesetzInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXTAREA,
             TabellenSpalten::AUFGABE_GESETZESGRUNDLAGE,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getGesetzesgrundlage()]
+            [SimpleInputFabrik::INHALT => $this->eintrag->getGesetzesgrundlage()]
         );
         $teilaufgabeNeuButton = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::NEUBUTTON,
             TabellenName::TEILAUFGABE,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getGesetzesgrundlage(),
+            [SimpleInputFabrik::INHALT => $this->eintrag->getGesetzesgrundlage(),
                 SimpleInputFabrik::ID => 'form_neu_button',
                 SimpleInputFabrik::INHALT => 'Teilaufgabe hinzuf&uuml;gen']
         );

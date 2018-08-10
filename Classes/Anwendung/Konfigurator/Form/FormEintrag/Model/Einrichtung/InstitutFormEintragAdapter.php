@@ -16,7 +16,7 @@ class InstitutFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
     /**
      * @var Institut
      */
-    protected $datenbankEintrag;
+    protected $eintrag;
 
     /**
      * @return IInput[]
@@ -25,12 +25,12 @@ class InstitutFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
         $nameInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXT,
             TabellenName::INSTITUT . Keyword::NAME,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getName()]
+            [SimpleInputFabrik::INHALT => $this->eintrag->getName()]
         );
         $beschreibungInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXTAREA,
             TabellenSpalten::INSTITUT_BESCHREIBUNG,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getBeschreibung()]
+            [SimpleInputFabrik::INHALT => $this->eintrag->getBeschreibung()]
         );
         $institutArten = DatenbankAbrufHandler::Instance()->findSpalteZuId(
             TabellenName::INSTITUT_ART,
@@ -41,7 +41,7 @@ class InstitutFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
             TabellenName::INSTITUT_ART . Keyword::REF,
             [SimpleInputFabrik::INHALT => '',
                 SimpleInputFabrik::OPTIONEN => $institutArten,
-                SimpleInputFabrik::SELECTED => $this->datenbankEintrag->getInstitutArt()->getSchluessel(),
+                SimpleInputFabrik::SELECTED => $this->eintrag->getInstitutArt()->getSchluessel(),
                 SimpleInputFabrik::LABEL => 'Art des Instituts']
         );
         return [$nameInput, $beschreibungInput, $instituArtInput];

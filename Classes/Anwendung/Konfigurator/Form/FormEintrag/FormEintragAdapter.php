@@ -44,7 +44,7 @@ abstract class FormEintragAdapter extends ModulEintragAdapter implements IFormEi
             $form .= $this->getTitelBlock();
         }
         $form .=
-            '<div id="form_body_content_' . $this->datenbankEintrag->getTabelle() .
+            '<div id="form_body_content_' . $this->eintrag->getTabelle() .
             "-" . $this->getDatenbankEintragId() . '" class="form_body_content">';
         $form .= $this->getModusInput()->getInputHtml();
         foreach ($this->getFormInputs() as $input) {
@@ -58,14 +58,14 @@ abstract class FormEintragAdapter extends ModulEintragAdapter implements IFormEi
      */
     private function getTitelBlock() {
         return
-            '<div id = "form_body_head_' . $this->datenbankEintrag->getTabelle() . "-" . $this->getDatenbankEintragId() . '" class="form_body_head align_right" > ' .
+            '<div id = "form_body_head_' . $this->eintrag->getTabelle() . "-" . $this->getDatenbankEintragId() . '" class="form_body_head align_right" > ' .
             '<div class="popup_optionen" > ' .
-            '<button id = "form_body_ausblendbutton_' . $this->datenbankEintrag->getTabelle() . "-" . $this->getDatenbankEintragId() . '" class="wechsel_button form_item oeffnen hoverbox " ></button > ' .
-            '<h3 class="form_item form_teilueberschrift" > ' . ucfirst(explode("_", $this->datenbankEintrag->getTabelle())[0]) . '</h3 > ' .
+            '<button id = "form_body_ausblendbutton_' . $this->eintrag->getTabelle() . "-" . $this->getDatenbankEintragId() . '" class="wechsel_button form_item oeffnen hoverbox " ></button > ' .
+            '<h3 class="form_item form_teilueberschrift" > ' . ucfirst(explode("_", $this->eintrag->getTabelle())[0]) . '</h3 > ' .
             '</div > ' .
             '<div class="popup_optionen" > ' .
-            '<button id="entfernen_button_' . $this->datenbankEintrag->getTabelle() . "-" . $this->getDatenbankEintragId() . '" class="form_item hoverbox hinweis">l&ouml;schen</button>' .
-            '<button id = "loeschen_button_' . $this->datenbankEintrag->getTabelle() . "-" . $this->getDatenbankEintragId() . '" class="wechsel_button form_item loeschen hoverbox " ></button > ' .
+            '<button id="entfernen_button_' . $this->eintrag->getTabelle() . "-" . $this->getDatenbankEintragId() . '" class="form_item hoverbox hinweis">l&ouml;schen</button>' .
+            '<button id = "loeschen_button_' . $this->eintrag->getTabelle() . "-" . $this->getDatenbankEintragId() . '" class="wechsel_button form_item loeschen hoverbox " ></button > ' .
             '</div>' .
             '</div > ';
     }
@@ -74,7 +74,7 @@ abstract class FormEintragAdapter extends ModulEintragAdapter implements IFormEi
      * @return string
      */
     public function getId() {
-        return 'form_body_' . $this->datenbankEintrag->getTabelle() . "-" . $this->getDatenbankEintragId();
+        return 'form_body_' . $this->eintrag->getTabelle() . "-" . $this->getDatenbankEintragId();
     }
 
     /**

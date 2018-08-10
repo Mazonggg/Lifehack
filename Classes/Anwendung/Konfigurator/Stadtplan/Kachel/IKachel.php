@@ -11,6 +11,6 @@ interface IKachel extends IModulEintrag, IHtmlClass {
     /**
      * @return Abmessung
      */
-    public function getDatenbankEintrag();
+    public function getEintrag();
 }
 

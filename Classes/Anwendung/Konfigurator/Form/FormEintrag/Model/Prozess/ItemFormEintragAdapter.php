@@ -16,7 +16,7 @@ class ItemFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
     /**
      * @var Item
      */
-    protected $datenbankEintrag;
+    protected $eintrag;
 
     /**
      * @return IInput[]
@@ -25,12 +25,12 @@ class ItemFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
         $nameInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXT,
             TabellenName::ITEM . Keyword::NAME,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getName()]
+            [SimpleInputFabrik::INHALT => $this->eintrag->getName()]
         );
         $gewichtInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::NUMBER,
             TabellenSpalten::ITEM_GEWICHT,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getGewicht(),
+            [SimpleInputFabrik::INHALT => $this->eintrag->getGewicht(),
                 SimpleInputFabrik::MIN => '1',
                 SimpleInputFabrik::MAX => '20',
                 SimpleInputFabrik::LABEL => 'Gewicht des Items']
@@ -38,7 +38,7 @@ class ItemFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
         $konfigInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::TEXTAREA,
             TabellenSpalten::ITEM_KONFIGURATION,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getKonfiguration()]
+            [SimpleInputFabrik::INHALT => $this->eintrag->getKonfiguration()]
         );
         $itemArten = DatenbankAbrufHandler::Instance()->findSpalteZuId(
             TabellenName::ITEM_ART,
@@ -49,7 +49,7 @@ class ItemFormEintragAdapter extends MitPrimaerschluesselFormAdapter {
             TabellenName::ITEM_ART . Keyword::REF,
             [SimpleInputFabrik::INHALT => '',
                 SimpleInputFabrik::OPTIONEN => $itemArten,
-                SimpleInputFabrik::SELECTED => $this->datenbankEintrag->getItemArt()->getSchluessel(),
+                SimpleInputFabrik::SELECTED => $this->eintrag->getItemArt()->getSchluessel(),
                 SimpleInputFabrik::LABEL => 'Art des Items']
         );
         return [$nameInput, $gewichtInput, $konfigInput, $itemArtInput];

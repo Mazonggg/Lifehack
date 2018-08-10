@@ -15,7 +15,7 @@ class NiederlassungFormEintragAdapter extends OhnePrimaerschluesselFormAdapter {
     /**
      * @var Niederlassung
      */
-    protected $datenbankEintrag;
+    protected $eintrag;
 
     /**
      * @return IInput[]
@@ -30,7 +30,7 @@ class NiederlassungFormEintragAdapter extends OhnePrimaerschluesselFormAdapter {
             TabellenName::NIEDERLASSUNG . '_' . TabellenName::INSTITUT . Keyword::REF,
             [SimpleInputFabrik::INHALT => '',
                 SimpleInputFabrik::OPTIONEN => $interieurAussehens,
-                SimpleInputFabrik::SELECTED => $this->datenbankEintrag->getInstitut()->getSchluessel(),
+                SimpleInputFabrik::SELECTED => $this->eintrag->getInstitut()->getSchluessel(),
                 SimpleInputFabrik::LABEL => 'Geh&ouml;rt zu Einrichtung']
         );
         return [$interieurAussehensInput];

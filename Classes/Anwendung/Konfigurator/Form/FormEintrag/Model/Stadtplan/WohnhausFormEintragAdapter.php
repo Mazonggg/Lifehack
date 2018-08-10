@@ -12,9 +12,9 @@ use Model\Stadtplan\Wohnhaus;
 class WohnhausFormEintragAdapter extends OhnePrimaerschluesselFormAdapter {
 
     /**
-     * @var Wohnhaus $datenbankEintrag
+     * @var Wohnhaus $eintrag
      */
-    protected $datenbankEintrag;
+    protected $eintrag;
 
     /**
      * @return IInput[]
@@ -23,7 +23,7 @@ class WohnhausFormEintragAdapter extends OhnePrimaerschluesselFormAdapter {
         $wohneinheitenInput = SimpleInputFabrik::erzeugeFormInput(
             SimpleInputFabrik::NUMBER,
             TabellenSpalten::WOHNHAUS_WOHNEINHEITEN,
-            [SimpleInputFabrik::INHALT => $this->datenbankEintrag->getWohneinheiten(),
+            [SimpleInputFabrik::INHALT => $this->eintrag->getWohneinheiten(),
                 SimpleInputFabrik::MIN => '1',
                 SimpleInputFabrik::MAX => '20',
                 SimpleInputFabrik::LABEL => 'Anzahl der Wohneinheiten']
