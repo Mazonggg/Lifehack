@@ -2,7 +2,6 @@
 
 namespace Anwendung\Konfigurator;
 
-use Anwendung\KonfiguratorModul;
 use Model\Singleton\ISingleton;
 
 class HeaderAbrufer implements ISingleton {
