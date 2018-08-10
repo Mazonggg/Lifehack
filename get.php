@@ -107,7 +107,7 @@ function elementOeffnen($tabelle) {
             $eintraege = ModelHandler::Instance()->getAufgaben();
             break;
     }
-    return PopupModul::Instance()->getInhaltHtml($eintraege);
+    return PopupModul::Instance()->getInhalt($eintraege);
 }
 
 /**

@@ -61,7 +61,7 @@ class StadtplanModul extends Modul {
      * @return string
      */
     protected function getContainerHtml($eintraege) {
-        $kachelnHtml = $this->getInhaltHtml($eintraege);
+        $kachelnHtml = $this->getInhalt($eintraege);
         $stadtplanAbmessung = $this->getStadtplanAbmessung();
         $html =
             '<div id="stadtplan_overlay" class="stadtplan_overlay ausgeblendet display_none"></div>' .
@@ -80,7 +80,7 @@ class StadtplanModul extends Modul {
      * @param IDatenbankEintrag[] $eintraege
      * @return string
      */
-    public function getInhaltHtml($eintraege) {
+    public function getInhalt($eintraege) {
         /**
          * @var IKachel[] $kacheln
          */

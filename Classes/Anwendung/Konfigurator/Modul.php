@@ -40,12 +40,6 @@ abstract class Modul implements IModul, ISingleton, IHtmlClass, IHtmlTag, IHtmlI
     abstract protected function getContainerHtml($eintraege);
 
     /**
-     * @param IDatenbankEintrag[] $eintraege
-     * @return string
-     */
-    abstract public function getInhaltHtml($eintraege);
-
-    /**
      * @param IDatenbankEintrag $eintrag
      * @return IModulEintrag|IModulEintrag[]
      */

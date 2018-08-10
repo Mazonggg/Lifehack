@@ -55,7 +55,7 @@ class MenueModul extends Modul implements IHtmlClass, IHtmlTag, IHtmlId {
             '</div>' .
             '<div id="menue" class="menue">' .
             '<h3>Inhalte bearbeiten</h3>';
-        $menue .= $this->getInhaltHtml($eintraege);
+        $menue .= $this->getInhalt($eintraege);
         $menue .= '</div><div id="stadtplan_menue" class="menue">' .
             '<h3>Kartenelement hinzuf&uuml;gen</h3>';
         $kartenelementArten = DatenbankAbrufHandler::Instance()->findSpalteZuId(
@@ -75,7 +75,7 @@ class MenueModul extends Modul implements IHtmlClass, IHtmlTag, IHtmlId {
      * @param IDatenbankEintrag[] $eintraege
      * @return string
      */
-    public function getInhaltHtml($eintraege) {
+    public function getInhalt($eintraege) {
         /**
          * @var IMenueEintrag[] $elementArten
          */

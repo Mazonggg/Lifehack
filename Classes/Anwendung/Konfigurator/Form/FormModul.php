@@ -79,7 +79,7 @@ class FormModul extends Modul {
                 parent::getModulHtml($eintraege) .
                 $this->getSubmit() . '</form>';
         } else {
-            return $this->getInhaltHtml($eintraege);
+            return $this->getInhalt($eintraege);
         }
     }
 
@@ -88,14 +88,14 @@ class FormModul extends Modul {
      * @return string
      */
     protected function getContainerHtml($eintraege) {
-        return $this->getInhaltHtml($eintraege);
+        return $this->getInhalt($eintraege);
     }
 
     /**
      * @param IDatenbankEintrag[] $eintraege
      * @return string
      */
-    public function getInhaltHtml($eintraege) {
+    public function getInhalt($eintraege) {
         $form = '';
         /**
          * @var IFormEintrag[] $teilFormulare

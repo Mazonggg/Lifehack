@@ -21,5 +21,11 @@ interface IModul {
      * @return string
      */
     public function getModulHtml($eintraege);
+
+    /**
+     * @param IDatenbankEintrag[] $eintraege
+     * @return string
+     */
+    public function getInhalt($eintraege);
 }
 

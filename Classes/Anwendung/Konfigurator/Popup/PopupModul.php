@@ -60,7 +60,7 @@ class PopupModul extends Modul {
      * @param IDatenbankEintrag[] $eintraege
      * @return string
      */
-    public function getInhaltHtml($eintraege) {
+    public function getInhalt($eintraege) {
         /**
          * @var IPopupEintrag[] $blockDaten
          */
