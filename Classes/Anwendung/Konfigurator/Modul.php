@@ -42,6 +42,7 @@ abstract class Modul implements IModul, ISingleton, IHtmlClass, IHtmlTag, IHtmlI
     /**
      * @param IDatenbankEintrag $eintrag
      * @return IModulEintrag|IModulEintrag[]
+     * TODO Die Rueckgabe als IModulEintrag[] kann durch den Einsatz eines Composite Pattern umgangen werden.
      */
     abstract protected function erzeugeEintragAdapter($eintrag);
 

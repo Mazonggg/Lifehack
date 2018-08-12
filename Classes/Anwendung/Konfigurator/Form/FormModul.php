@@ -145,6 +145,7 @@ class FormModul extends Modul {
     /**
      * @param IKartenelement $kartenelement
      * @return IFormEintrag[]
+     * TODO Die Rueckgabe als IFormEintrag[] kann durch Einsatz eines Composite Pattern umgangen werden.
      */
     private function erzeugeKartenelementForms($kartenelement) {
         $formAdapters = [
